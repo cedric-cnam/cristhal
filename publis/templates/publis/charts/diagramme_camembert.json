@@ -1,0 +1,13 @@
+{        
+  chart: {
+            type: 'pie'
+        },
+        title: {
+            text: ''
+        },
+        series: [
+           {
+              data: {{chart_donnees|safe}}
+           }
+        ]
+    }
