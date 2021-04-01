@@ -1,0 +1,27 @@
+{% extends "layout.html" %} 
+{% load i18n %} 
+
+
+{% block content %}
+
+<div>
+<ol>
+{% for action in actions %} 
+   <li>{{action}}
+{% endfor %}
+</ol>
+<div>
+{% for key, value in types_sources %} 
+<h2>{{value}}</h2>
+<ul>
+ {% for source in sources %}
+  {% if source.type_source == key %}
+      <li>{{source.description}}, {{source.count_refs}} références. (<a href="{% url 'publis:referentiel'%}?id_source={{source.id}}" aria-current="page">(re)charger)</a></li>
+   {% endif %}   
+  {% endfor %}
+</ul>
+{% endfor %}
+</div>
+</div>
+  
+{% endblock content %}

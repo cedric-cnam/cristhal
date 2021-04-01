@@ -1,0 +1,51 @@
+{% extends "layout.html" %} 
+{% load i18n %} 
+
+
+{% block content %}
+
+
+<form method="get" action="{% url 'publis:recherche'  %}"
+    onsubmit="return required_field('requete_sql', 'Saisissez un ensemble de mots-clés')">
+    {% csrf_token %}
+    <fieldset>
+    
+    <input type="hidden" id="envoi_requete" name="envoi_requete"  value="1"/>
+        <table>
+            <tr>
+                <td><b>Revues</b></td>
+                <td><b>Conférences</b></td>
+            </tr>
+            <tr>
+                <td><input type="radio" name="choix_type" value="ART"     {{checked_revue}} /></td>
+                <td><input type="radio" name="choix_type" value="COMM" {{checked_conf}} /></td>
+            </tr>
+        </table>
+
+        <table border="0">
+        <tr>
+        <td>
+        <span> </span> <label for="requete">{% trans "Saisissez un ensemble de mots-clés" %}</label>
+        <textarea rows="5" cols="80" id="requete" id="requete" name="requete">{{requete}}</textarea>
+        <br/>
+         <input type="submit" value="{% trans 'Exécuter' %}" />
+</td>
+</tr>
+</table>
+
+{% if erreur %}
+<h2>Erreur</h2>
+  Votre requête a engendré le message d'erreur suivant: {{message}}. Corrigez et soumettez-la à nouveau.
+{% endif %}
+
+{% if resultat %}
+   <h2>Résultat classé par ordre de pertinence descendant</h2>
+   
+   <ul>
+  {% for ref in refs %}
+       <li>{{ref.title}},  {{ref.description_source}} ({{ref.source}}), classement {{ref.rank}}</li>
+  {% endfor %}
+  </ul> 
+{% endif %}
+  
+{% endblock content %}

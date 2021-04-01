@@ -1,0 +1,46 @@
+{% extends "layout.html" %} 
+{% load i18n %} 
+
+
+{% block content %}
+
+
+<h2>Publications par année et par type</h2>
+
+ <script>
+ Highcharts.setOptions({
+      colors: ['brown', 'GoldenRod', 'OrangeRed', 'DarkCyan',  'mediumPurple', 'chocolate', 'DodgerBlue', 'ForestGreen', '#2f7ed8',  '#8bbc21', '#910000', 'red', '#1aadce',
+     '#492970',  '#f28f43', '#77a1e5', '#c42525', '#a6c96a']
+ }
+ );
+ </script>
+ 
+<div id="par_annee"></div>
+ <script>
+    Highcharts.chart('par_annee', 
+       {% include "publis/charts/diagramme_barres.json" with chart_titre=""  chart_annees=annees  chart_donnees=stats_annee_type %}
+    );
+ </script>
+
+
+<h2>Publications par année et par classement</h2>
+
+<div id="par_annee_classement"></div>
+ <script>
+    Highcharts.chart('par_annee_classement', 
+       {% include "publis/charts/diagramme_barres.json" with  chart_annees=annees  chart_donnees=stats_annee_classement %}
+    );
+ </script>
+
+<h2>Répartition par classement sur la période</h2>
+<div id="par_classement"></div>
+ <script>
+    Highcharts.chart('par_classement', 
+       {% include "publis/charts/diagramme_camembert.json" with chart_titre="Publications par classement"  chart_donnees=stats_classement|safe %}
+    );
+ </script>
+
+
+
+
+{% endblock content %}
