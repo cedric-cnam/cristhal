@@ -4,5 +4,5 @@
 /.pydevproject
 /.DS_Store
 # Compilations 
-!**/__pycache__/
+__pycache__/
 *.py[cod]
