@@ -2,6 +2,7 @@ from django.shortcuts import render
 import logging
 
 
+@login_required
 def index(request):
     context = {"titre": "Accueil", 
                "css_sous_menu_accueil": "current_page_item"}
