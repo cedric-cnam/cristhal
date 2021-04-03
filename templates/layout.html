@@ -9,14 +9,36 @@
 </head>
 <body>
 <div  class="main">
-  <h1><span class="hr">Hannib</span>Hal</h1>
+  <h1><span class="hr">Crist</span>HAL</h1>
   <ul id="top">
+   {% if sous_menu == 'collections' %}
     <li><a class="current" href="{% url 'publis:collections' %}">Collections</a></li>
+   {% else %}
+    <li><a  href="{% url 'publis:collections' %}">Collections</a></li>
+   {% endif %}
+   {% if sous_menu == 'référentiel' %}
+    <li><a class="current" href="{% url 'publis:referentiel' %}">Référentiel</a></li>
+   {% else %}
     <li><a href="{% url 'publis:referentiel' %}">Référentiel</a></li>
+   {% endif %}
+    {% if sous_menu == 'recherche' %}
+    <li><a class="current" href="{% url 'publis:recherche' %}">Recherche</a></li>
+   {% else %}
     <li><a href="{% url 'publis:recherche' %}">Recherche</a></li>
-    <li><a href="#">Classement</a></li>
+   {% endif %}
+    {% if sous_menu == 'classement' %}
+    <li><a class="current" href="{% url 'publis:instructions' %}">Classement</a></li>
+   {% else %}
+    <li><a href="{% url 'publis:instructions' %}">Classement</a></li>
+   {% endif %}
+    {% if sous_menu == 'publications' %}
+    <li><a class="current" href="{% url 'publis:publications' %}">Publications</a></li>
+   {% else %}
     <li><a href="{% url 'publis:publications' %}">Publications</a></li>
+   {% endif %}
+{% if user.is_superuser %}
         <li><a href="{% url 'admin:index'  %}">Administration</a></li>
+{% endif %}
   </ul>
   
 
