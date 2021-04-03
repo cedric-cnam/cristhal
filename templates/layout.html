@@ -37,15 +37,15 @@
     <li><a href="{% url 'publis:publications' %}">Publications</a></li>
    {% endif %}
 {% if user.is_superuser %}
-        <li><a href="{% url 'admin:index'  %}">Administration</a></li>
+        <li><a href="{% url 'admin:index'  %}">Admin</a></li>
 {% endif %}
   </ul>
-  
 
       <div id="intro">
       </div>
   
   <div id="left">
+        <h2 >{{ titre }}</h2> 
 
             {% block content %}{% endblock content %}
       </div>

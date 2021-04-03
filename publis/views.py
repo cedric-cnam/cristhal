@@ -132,7 +132,8 @@ def instructions(request):
                "collections": Collection.objects.all(),
                "sources": Source.objects.all(),
                "types_sources": CHOIX_SOURCES,
-                  "menu_local": menu_local("classement")
+                  "menu_local": menu_local("classement"),
+                    "sous_menu" : "classement",
                 }
     return render(request, 'publis/instructions.html', context)
 

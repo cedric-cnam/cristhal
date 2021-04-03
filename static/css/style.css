@@ -44,7 +44,7 @@ time, mark, audio, video
 
 body {
     font-family: 'Montserrat';
-    font: 1.2em Georgia, "Times New Roman",  Sans-Serif;
+    font: 1.1em Georgia, "Times New Roman",  Sans-Serif;
     font-size: 15px;
     color: var(--text);
     background-color: var(--gris-tres-clair);
@@ -64,7 +64,12 @@ p  { margin: 5px 0 15px; line-height: 1.6em; }
 
 /* Blocs principal */
 
-.main { margin: 0 auto; width: 1200px; }
+.main { margin: 0 auto; width: 1000px; }
+
+
+div {
+    margin: 0 0 0.8em 0;
+}
 
 p {
     margin: 0 0 0.5em 0;
@@ -110,7 +115,7 @@ padding: 15px 0 1px 20px;
 border: 1px solid #dedede; font-size: 1.3em; 
 background: #eee; margin: 0 0 30px; }
 
-#left { float: left; width: 600px; margin: 0 0 15px; }
+#left { float: left; width: 800px; margin: 0 0 15px; }
 
 #right { float: right; width: 280px; }
 #right h3 { border-bottom: 1px solid #ccc; margin: 0 0 10px; }
