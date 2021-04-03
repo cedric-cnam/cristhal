@@ -5,6 +5,9 @@
 
 */
 
+@import url("fonts.css");
+@import url("cedric-colors.css");
+
 /* global reset */
 
 html, body, div, span, applet, object, iframe,
@@ -36,14 +39,12 @@ time, mark, audio, video
 
 /* Polices de caractères et couleurs */
 
-@import url("fonts.css");
-@import url("cedric-colors.css");
 
 :focus, :active { outline: 0; }
 
 body {
     font-family: 'Montserrat';
-    font: 1.1em Georgia, "Times New Roman",  Sans-Serif;
+    font: 1.2em Georgia, "Times New Roman",  Sans-Serif;
     font-size: 15px;
     color: var(--text);
     background-color: var(--gris-tres-clair);
@@ -61,9 +62,42 @@ h2 a:hover { background: #A82A15; color: #fff; }
 .hr { color: #ccc; }
 p  { margin: 5px 0 15px; line-height: 1.6em; }
 
-/* Blocs spécifiés par leur ID */
+/* Blocs principal */
 
-#content { margin: 0 auto; width: 1200px; }
+.main { margin: 0 auto; width: 1200px; }
+
+p {
+    margin: 0 0 0.5em 0;
+}
+
+ul, ol, dl {
+    margin: 0 0 0.5em 15px;
+}
+
+table {
+    width: 100%;
+}
+table caption {
+    font-size: 1.3em;
+    font-weight: 600;
+    padding: 2em 0 0.5em 0;
+    border-collapse: collapse;
+}
+td {
+    border: 1px solid var(--gris-clair);
+    padding: 5px 8px;
+}
+th {
+    font-weight: 600;
+    padding: 5px 8px;
+    color: var(--gris-fonce);
+}
+
+main a:hover {
+    text-decoration: underline;
+}
+
+
 
 #top { float: right; margin: 38px 0 30px 0;}
 	#top li { list-style: none; display: inline; }

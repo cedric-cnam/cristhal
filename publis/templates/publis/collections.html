@@ -13,6 +13,7 @@ Vous pouvez suivre ce lien pour <a href="{% url 'admin:publis_collection_add' %}
 </div>
 {% endif %}
  {% if collections %}
+ <div>
 <table>
 <tr><th>Code</th><th>Nom</th><th>Nom Hal</th><th>Indicateurs</th><th>Actions</th></tr>
 {% for coll in collections %}
@@ -31,6 +32,7 @@ Vous pouvez suivre ce lien pour <a href="{% url 'admin:publis_collection_add' %}
 </tr>
 {% endfor %}
 </table>
+</div>
 {% else %}
 Vous n'avez pas encore défini de collection.
 {% endif %}
