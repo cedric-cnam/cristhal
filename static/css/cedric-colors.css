@@ -1,0 +1,21 @@
+/* Colors */
+:root {
+    --cnam: hsla(347, 100%, 39%, 1.0);
+    --surs: hsla(89, 56%, 49%, 1.0);
+    --optimisation: hsla(50, 66%, 64%, 1.0);
+	--donnees: hsla(29, 11%, 62%, 1.0);
+	--interactivite: hsla(251, 60%, 49%, 1.0);
+	--reseaux: hsla(186, 51%, 57%, 1.0);
+	--statistiques: hsla(349, 62%, 42%, 1.0);
+	--decision: hsla(178, 65%, 41%, 1.0);
+
+    --gris-tres-fonce: hsl(26, 3%, 34%);
+    --gris-fonce: hsl(26, 3%, 50%);
+    --gris-moyen: hsl(26, 4%, 63%);
+    --gris-clair: hsl(26, 6%, 85%);
+    --gris-tres-clair: hsl(26, 6%, 95%);
+    --gris-tres-tres-clair: hsl(0, 0%, 98%);
+    --alt: hsl(259, 94%, 46%);
+    --ok: hsl(92, 32%, 59%);
+    --text: hsl(26, 3%, 15%);
+}

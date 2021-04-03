@@ -11,17 +11,16 @@
 <div id="content">
   <h1><span class="hr">Hannib</span>Hal</h1>
   <ul id="top">
-    <li><a class="current" href="#">Collections</a></li>
-    <li><a href="#">Référentiel</a></li>
+    <li><a class="current" href="{% url 'publis:collections' %}">Collections</a></li>
+    <li><a href="{% url 'publis:referentiel' %}">Référentiel</a></li>
+    <li><a href="{% url 'publis:recherche' %}">Recherche</a></li>
     <li><a href="#">Classement</a></li>
-    <li><a href="#">Publications</a></li>
+    <li><a href="{% url 'publis:publications' %}">Publications</a></li>
         <li><a href="{% url 'admin:index'  %}">Administration</a></li>
   </ul>
   
 
-  
       <div id="intro">
-    <p>Texte intro</p>
       </div>
   
   <div id="left">

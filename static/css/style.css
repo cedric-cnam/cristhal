@@ -6,10 +6,53 @@
 */
 
 /* global reset */
-*{ margin: 0; padding: 0; }*
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+main, article, aside, canvas, details, embed, 
+figure, figcaption, picture, header, footer, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video
+{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-weight: inherit;
+    font-style: inherit;
+    font-size: 100%;
+    font-family: inherit;
+    vertical-align: baseline;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+/* Polices de caractères et couleurs */
+
+@import url("fonts.css");
+@import url("cedric-colors.css");
+
 :focus, :active { outline: 0; }
 
-body { font: .9em Georgia, "Times New Roman", Sans-Serif; background: #fff url(/static/images/bg.gif) repeat-x; color: #333; }
+body {
+    font-family: 'Montserrat';
+    font: 1.1em Georgia, "Times New Roman",  Sans-Serif;
+    font-size: 15px;
+    color: var(--text);
+    background-color: var(--gris-tres-clair);
+     background: #fff url(/static/images/bg.gif) 
+     repeat-x;
+     color: #333; 
+}
+
+    
 a { color: #A82A15; text-decoration: none; }
 img { border: 0; }
 h1 {  float: left; margin: 20px 0 50px; font-size: 4em; color: #A82A15; }
@@ -17,18 +60,29 @@ h2 { font-size: 2.4em; font-weight: normal; margin: 0 0 20px; color: #A82A15;}
 h2 a:hover { background: #A82A15; color: #fff; }
 .hr { color: #ccc; }
 p  { margin: 5px 0 15px; line-height: 1.6em; }
+
+/* Blocs spécifiés par leur ID */
+
 #content { margin: 0 auto; width: 1200px; }
+
 #top { float: right; margin: 38px 0 30px 0;}
 	#top li { list-style: none; display: inline; }
 	#top li a { float: left; padding: 6px 20px; margin: 3px 2px 0 0; color: #ccc; }
 	#top li a.current { color: #fff; background: #A82A15; }
 	#top li a:hover { background: #808080; color: #fff; }
-#intro { clear: both; padding: 15px 0 1px 20px; border: 1px solid #dedede; font-size: 1.3em; background: #eee; margin: 0 0 30px; }
+	
+#intro { clear: both; 
+padding: 15px 0 1px 20px; 
+border: 1px solid #dedede; font-size: 1.3em; 
+background: #eee; margin: 0 0 30px; }
+
 #left { float: left; width: 600px; margin: 0 0 15px; }
+
 #right { float: right; width: 280px; }
 #right h3 { border-bottom: 1px solid #ccc; margin: 0 0 10px; }
 #right img { margin: 0 3px 3px 0; border: 2px solid #eee; padding: 2px; }
 #right li { list-style: none; }
 	#right li a { display: block; padding: 10px 10px; }
+	
 #footer { clear: both; padding: 15px 0; border-top: 1px solid #ccc; }
 	#r { float: right; }
