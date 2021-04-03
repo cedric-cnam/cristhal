@@ -73,14 +73,14 @@ NIVEAU_3 = "N3"
 NIVEAU_4 = "N4"
 NIVEAU_COMM = "C"
 NIVEAU_NAT = "N"
-NIVEAU_HORS_REFERENTIEL = "I"
+NIVEAU_HORS_REF = "I"
 CLASSEMENT_PUBLIS = [{"code": NIVEAU_1, "libelle" : "Q1"},
                      {"code": NIVEAU_2, "libelle" : "Q2"},
                      {"code": NIVEAU_3, "libelle" : "Q3"},
                      {"code": NIVEAU_4, "libelle" : "Q4"},
                    {"code": NIVEAU_COMM, "libelle" : "Communications"},
                     {"code": NIVEAU_NAT, "libelle" : "National"},
-                    {"code": NIVEAU_HORS_REFERENTIEL, "libelle" : "Hors référentiel"}
+                    {"code": NIVEAU_HORS_REF, "libelle" : "Hors référentiel"}
 ]
 
 #

@@ -101,7 +101,8 @@ def recherche(request):
                "collections": Collection.objects.all(),
                "sources": Source.objects.all(),
                "types_sources": CHOIX_SOURCES,
-                  "menu_local": []
+               "sous_menu" : "recherche",
+                  "menu_local":  menu_local("référentiel")
                 }
     # Définition du menu local
     context["menu_local"].append ({"url": reverse('publis:collections'), "lien": "<b>Collections</b>"})
@@ -139,6 +140,7 @@ def instructions(request):
 def classement(request, code_collection):
     context = {"titre": "Classement des publications de la collection " + code_collection.upper(), 
                "collections": Collection.objects.all(),
+                             "sous_menu" : "classement",
                   "menu_local": menu_local("classement")
                 }
 
@@ -213,6 +215,7 @@ def publications(request):
                "collections": Collection.objects.all(),
                "types_sources": CHOIX_SOURCES,
                "classement_publis": ClassementPubli.objects.all(),
+                    "sous_menu" : "publications",
                   "menu_local": menu_local("publications")
                 }
     
