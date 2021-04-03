@@ -1,0 +1,56 @@
+{% extends "layout.html" %} 
+{% load i18n %} 
+
+
+{% block content %}
+
+<form method="post">
+    {% csrf_token %}
+       {{ classement_formset.management_form }}
+    Choisir le classement dans le menu déroulant, puis <input type="submit" value="Valider">
+    
+    
+
+<table>
+<tr><th>Publication</th><th>Référence </th><th>Classement<th></tr>
+
+
+{% for annee in annees reversed %}
+    <tr><th cols='2'>{{annee}}</th></tr>
+       {% for form in classement_formset %}
+       
+     {% if annee == form.annee.value %}
+       
+       <tr><td>(Type HAL: {{ form.type.value }})
+  {%if form.type.value == 'COMM' %}
+     <a target="_blank" href="https://hal-cnam.archives-ouvertes.fr/{{form.idHal.value}}">{{ form.titre.value }}</a>, {{ form.annee.value }}, {{form.auteurs.value}}, publié dans <b>{{form.conf_titre.value}}</b>
+  {% else %}
+      <a target="_blank" href="https://hal-cnam.archives-ouvertes.fr/{{form.idHal.value}}">{{ form.titre.value }}</a>, {{ form.annee.value }}, {{form.auteurs.value}}, publié dans <b>{{form.revue_titre.value}}</b>
+  {% endif %}
+  </td>
+  <td>
+      {% for bestref in bestrefs %}
+            {% if bestref.idHal == form.idHal.value %}
+                <ul>
+              {% for ref in bestref.meilleures_ref %}
+                <li>{{ref.title}}</b>, avec classement {{ref.rank}} (source {{ref.source}})</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+       {% endfor %}
+   <td>
+    {{form.idHal}}  
+    {{form.classement}} 
+    Classement&nbsp;validé?  {{form.classement_valide}} 
+  </td>
+</tr>
+  
+  {% endif %}
+{% endfor %}
+{% endfor %} 
+</table>
+</form>
+
+
+
+{% endblock content %}
