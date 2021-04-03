@@ -4,7 +4,6 @@
 
 {% block content %}
 
-  
 {% if message %}
 <div>
 <b>Message :</b> {{message}}
@@ -13,38 +12,22 @@
 
 {% endif %}
 
-
-
-<div>
-Vous pouvez suivre le lien suivant pour
-<a href="{% url 'admin:publis_collection_add' %}">ajouter une collection</a>
-</div>
-{% if collections %}
-<div>
-<table>
+<table class='cristhal'>
 <tr><th>Code</th><th>Nom</th><th>Nom Hal</th><th>Indicateurs</th><th>Actions</th></tr>
 {% for coll in collections %}
 <tr>
 <td>{{coll.code}}</td><td>{{coll.nom}}</td><td>{{coll.nom_hal}}</td><td>Nb publis: {{coll.nb_publis}}</td>
 <td>
 <ul>
- <li><a href="/publis/?synchro=1&code={{coll.code}}">Synchroniser avec Hal</a></li>
- <li><a href="/publis/classement/{{coll.code}}">Classement des publications</a></li>
- <li><a href="/publis/stats_collection/{{coll.code}}">Statistiques </a></li>
+ <li><a href="{% url 'publis:collections' %}?synchro=1&code={{coll.code}}">Synchroniser avec Hal</a></li>
+ <li><a href="{% url 'publis:classement' coll.code %}">Classement des publications</a></li>
+ <li><a href="{% url 'publis:stats_collection' coll.code %}">Statistiques </a></li>
 </ul>
 </td>
 </tr>
 {% endfor %}
 </table>
-</div>
-{% else %}
 <div>
-Vous n'avez pas encore défini de collection. Si vous disposez des droits d'administration, 
-accédez au menu corres
-</div>
-{% endif %}
-<div>
-
 </div>
 
 
