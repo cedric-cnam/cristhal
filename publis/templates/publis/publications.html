@@ -4,15 +4,18 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-   {% crispy form_recherche  %}
 
+<h3>Formulaire de recherche des publications</h3>
+<div>
+   {% crispy form_recherche  %}
+</div>
 {% if erreur %}
 <h2>Erreur</h2>
   Votre requête a engendré le message d'erreur suivant: {{message}}. Corrigez et soumettez-la à nouveau.
 {% endif %}
 
 {% if resultat %}
-   <h2>Résultat</h2>
+   <h3>Résultat</h3>
 
    <ul>
   {% for publi in resultat %}
