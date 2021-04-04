@@ -29,9 +29,8 @@ def menu_local(contexte):
     menu_local.append ({"url": reverse('publis:instructions'), "lien": "<b>Classement collections</b>", "niveau": 1})
     menu_local.append ({"url": reverse('publis:publications'), "lien": "<b>Publications</b>", "niveau": 1})
     menu_local.append ({"url": "#", "lien": "<hr/>"})
-    if contexte=="collections" or contexte=="classement":
-        if contexte=="collections":
-            menu_local.append({"url": reverse('admin:publis_collection_add'), 
+    if contexte=="collections":
+        menu_local.append({"url": reverse('admin:publis_collection_add'), 
                                "lien": "Ajout d'une collection", "niveau": 2})
         for coll in Collection.objects.all():
             coll_url = reverse('publis:stats_collection', kwargs={'code_collection': coll.code})
@@ -40,6 +39,10 @@ def menu_local(contexte):
         menu_local.append({"url": reverse('admin:publis_source_add'), 
                                "lien": "Ajout d'une source", "niveau": 2})
         menu_local.append ({"url": reverse('publis:recherche'), "lien": "Recherche dans le référentiel", "niveau": 2})
+    if  contexte=="classement":
+        for coll in Collection.objects.all():
+            coll_url = reverse('publis:classement', kwargs={'code_collection': coll.code})
+            menu_local.append({"url": coll_url, "lien": coll.nom, "niveau": 2})
     return menu_local
 
 
@@ -241,12 +244,11 @@ def publications(request):
                         collections=form.cleaned_data["collection"]).filter(
                             classement=form.cleaned_data["classement"]).filter(
                             annee__gte=form.cleaned_data["annee_min"]).filter(
-                            annee__lte=form.cleaned_data["annee_max"]).filter(
-                            chaine_auteurs__contains=form.cleaned_data["auteur"].upper())
-
-            # Le formulaire est réinitialisé avec les données soumises
+                            annee__lte=form.cleaned_data["annee_max"])
+             # Le formulaire est réinitialisé avec les données soumises
             context["form_recherche"] = PubliSearchForm(None, initial=form.cleaned_data)
-        
+        else:
+            logger.warning("Erreur de validation du formulaire de recherche des publications") 
     return render(request, 'publis/publications.html', context)
 
 

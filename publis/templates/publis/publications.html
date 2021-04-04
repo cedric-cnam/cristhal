@@ -4,6 +4,10 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
+<div>Choisissez vos critères de recherche pour trouver des publications.
+</div>
+
+<h3>Formulaire de recheche</h3>
    {% crispy form_recherche  %}
 
 {% if erreur %}
@@ -12,8 +16,7 @@
 {% endif %}
 
 {% if resultat %}
-   <h2>Résultat</h2>
-
+   <h3>Résultat</h3>
    <ul>
   {% for publi in resultat %}
        <li>{{publi.titre}},  {{publi.annee}}. <b>Auteur(s)</b> {{publi.chaine_auteurs}}. Classement {{publi.classement}}</li>
