@@ -207,6 +207,8 @@ class Source(models.Model):
         for ref in Referentiel.objects.filter(source=self):
             es_index.store_ref(ref)
 
+        logger.info("{0} références ont été chargées".format(str(nb_refs)))
+
         return nb_refs
 
 #################

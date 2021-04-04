@@ -4,7 +4,11 @@
 
 {% block content %}
 
-
+<div>
+Utilisez ce formulaire pour rechercher par mots-clés des références. Le resultat est constitué
+des références les plus proches, classées par ordre de pertinence.
+</div>
+<div>
 <form method="get" action="{% url 'publis:recherche'  %}"
     onsubmit="return required_field('requete_sql', 'Saisissez un ensemble de mots-clés')">
     {% csrf_token %}
@@ -13,8 +17,8 @@
     <input type="hidden" id="envoi_requete" name="envoi_requete"  value="1"/>
         <table>
             <tr>
-                <td><b>Revues</b></td>
-                <td><b>Conférences</b></td>
+                <th><b>Revues</b></th>
+                <th><b>Conférences</b></th>
             </tr>
             <tr>
                 <td><input type="radio" name="choix_type" value="ART"     {{checked_revue}} /></td>
@@ -32,14 +36,10 @@
 </td>
 </tr>
 </table>
-
-{% if erreur %}
-<h2>Erreur</h2>
-  Votre requête a engendré le message d'erreur suivant: {{message}}. Corrigez et soumettez-la à nouveau.
-{% endif %}
+</div>
 
 {% if resultat %}
-   <h2>Résultat classé par ordre de pertinence descendant</h2>
+   <h3>Résultat classé par ordre de pertinence descendant</h3>
    
    <ul>
   {% for ref in refs %}

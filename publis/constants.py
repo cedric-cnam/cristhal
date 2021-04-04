@@ -93,7 +93,7 @@ SOURCE_INTERNE="INTERNE"
 
 # Pour indiquer le type de source dans le formulaire Django
 CHOIX_SOURCES = (
-    (SOURCE_CORE, "Fichier d'import CORE"),
-    (SOURCE_SCIMAGO, "Fichier d'import SCIMAGO"),
-    (SOURCE_INTERNE, "Fichier d'import format interne"),
+    (SOURCE_CORE, "Sources CORE"),
+    (SOURCE_SCIMAGO, "Sources SCIMAGO"),
+    (SOURCE_INTERNE, "Sources interne"),
 )

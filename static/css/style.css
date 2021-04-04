@@ -83,7 +83,8 @@ p {
 ul, ol, dl {
     margin: 0 0 0.5em 15px;
 }
-
+li {padding: 2px;}
+ 
 table {
     width: 100%;
 }

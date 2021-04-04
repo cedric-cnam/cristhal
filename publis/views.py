@@ -87,12 +87,11 @@ def referentiel(request):
                   "menu_local": menu_local("référentiel")
                 }
 
-    context["actions"] =[]
     if request.method == 'GET' and 'id_source' in request.GET:
         source = Source.objects.get(id=request.GET['id_source'])
         nb_refs = source.chargement_fichier()
-        context["actions"].append("%s références ont été chargées depuis le fichier source %s " %  (
-            str(nb_refs), os.path.basename(source.fichier.name)))
+        context["message"]="%s références ont été chargées depuis le fichier source %s " %  (
+            str(nb_refs), os.path.basename(source.fichier.name))
         
     return render(request, 'publis/referentiel.html', context)
 
@@ -122,8 +121,6 @@ def recherche(request):
         wrapper = IndexWrapper()
         context["refs"] = wrapper.search(request.GET.get("requete"), request.GET.get('choix_type'))
         context["resultat"] = True
-        context["erreur"] = False
-        
     return render(request, 'publis/recherche.html', context)
 
 
