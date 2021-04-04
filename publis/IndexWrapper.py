@@ -50,8 +50,6 @@ class IndexWrapper:
             self.index.settings(number_of_shards=1, number_of_replicas=0)
 
         self.index.open(using=self.elastic_search)
-        self.query_dir = settings.ES_QUERY_DIR
-
 
     def get_index_info (self):
         return self.index.get()

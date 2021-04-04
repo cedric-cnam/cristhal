@@ -10,9 +10,17 @@
    <li>{{action}}
 {% endfor %}
 </ol>
+<div>Le référentiel est constitué d'un ensemble de sources proposant une classification de revues ou 
+conférences. Actuellement trois types de sources sont connues: 
+<a href="https://www.scimagojr.com/" target="_blank">SCIMAGO</a> est un classement obtenu 
+à partir de la base <a href="https://www.scopus.com/home.uri">Scopus</a>. 
+<a href="https://www.core.edu.au/">CORE</a> est un classement spécifique
+à la science informatique. Enfin, il est possible d'ajouter des sources représentant un classement
+dit "interne".
+</div>
 <div>
 {% for key, value in types_sources %} 
-<h2>{{value}}</h2>
+<h3>{{value}}</h3>
 <ul>
  {% for source in sources %}
   {% if source.type_source == key %}

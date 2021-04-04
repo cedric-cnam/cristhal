@@ -24,21 +24,22 @@ def menu_local(contexte):
         Création du menu local selon le contexte (la fonction appelée)
     """
     menu_local = []
-    menu_local.append ({"url": reverse('publis:collections'), "lien": "<b>Stats collections</b>"})
-    menu_local.append ({"url": reverse('publis:referentiel'), "lien": "<b>Référentiel</b>"})
-    menu_local.append ({"url": reverse('publis:instructions'), "lien": "<b>Classement collections</b>"})
-    menu_local.append ({"url": reverse('publis:publications'), "lien": "<b>Publications</b>"})
+    menu_local.append ({"url": reverse('publis:collections'), "lien": "<b>Stats collections</b>", "niveau": 1})
+    menu_local.append ({"url": reverse('publis:referentiel'), "lien": "<b>Référentiel</b>", "niveau": 1})
+    menu_local.append ({"url": reverse('publis:instructions'), "lien": "<b>Classement collections</b>", "niveau": 1})
+    menu_local.append ({"url": reverse('publis:publications'), "lien": "<b>Publications</b>", "niveau": 1})
     menu_local.append ({"url": "#", "lien": "<hr/>"})
-    if contexte=="collections":
+    if contexte=="collections" or contexte=="classement":
+        if contexte=="collections":
+            menu_local.append({"url": reverse('admin:publis_collection_add'), 
+                               "lien": "Ajout d'une collection", "niveau": 2})
         for coll in Collection.objects.all():
             coll_url = reverse('publis:stats_collection', kwargs={'code_collection': coll.code})
-            menu_local.append({"url": coll_url, "lien": coll.nom})
+            menu_local.append({"url": coll_url, "lien": coll.nom, "niveau": 2})
     if contexte=="référentiel":
-        menu_local.append ({"url": reverse('publis:recherche'), "lien": "Recherche dans le référentiel"})
-    if contexte=="classement":
-        for coll in Collection.objects.all():
-            coll_url = reverse('publis:classement', kwargs={'code_collection': coll.code})
-            menu_local.append({"url": coll_url, "lien": coll.nom})
+        menu_local.append({"url": reverse('admin:publis_source_add'), 
+                               "lien": "Ajout d'une source", "niveau": 2})
+        menu_local.append ({"url": reverse('publis:recherche'), "lien": "Recherche dans le référentiel", "niveau": 2})
     return menu_local
 
 
@@ -78,7 +79,7 @@ def stats_collection(request, code_collection):
 
 @login_required
 def referentiel(request):
-    context = {"titre": "Référentiel des publications", 
+    context = {"titre": "Référentiel ", 
                "collections": Collection.objects.all(),
                "sources": Source.objects.all(),
                "types_sources": CHOIX_SOURCES,

@@ -4,15 +4,13 @@
 
 {% block content %}
 
-<div>
-Vous pouvez suivre ce lien pour <a href="{% url 'admin:publis_collection_add' %}">ajouter une collection.</a></div>
-{% if message %}
-<div>
-<b>Message :</b> {{message}}
-<hr/>
-</div>
-{% endif %}
  {% if collections %}
+ 
+<div> 
+Voici la liste des collections HAL. Le tableau ci-dessous ou le menu local vous permettent
+de consulter le détail d'une collection.
+</div>
+
  <div>
 <table>
 <tr><th>Code</th><th>Nom</th><th>Nom Hal</th><th>Indicateurs</th><th>Actions</th></tr>

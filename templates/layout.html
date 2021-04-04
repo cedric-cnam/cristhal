@@ -21,11 +21,6 @@
    {% else %}
     <li><a href="{% url 'publis:referentiel' %}">Référentiel</a></li>
    {% endif %}
-    {% if sous_menu == 'recherche' %}
-    <li><a class="current" href="{% url 'publis:recherche' %}">Recherche</a></li>
-   {% else %}
-    <li><a href="{% url 'publis:recherche' %}">Recherche</a></li>
-   {% endif %}
     {% if sous_menu == 'classement' %}
     <li><a class="current" href="{% url 'publis:instructions' %}">Classement</a></li>
    {% else %}
@@ -41,8 +36,11 @@
 {% endif %}
   </ul>
 
-      <div id="intro">
-      </div>
+<div id="message">
+{% if message %}
+{{message}}
+{% endif %}
+</div>
   
   <div id="left">
         <h2 >{{ titre }}</h2> 
@@ -55,22 +53,22 @@
     <h2>Menu local</h2>
     <ul>
       {% for item in menu_local %}
-       {% if item.url == "#" %}
-         {{item.lien|safe}}
-        {% else %}
+       {% if item.niveau == 2 %}
           <li><a href="{{item.url}}">{{item.lien|safe}}</a></li>
          {% endif %}
       {% endfor %}
     </ul>
   </div>
   
-
+    
+  
   <div id="footer">
     <p id="r"><a href="mailto:philippe.rigaux@cnam.fr">&copy; Philippe Rigaux, Cnam</a></p>
     <p> <a href="https://github.com/cedric-cnam/pubrank">Hannibal, une application bibliométrique de classement des publications scientifiques</a>  &middot;   Licence <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Licence</a></p>
   </div>
-  </div>
   
+
+    </div>
   
 </body>
 </html>

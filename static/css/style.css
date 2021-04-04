@@ -54,15 +54,8 @@ body {
 }
 
     
-a { color: #A82A15; text-decoration: none; }
-img { border: 0; }
-h1 {  float: left; margin: 20px 0 50px; font-size: 4em; color: #A82A15; }
-h2 { font-size: 2.4em; font-weight: normal; margin: 0 0 20px; color: #A82A15;}
-h2 a:hover { background: #A82A15; color: #fff; }
-.hr { color: #ccc; }
-p  { margin: 5px 0 15px; line-height: 1.6em; }
 
-/* Blocs principal */
+/* Bloc principal */
 
 .main { margin: 0 auto; width: 1000px; }
 
@@ -71,9 +64,21 @@ div {
     margin: 0 0 0.8em 0;
 }
 
+
+a { color: #A82A15; text-decoration: none; }
+img { border: 0; }
+
+h1 {  float: left; margin: 20px 0 50px; font-size: 4em; color: #A82A15; }
+h2 { font-size: 2.4em; font-weight: normal; margin: 0 0 20px; color: #A82A15;}
+h3 { font-size: 1.6em; font-weight: normal; margin: 0 0 20px; color: #A82A15;}
+h4 { font-size: 1.1em; font-weight: normal; margin: 0 0 20px; color: #A82A15;}
+h2 a:hover { background: #A82A15; color: #fff; }
+
+.hr { color: #ccc; }
 p {
     margin: 0 0 0.5em 0;
 }
+
 
 ul, ol, dl {
     margin: 0 0 0.5em 15px;
@@ -109,11 +114,13 @@ main a:hover {
 	#top li a { float: left; padding: 6px 20px; margin: 3px 2px 0 0; color: #ccc; }
 	#top li a.current { color: #fff; background: #A82A15; }
 	#top li a:hover { background: #808080; color: #fff; }
-	
-#intro { clear: both; 
+
+
+#message {clear: both; 
 padding: 15px 0 1px 20px; 
-border: 1px solid #dedede; font-size: 1.3em; 
+border: 1px solid #dedede; 
 background: #eee; margin: 0 0 30px; }
+
 
 #left { float: left; width: 700px; margin: 0 0 15px; }
 
