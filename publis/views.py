@@ -62,12 +62,15 @@ def collections(request):
     # Un peu de stats
     # La période est donnée par la config
     config = Config.objects.get(code=CODE_CONFIG_DEFAUT)
+    context["annees"] = list(range (config.annee_min_publis, config.annee_max_publis+1))
     context["stats_revues_par_collection"] = Config.stats_collections(config.annee_min_publis, 
                                                                       config.annee_max_publis,
                                                                       PUBLI_REVUE)
     context["stats_confs_par_collection"] = Config.stats_collections(config.annee_min_publis, 
                                                                       config.annee_max_publis,
                                                                       PUBLI_CONF)
+    context["stats_annee_type"] = Publication.stats_par_annee_type(TOUTES_COLLECTIONS, 
+                                                                   ANNEE_MIN_PUBLI, ANNEE_MAX_PUBLI)
 
     # Affichage des collections
     return render(request, 'publis/collections.html', context)
@@ -79,8 +82,10 @@ def stats_collection(request, code_collection):
                "collections": Collection.objects.all(),
                   "menu_local": menu_local("collections")
                 }
-    
-    context["annees"] = list(range (ANNEE_MIN_PUBLI, ANNEE_MAX_PUBLI+1))
+    # La période est donnée par la config
+    config = Config.objects.get(code=CODE_CONFIG_DEFAUT)
+
+    context["annees"] = list(range (config.annee_min_publis, config.annee_max_publis+1))
     context["stats_annee_type"] = Publication.stats_par_annee_type(code_collection, ANNEE_MIN_PUBLI, ANNEE_MAX_PUBLI)
     context["stats_annee_classement"] = Publication.stats_par_annee_classement(code_collection, ANNEE_MIN_PUBLI, ANNEE_MAX_PUBLI)
     context["stats_classement"] = Publication.stats_par_classement(code_collection, ANNEE_MIN_PUBLI, ANNEE_MAX_PUBLI)

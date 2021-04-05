@@ -3,7 +3,7 @@
             type: 'pie'
         },
         title: {
-            text: ''
+            text: '{{chart_titre}}'
         },
          plotOptions: {
         pie: {

@@ -19,24 +19,35 @@ de consulter le détail d'une collection.
 </div>
 
 <h3>Répartition des publications par collection</h3>
-<table>
+<table width="400">
 <tr>
-<td width="50%"><h4>Revues</h4></td>
-<td width="50%"><h4>Conférences</h4></td>
+<td  width="50%"></td>
+<td  width="50%"></td>
+
 </tr>
 <tr>
 <td>
 <div id="stats_revues_par_collection"></div>
  <script>
     Highcharts.chart('stats_revues_par_collection', 
-       {% include "publis/charts/diagramme_camembert.json" with chart_donnees=stats_revues_par_collection|safe %}
+       {% include "publis/charts/diagramme_camembert.json" with chart_titre='Répartition revues par collection' chart_donnees=stats_revues_par_collection|safe %}
     );
  </script>
 </td>
-<td> <div id="stats_confs_par_collection"></div>
+<td width="33%"> <div id="stats_confs_par_collection"></div>
 <script>
     Highcharts.chart('stats_confs_par_collection', 
-       {% include "publis/charts/diagramme_camembert.json" with chart_donnees=stats_confs_par_collection|safe %}
+       {% include "publis/charts/diagramme_camembert.json" with chart_titre='Répartition conférences par collection'  chart_donnees=stats_confs_par_collection|safe %}
+    );
+ </script>
+ </td>
+</tr>
+<tr>
+ <td colspan='2' width="100%"> 
+<div id="stats_annee_type"></div>
+ <script>
+    Highcharts.chart('stats_annee_type', 
+       {% include "publis/charts/diagramme_barres.json" with chart_annees=annees  chart_donnees=stats_annee_type %}
     );
  </script>
  </td>
