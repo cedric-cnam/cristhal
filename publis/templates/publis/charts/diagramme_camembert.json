@@ -5,6 +5,16 @@
         title: {
             text: ''
         },
+         plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: false
+            },
+            showInLegend: true
+        }
+        },
         series: [
            {
               data: {{chart_donnees|safe}}
