@@ -6,7 +6,7 @@
   
  Pour un déploiement en production: voir la documentation Django, par exempple
   https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
- 
+
 """
 import os
 
