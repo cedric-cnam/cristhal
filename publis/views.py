@@ -80,6 +80,7 @@ def collections(request):
 def stats_collection(request, code_collection):
     context = {"titre": "Statistiques sur la collection " + code_collection.upper(), 
                "collections": Collection.objects.all(),
+                                "sous_menu": "collections",
                   "menu_local": menu_local("collections")
                 }
     # La période est donnée par la config
