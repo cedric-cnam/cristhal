@@ -51,14 +51,24 @@ def collections(request):
                  "sous_menu": "collections",
                  "menu_local": menu_local("collections")
                }
-        
+    
     # Si paramètre, on déclenche une nouvelle synchro
     if request.GET.get ("synchro", "0") == "1":
         collection = Collection.objects.get (code=request.GET.get ("code"))
         nb_publis = collection.synchro_hal()
         context["message"] = "{0}  publications ont été synchronisées depuis HAL dans la collection {1}".format(
             str(nb_publis), collection.code)
-            
+    
+    # Un peu de stats
+    # La période est donnée par la config
+    config = Config.objects.get(code=CODE_CONFIG_DEFAUT)
+    context["stats_revues_par_collection"] = Config.stats_collections(config.annee_min_publis, 
+                                                                      config.annee_max_publis,
+                                                                      PUBLI_REVUE)
+    context["stats_confs_par_collection"] = Config.stats_collections(config.annee_min_publis, 
+                                                                      config.annee_max_publis,
+                                                                      PUBLI_CONF)
+
     # Affichage des collections
     return render(request, 'publis/collections.html', context)
 

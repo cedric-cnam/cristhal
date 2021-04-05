@@ -1,15 +1,47 @@
 {% extends "layout.html" %} 
 {% load i18n %} 
 
+ 
 
 {% block content %}
 
+<script>
+    Highcharts.setOptions(
+            {% include "publis/charts/options.json" %}
+    );
+ </script>
+ 
  {% if collections %}
  
 <div> 
 Voici la liste des collections HAL. Le tableau ci-dessous ou le menu local vous permettent
 de consulter le détail d'une collection.
 </div>
+
+<h3>Répartition des publications par collection</h3>
+<table>
+<tr>
+<td><h4>Revues</h4></td>
+<td><h4>Conférences</h4></td>
+</tr>
+<tr>
+<td>
+<div id="stats_revues_par_collection"></div>
+ <script>
+    Highcharts.chart('stats_revues_par_collection', 
+       {% include "publis/charts/diagramme_camembert.json" with chart_donnees=stats_revues_par_collection|safe %}
+    );
+ </script>
+</td>
+<td> <div id="stats_confs_par_collection"></div>
+<script>
+    Highcharts.chart('stats_confs_par_collection', 
+       {% include "publis/charts/diagramme_camembert.json" with chart_donnees=stats_confs_par_collection|safe %}
+    );
+ </script>
+ </td>
+</tr>
+</table>
 
  <div>
 <table>
@@ -32,7 +64,9 @@ de consulter le détail d'une collection.
 </table>
 </div>
 {% else %}
-Vous n'avez pas encore défini de collection.
+Vous n'avez pas encore défini de collection. Voici un 
+<a  href="{% url 'admin:publis_collection_add' %}">lien pour créer votre
+première collection.</a> 
 {% endif %}
 
 

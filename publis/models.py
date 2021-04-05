@@ -33,6 +33,20 @@ class Config(models.Model):
     def __init__(self, *args, **kwargs):
         super(Config, self).__init__(*args, **kwargs)
 
+    @staticmethod
+    def stats_collections(annee_min, annee_max, type_publi=PUBLI_REVUE):
+        # La sortie: un dictionnaire sur le code de la collection, chaque entrée est le nombre de publis
+        sortie = []
+        for coll in Collection.objects.all():
+            # Comptons les publications tu type demandé
+            publis = Publication.get_publis_periode (coll.code, 
+                                                     annee_min, 
+                                                     annee_max, 
+                                                     type_publi)
+            sortie.append ({"name": coll.code, "y": publis.count()})
+            
+        return sortie
+
 #################
 class Collection(models.Model):
     """
@@ -359,16 +373,24 @@ class Publication(models.Model):
         return sortie
 
     @staticmethod
-    def get_publis_periode (collection, annee_min, annee_max):
+    def get_publis_periode (collection, annee_min, annee_max, type_publi=PUBLI_TOUS_TYPES):
                
         # La requete : toutes les publis de la période
         if collection == TOUTES_COLLECTIONS:
-            return  Publication.objects.filter(
-                        annee__gte=annee_min)
-        else:
-            return  Publication.objects.filter(
+            publis =  Publication.objects.filter(
                         annee__gte=annee_min).filter(
+                        annee__lte=annee_max)
+        else:
+            publis =   Publication.objects.filter(
+                        annee__gte=annee_min).filter(
+                        annee__lte=annee_max).filter(
                         collections__code=collection)
+        
+        if not (type_publi == PUBLI_TOUS_TYPES):
+            # Filtre supplémentaire sur le type
+            publis = publis.filter(type=type_publi)
+            
+        return publis
 
     def fromJson(self, jsonDoc):
         """
