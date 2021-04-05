@@ -1,9 +1,9 @@
 
-create database bibhal CHARACTER SET utf8;
+create database cristhal CHARACTER SET utf8;
 
 /*
  * nom admin et mot de passe à changer et reporter dans bibhal/settings.py
  */
 
-grant all privileges on bibhal.* 
-   to bibhalAdmin identified by 'mdpBibhal'
+grant all privileges on cristhal.* 
+   to cristhalAdmin identified by 'mdpCristhal'

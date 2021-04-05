@@ -19,9 +19,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-
-# SECURITY WARNING: don't run with debug turned on in production!
+# Configuration de test: en production, redéfinir ces valeurs dans local_settings.py
 DEBUG = True
+SECRET_KEY='à_protéger_impérativement'
 
 ALLOWED_HOSTS = []
 
@@ -174,6 +174,6 @@ try:
     from cristhal.local_settings import *
     print("Prise en compte de la configuration dans le fichier local_settings.py")
 except ImportError as error:
-    print(error)
+    print("Pas de fichier 'local_settings.py', donc pas de configuration locale. Normal?")
 
 
