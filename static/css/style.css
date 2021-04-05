@@ -61,7 +61,8 @@ body {
 
 
 div {
-    margin: 0 0 0.8em 0;
+    margin: 0.5em 0.5em 0.8em 0;
+    line-height: 1.5em;
 }
 
 
