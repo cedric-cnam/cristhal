@@ -3,8 +3,7 @@
 
 # Config par défaut
 CODE_CONFIG_DEFAUT='défaut'
-ANNEE_MIN_PUBLI=2017
-ANNEE_MAX_PUBLI=2021
+
 # Le service HAL
 HAL_SEARCH_URL = "https://api.archives-ouvertes.fr/search/"
 
@@ -24,19 +23,6 @@ CHAMPS = ["halId_s",  "journalTitle_s", "title_s",
 FACET_SEP="_FacetSep_"
 # Requête publis équipe
 QUERY_HAL_COLL = HAL_SEARCH_URL + "?wt=json&q=*:*&facet=true&fq=publicationDateY_i:[{ymin:d} TO {ymax:d}]&fq=structId_i:{coll_id:d}"
-
-# Code des équipes dans HAL
-HAL_EQUIPES= {
-        "cedric": 16574,
-        "vertigo": 553459,
-        "isid":  392824,
-        "sys": 553461,
-        "ilj": 573796,
-        "oc": 553460,
-        "roc": 552483,
-        "msdma": 390785,
-        "laetitia": 393635
-}
 
 # Quand on veut traiter toutes les collections
 TOUTES_COLLECTIONS='toutes'

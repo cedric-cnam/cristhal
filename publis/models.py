@@ -11,11 +11,17 @@ from .IndexWrapper import IndexWrapper
 # Un journaliseur 
 logger = logging.getLogger("pubrank")
 
+
+
 #################
 class Config(models.Model):
     """
         Configuration de l'appli
     """
+    
+    # Période par défaut
+    ANNEE_MIN_PUBLI=2017
+    ANNEE_MAX_PUBLI=2021
     
     code = models.CharField(max_length=20, default="défaut", primary_key=True)
     
@@ -74,11 +80,14 @@ class Collection(models.Model):
 
     def synchro_hal(self):
         
+        # Cherchons la configuration pour avoir des valeurs par défaut
+        config = Config.objects.get(code=CODE_CONFIG_DEFAUT)
+
         # On crée l'URL d'interrogation de HAL
         #"Sammy the {pr} {1} a {0}.".format("shark", "made", pr = "pull request"))
         hal_query = QUERY_HAL_COLL.format(coll_id=self.id_hal,
-                                        ymin=ANNEE_MIN_PUBLI, 
-                                        ymax=ANNEE_MAX_PUBLI)
+                                        ymin=config.annee_min_publis, 
+                                        ymax=config.annee_max_publis)
         for c in CHAMPS:
             hal_query += "&fl=" + c
         hal_query += "&rows=" + str(MAX_ROWS)

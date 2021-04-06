@@ -70,7 +70,8 @@ def collections(request):
                                                                       config.annee_max_publis,
                                                                       PUBLI_CONF)
     context["stats_annee_type"] = Publication.stats_par_annee_type(TOUTES_COLLECTIONS, 
-                                                                   ANNEE_MIN_PUBLI, ANNEE_MAX_PUBLI)
+                                                                   config.annee_min_publis, 
+                                                                   config.annee_max_publis)
 
     # Affichage des collections
     return render(request, 'publis/collections.html', context)
@@ -87,9 +88,15 @@ def stats_collection(request, code_collection):
     config = Config.objects.get(code=CODE_CONFIG_DEFAUT)
 
     context["annees"] = list(range (config.annee_min_publis, config.annee_max_publis+1))
-    context["stats_annee_type"] = Publication.stats_par_annee_type(code_collection, ANNEE_MIN_PUBLI, ANNEE_MAX_PUBLI)
-    context["stats_annee_classement"] = Publication.stats_par_annee_classement(code_collection, ANNEE_MIN_PUBLI, ANNEE_MAX_PUBLI)
-    context["stats_classement"] = Publication.stats_par_classement(code_collection, ANNEE_MIN_PUBLI, ANNEE_MAX_PUBLI)
+    context["stats_annee_type"] = Publication.stats_par_annee_type(code_collection, 
+                                                                   config.annee_min_publis, 
+                                                                    config.annee_max_publis)
+    context["stats_annee_classement"] = Publication.stats_par_annee_classement(code_collection, 
+                                                                                config.annee_min_publis,  
+                                                                                 config.annee_max_publis)
+    context["stats_classement"] = Publication.stats_par_classement(code_collection, 
+                                                                    config.annee_min_publis,  
+                                                                    config.annee_max_publis)
 
     return render(request, 'publis/stats_collection.html', context)
 
@@ -158,6 +165,8 @@ def classement(request, code_collection):
                              "sous_menu" : "classement",
                   "menu_local": menu_local("classement")
                 }
+    # Cherchons la configuration pour avoir des valeurs par défaut
+    config = Config.objects.get(code=CODE_CONFIG_DEFAUT)
 
     # Sur validation, envoyer un messqge au responsable 
     
@@ -174,17 +183,12 @@ def classement(request, code_collection):
             print(formset.errors)
     wrapper = IndexWrapper()
     
-    context["annees"] = list(range (ANNEE_MIN_PUBLI, ANNEE_MAX_PUBLI+1))
-    context["stats_annee_type"] = Publication.stats_par_annee_type(code_collection, ANNEE_MIN_PUBLI, ANNEE_MAX_PUBLI)
-    context["stats_annee_classement"] = Publication.stats_par_annee_classement(code_collection, ANNEE_MIN_PUBLI, ANNEE_MAX_PUBLI)
-    context["stats_classement"] = Publication.stats_par_classement(code_collection, ANNEE_MIN_PUBLI, ANNEE_MAX_PUBLI)
-
     # Creation du jeu de données et du formulaire pour le classement
     publis = Publication.objects.filter(
-                        annee__gte=ANNEE_MIN_PUBLI).filter(
+                        annee__gte=config.annee_min_publis).filter(
                         collections__code=code_collection).filter(type=PUBLI_CONF
                         ) |  Publication.objects.filter(
-                        annee__gte=ANNEE_MIN_PUBLI).filter(
+                        annee__gte=config.annee_min_publis).filter(
                         collections__code=code_collection).filter(type=PUBLI_REVUE)
     context["classement_formset"] = PublisFormset (queryset=publis)
 
