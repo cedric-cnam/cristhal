@@ -93,7 +93,12 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#mise-en-route">Mise en route</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mise-en-route">Mise en route</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#acces-mysql-et-elasticsearch">Accès MySQL et ElasticSearch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creation-du-schema-et-initialisation">Création du schéma et initialisation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mise-en-production">Mise en production</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -189,19 +194,84 @@ qui suis se concentre donc sur la partie spécifique à CristHAL.</p>
 <h2>Mise en route<a class="headerlink" href="#mise-en-route" title="Lien permanent vers ce titre">¶</a></h2>
 <p>On suppose donc que vous disposez d’une machine équipée de Python (version au moins 3.6), et d’un accès
 à un serveur MySQL et à un serveur ElasticSearch. Le code de CristHAL peut être récupéré sur
-<a class="reference external" href="https://github.com/cedric-cnam/cristhal">https://github.com/cedric-cnam/cristhal</a>.</p>
+<a class="reference external" href="https://github.com/cedric-cnam/cristhal">https://github.com/cedric-cnam/cristhal</a>. Installez-le dans un répertoire que nous appelerons <code class="docutils literal"><span class="pre">cristhaldir</span></code>.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Dans tout ce qui suit, <code class="docutils literal"><span class="pre">python</span></code> et <code class="docutils literal"><span class="pre">pip</span></code> désignent les commandes <code class="docutils literal"><span class="pre">python3</span></code> et <code class="docutils literal"><span class="pre">pip3</span></code>.</p>
+<p class="last">Dans tout ce qui suit, <code class="docutils literal"><span class="pre">python</span></code> et <code class="docutils literal"><span class="pre">pip</span></code> désignent respectivement les commandes <code class="docutils literal"><span class="pre">python3</span></code> et <code class="docutils literal"><span class="pre">pip3</span></code>.</p>
 </div>
 <p>La première chose à faire est d’installer les modules Python nécessaires à CristHAL. Ils sont
 énumérés dans le fichier <code class="docutils literal"><span class="pre">requirements.txt</span></code>.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>pip3 install -r requirements.txt
 </pre></div>
 </div>
+<p>On peut passer à la configuration des accès serveurs.</p>
+<div class="section" id="acces-mysql-et-elasticsearch">
+<h3>Accès MySQL et ElasticSearch<a class="headerlink" href="#acces-mysql-et-elasticsearch" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Les accès aux serveurs sont configurés dans des fichiers du répertoire <code class="docutils literal"><span class="pre">cristhaldir/cristhal</span></code>. La configuration
+générale est dans le fichier <code class="docutils literal"><span class="pre">settings.py</span></code>, la configuration spécifique à un site doit
+être placée dans un fichier <code class="docutils literal"><span class="pre">local_settngs.py</span></code> dont les options prennent priorité sur le premier.</p>
+<p>Dans <code class="docutils literal"><span class="pre">cristhaldir/cristhal</span></code>, copiez <code class="docutils literal"><span class="pre">local_settings_exemple.py</span></code> en <code class="docutils literal"><span class="pre">local_settings.py</span></code>. Puis éditez
+ce dernier.</p>
+<p>La configuration d’accès au serveur MySQL est indiquée dans la variable <code class="docutils literal"><span class="pre">DATABASES</span></code>. Reportez-y
+vos paramètres de site.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;ENGINE&#39;</span><span class="p">:</span> <span class="s1">&#39;django.db.backends.mysql&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;NAME&#39;</span><span class="p">:</span> <span class="s1">&#39;nom_bd_locale&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;USER&#39;</span><span class="p">:</span> <span class="s1">&#39;admin_bd_locale&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;PASSWORD&#39;</span><span class="p">:</span> <span class="s1">&#39;mdp_bd_locale&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;HOST&#39;</span><span class="p">:</span> <span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;PORT&#39;</span><span class="p">:</span> <span class="s1">&#39;3306&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;OPTIONS&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;sql_mode&#39;</span><span class="p">:</span> <span class="s1">&#39;STRICT_ALL_TABLES&#39;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>La configuration d’accès au serveur ElasticSearch est indiquée dans les variables suivantes.
+Vous pouvez conserver la valeur de  <code class="docutils literal"><span class="pre">ES_INDEX_REF</span></code> si vous le souhaitez.  Indiquez
+les autres paramètres dans <code class="docutils literal"><span class="pre">ELASTIC_SEARCH</span></code>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">ES_INDEX_REF</span> <span class="o">=</span> <span class="s2">&quot;cristhal&quot;</span>
+<span class="n">ELASTIC_SEARCH</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;host&quot;</span><span class="p">:</span> <span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="s2">&quot;port&quot;</span><span class="p">:</span> <span class="mi">9200</span><span class="p">,</span>
+            <span class="s2">&quot;index&quot;</span><span class="p">:</span> <span class="n">ES_INDEX_REF</span><span class="p">}</span>
+</pre></div>
+</div>
 <p>Pour bien comprendre en quoi ce rôle a des aspects particuliers dans le cadre d’un système distribué à grande
 échelle, commençons par la couche matérielle qui va principalement nous occuper dans
 ce chapitre.</p>
+<p>Un dernier paramètre à régler est l’emplacement des fichiers journaux. Par défaut:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">LOG_DIR</span> <span class="o">=</span> <span class="s1">&#39;/var/logs&#39;</span>
+</pre></div>
+</div>
+<p>Indiquez le chemin qui convient (et vérifiez qu’il est possible d’écrire dans ce répertoire pour
+le processus qui exécute CristHAL).</p>
+</div>
+<div class="section" id="creation-du-schema-et-initialisation">
+<h3>Création du schéma et initialisation<a class="headerlink" href="#creation-du-schema-et-initialisation" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Si votre configuration est correcte, vous devez pouvoir exécuter la commande suivante
+dans <code class="docutils literal"><span class="pre">cristhaldir</span></code>.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>python manage.py migrate
+</pre></div>
+</div>
+<p>C’est une commande Django qui crée (ou modifie) le schéma. Si la connexion au serveur MySQL échoue,
+vous le saurez tout de suite. Sinon, votre schéma est créé.</p>
+<p>C’est presque prêt! CristHAL propose une autre commande pour créer une configuration initiale.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>python manage.py init_publis
+</pre></div>
+</div>
+<p>Quelques messages vous indiquent les opérations effectuées.</p>
+<p>Il ne reste qu’à lancer le serveur intégré à Django.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>python manage.py runserver
+</pre></div>
+</div>
+<p>Pas d’erreur ? Alors vous pouvez accèder avec un navigateur quelconque à <a class="reference external" href="http://localhost:8000">http://localhost:8000</a>.
+Tout est prêt pour commencer à utiliser l’application (en mode “tests”: pour la mise en production
+voir ci-dessous).</p>
+</div>
+<div class="section" id="mise-en-production">
+<h3>Mise en production<a class="headerlink" href="#mise-en-production" title="Lien permanent vers ce titre">¶</a></h3>
+</div>
 </div>
 </div>
 

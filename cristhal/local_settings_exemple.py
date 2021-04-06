@@ -9,6 +9,7 @@
 
 """
 import os
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 #
 # Clé secrète, À prendre dans une variable d'environnement ou un fichier
@@ -54,6 +55,7 @@ LOG_DIR = '/var/logs'
 # 
 # Configuration ElasticSearch
 #
+ES_INDEX_REF = "cristhal"
 ELASTIC_SEARCH = {"host": "localhost", "port": 9200, 
-                  "index": "nom_index"}
+                  "index": ES_INDEX_REF}
 

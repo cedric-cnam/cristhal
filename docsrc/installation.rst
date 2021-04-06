@@ -57,10 +57,86 @@ On peut passer à la configuration des accès serveurs.
 Accès MySQL et ElasticSearch
 ============================
 
+Les accès aux serveurs sont configurés dans des fichiers du répertoire ``cristhaldir/cristhal``. La configuration
+générale est dans le fichier ``settings.py``, la configuration spécifique à un site doit
+être placée dans un fichier ``local_settngs.py`` dont les options prennent priorité sur le premier.
 
+Dans ``cristhaldir/cristhal``, copiez ``local_settings_exemple.py`` en ``local_settings.py``. Puis éditez
+ce dernier.
 
+La configuration d'accès au serveur MySQL est indiquée dans la variable ``DATABASES``. Reportez-y 
+vos paramètres de site.
+
+.. code-block:: python
+
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'nom_bd_locale',
+            'USER': 'admin_bd_locale',
+            'PASSWORD': 'mdp_bd_locale',
+            'HOST': '127.0.0.1',
+            'PORT': '3306',
+            'OPTIONS': {
+                'sql_mode': 'STRICT_ALL_TABLES',
+            },
+        }
+    }
+
+La configuration d'accès au serveur ElasticSearch est indiquée dans les variables suivantes.
+Vous pouvez conserver la valeur de  ``ES_INDEX_REF`` si vous le souhaitez.  Indiquez 
+les autres paramètres dans ``ELASTIC_SEARCH``.
+
+.. code-block:: python
+
+      ES_INDEX_REF = "cristhal"
+      ELASTIC_SEARCH = {"host": "localhost", "port": 9200, 
+                  "index": ES_INDEX_REF}
 
 Pour bien comprendre en quoi ce rôle a des aspects particuliers dans le cadre d'un système distribué à grande
 échelle, commençons par la couche matérielle qui va principalement nous occuper dans
 ce chapitre.
 
+Un dernier paramètre à régler est l'emplacement des fichiers journaux. Par défaut:
+
+.. code-block:: python
+
+     LOG_DIR = '/var/logs'
+    
+Indiquez le chemin qui convient (et vérifiez qu'il est possible d'écrire dans ce répertoire pour
+le processus qui exécute CristHAL).
+
+
+Création du schéma et initialisation
+====================================
+
+Si votre configuration est correcte, vous devez pouvoir exécuter la commande suivante
+dans ``cristhaldir``.
+
+.. code-block:: bash 
+
+    python manage.py migrate
+    
+C'est une commande Django qui crée (ou modifie) le schéma. Si la connexion au serveur MySQL échoue, 
+vous le saurez tout de suite. Sinon, votre schéma est créé. 
+
+C'est presque prêt! CristHAL propose une autre commande pour créer une configuration initiale.
+
+.. code-block:: bash
+
+     python manage.py init_publis
+
+Quelques messages vous indiquent les opérations effectuées. 
+
+Il ne reste qu'à lancer le serveur intégré à Django.
+
+.. code-block:: bash
+
+     python manage.py runserver
+
+Pas d'erreur ? Alors vous pouvez accèder avec un navigateur quelconque à http://localhost:8000.
+Tout est prêt pour commencer à utiliser l'application (en mode 'tests': pour la mise en production
+voir ci-dessous).
+
+Mise en production
+===================
