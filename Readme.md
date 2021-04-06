@@ -1,9 +1,9 @@
 # Un système de classement des publications HAL
 
-Ce système s'adresse aux institutions de recherche qui ont chois [Hal](https://hal.archives-ouvertes.fr/) pour déposer et gérer leurs publications
-scientifiques. HAL présente le double inconvénient de fournir d'une part une classification extrêmement sommaire (soit, essentiellement, 'Article'  et 'Communication'), et d'autre part d'être très permissif sur les données qui peuvent être déposées. Résultat: une incitation inflationiste au dépôt de publications de portée très variable, et difficulté à identifier les publications les plus significatives.
+Ce système s'adresse aux institutions de recherche qui ont choisi [Hal](https://hal.archives-ouvertes.fr/) pour déposer et gérer leurs publications
+scientifiques. HAL est très utile mais présente le double inconvénient de fournir d'une part une classification assez sommaire (soit, essentiellement, 'Article'  et 'Communication'), et d'autre part d'être très permissif sur les données qui peuvent être déposées. Le risque est une incitation inflationiste au dépôt de publications de portée très variable, et difficulté à identifier les publications les plus significatives.
 
-Cristhal propose de clarifier le contenu d'un dépôt HAL en permettant de classer les publications selon des référentiels, qui peuvent être soit les référentiels internationaux comem [SCIMAGO](https://www.scimagojr.com/), soit des référentiels ad-hoc. Le système récupère les publications d'une collection HAL d'un côté, les référentiels de l'autre, et effectue un appariement proposant une classification de chaque publication par rapport aux référentiels. Cette proposition doit être validée manuellement. De nombreuses statistiques peuvent alors être produites. 
+Cristhal propose de clarifier le contenu d'un dépôt HAL en permettant de classer les publications selon des référentiels, qui peuvent être soit les référentiels internationaux comme [SCIMAGO](https://www.scimagojr.com/), soit des référentiels ad-hoc. Le système récupère les publications d'une collection HAL d'un côté, les référentiels de l'autre, et effectue un appariement proposant une classification de chaque publication par rapport aux référentiels. Cette proposition doit être validée manuellement. De nombreuses statistiques peuvent alors être produites. 
 
 Les fonctionnalités sont les suivantes
   - Configuration des collections HAL et import des référentiels fournis sous la forme de fichiers CSV
