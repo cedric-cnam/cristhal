@@ -55,7 +55,7 @@ class Collection(models.Model):
     
     code = models.CharField(max_length=20, unique=True)
     # Le nom de la collection dans Hal. P.e. 'CEDRIC-VERTIGO'
-    nom_hal = models.CharField(max_length=40, unique=True)
+    sigle_hal = models.CharField(max_length=40, unique=True)
     # Identifiant le la collection Hal (un chiffre)
     id_hal = models.IntegerField(unique=True,null=True)
     # Le nom local, à utiliser pour les affichages
