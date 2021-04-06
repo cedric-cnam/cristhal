@@ -8,8 +8,8 @@ Cristhal propose de clarifier le contenu d'un dépôt HAL en permettant de class
 Les fonctionnalités sont les suivantes
   - Configuration des collections HAL et import des référentiels fournis sous la forme de fichiers CSV
   - Récupération automatique des publications de chaque collection
-  - Classemeent automatique suivi d'une validation manuelle
+  - Classement automatique suivi d'une validation manuelle
   - Production de graphiques et statistiques variées
   - Export en PDF ou PNG des données pour insertion dans des rapports et présentations
 
-CristHAL est une application web Python/Django disponible en libre accès, initialement développée pour le laboratoire [Cédric](http://cedric.cnam.fr) du Cnam. Toutes les informations pour l'installer et l'utiliser se trouvent dans la [documentation en ligne](https://cedric-cnam.github.io/cristhal/).
+CristHAL est une application web Python/Django disponible en libre accès, initialement développée pour le laboratoire [Cédric](http://cedric.cnam.fr) du Cnam par Philippe Rigaux. Toutes les informations pour l'installer et l'utiliser se trouvent dans la [documentation en ligne](https://cedric-cnam.github.io/cristhal/).
