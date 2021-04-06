@@ -1,6 +1,6 @@
 # Un système de classement des publications HAL
 
-Ce système s'adresse aux institutions de recherche qui ont chois [Hal] (https://hal.archives-ouvertes.fr/) pour déposer et gérer leurs publications
+Ce système s'adresse aux institutions de recherche qui ont chois [Hal](https://hal.archives-ouvertes.fr/) pour déposer et gérer leurs publications
 scientifiques. HAL présente le double inconvénient de fournir d'une part une classification extrêmement sommaire (soit, essentiellement, 'Article'  et 'Communication'), et d'autre part d'être très permissif sur les données qui peuvent être déposées. Résultat: une incitation inflationiste au dépôt de publications de portée très variable, et difficulté à identifier les publications les plus significatives.
 
 Cristhal propose de clarifier le contenu d'un dépôt HAL en permettant de classer les publications selon des référentiels, qui peuvent être soit les référentiels internationaux comem [SCIMAGO] (https://www.scimagojr.com/), soit des référentiels ad-hoc. Le système récupère les publications d'une collection HAL d'un côté, les référentiels de l'autre, et effectue un appariement proposant une classification de chaque publication par rapport aux référentiels. Cette proposition doit être validée manuellement. De nombreuses statistiques peuvent alors être produites. 
