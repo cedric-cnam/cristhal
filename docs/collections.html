@@ -95,6 +95,7 @@
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Gestion des collections</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#definition-d-une-collection">Définition d’une collection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#synchronisation-avec-hal">Synchronisation avec HAL</a></li>
 </ul>
 </li>
 </ul>
@@ -182,9 +183,48 @@ d’avord la définir, puis la synchroniser avec HAL.</p>
 </div>
 <div class="section" id="definition-d-une-collection">
 <h2>Définition d’une collection<a class="headerlink" href="#definition-d-une-collection" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Depuis la page d’accueil, suivez dans le menu local le choix “Ajouter une collection”. On obtient le
+formulaire de la <a class="reference internal" href="#creer-collection"><span class="std std-numref">Fig. 5</span></a>.</p>
 <div class="figure align-center" id="id1">
-<span id="architechue"></span><a class="reference internal image-reference" href="_images/ArchiTechnique.png"><img alt="_images/ArchiTechnique.png" src="_images/ArchiTechnique.png" style="width: 90%;" /></a>
-<p class="caption"><span class="caption-number">Fig. 5 </span><span class="caption-text">Les composants techniques</span><a class="headerlink" href="#id1" title="Lien permanent vers cette image">¶</a></p>
+<span id="creer-collection"></span><a class="reference internal image-reference" href="_images/creer-collection.png"><img alt="_images/creer-collection.png" src="_images/creer-collection.png" style="width: 90%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 5 </span><span class="caption-text">Création d’une collection</span><a class="headerlink" href="#id1" title="Lien permanent vers cette image">¶</a></p>
+</div>
+<p>Les données sont les suivantes</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Code : un code (unique) CristHAL pour faire référence à la collection (par exemple l’acronyme de l’équipe)</p></li>
+<li><p>Sigle HAL : le sigle de la structure dans HAL (unique)</p></li>
+<li><p>Id HAl: identifiant de la structure dans HAL (unique)</p></li>
+<li><p>Nom : un texte bref utilisé pour les affichages (par exemple le nom de l’équipe)</p></li>
+<li><p>Description : texte libre</p></li>
+<li><p>Email contact: adresse de la personne-contact pour la collection</p></li>
+</ul>
+</div></blockquote>
+<p>Vous pouvez revenir à tout moment sur la collection pour la modifier via l’interface d’administration.</p>
+</div>
+<div class="section" id="synchronisation-avec-hal">
+<h2>Synchronisation avec HAL<a class="headerlink" href="#synchronisation-avec-hal" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Les collections apparaissent dans un tableau sur la page d’accueil (<a class="reference internal" href="#page-collections"><span class="std std-numref">Fig. 6</span></a>).</p>
+<div class="figure align-center" id="id2">
+<span id="page-collections"></span><a class="reference internal image-reference" href="_images/page-collections.png"><img alt="_images/page-collections.png" src="_images/page-collections.png" style="width: 90%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 6 </span><span class="caption-text">Page des collections (accueil)</span><a class="headerlink" href="#id2" title="Lien permanent vers cette image">¶</a></p>
+</div>
+<p>Les actions possibles sont:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>la modification</p></li>
+<li><p>la synchronisation avec HAL</p></li>
+<li><p>le classement des publications (voir plus loin)</p></li>
+<li><p>la consultation des statistiques (également accessible dans le menu local)</p></li>
+</ul>
+</div></blockquote>
+<p>La synchronisation permet de récupérer les publications de la structure HAL et de les
+insérer dans la collection (ou de les mettre à jour si elles existent déjà). Cette opération
+doit être effectuée régulièrement pour maintenir la collection en phase avec HAL.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Seules les publications de la période configurée sont chargées. De même, ChristHAL
+charge un sous-ensemble des types de publication HAL (les REPORT, AUTRE et UNDEFINED sont ignorées).</p>
 </div>
 </div>
 </div>

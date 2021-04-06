@@ -24,14 +24,52 @@ d'avord la définir, puis la synchroniser avec HAL.
 Définition d'une collection
 ***************************
 
+Depuis la page d'accueil, suivez dans le menu local le choix 'Ajouter une collection'. On obtient le
+formulaire de la :numref:`creer-collection`.
 
-
-
-
-.. _archiTechue:
-.. figure:: ./figures/ArchiTechnique.png       
+.. _creer-collection:
+.. figure:: ./figures/creer-collection.png       
         :width: 90%
         :align: center
    
-        Les composants techniques
+        Création d'une collection
+
+Les données sont les suivantes
+
+  - Code : un code (unique) CristHAL pour faire référence à la collection (par exemple l'acronyme de l'équipe)
+  - Sigle HAL : le sigle de la structure dans HAL (unique)
+  - Id HAl: identifiant de la structure dans HAL (unique)
+  - Nom : un texte bref utilisé pour les affichages (par exemple le nom de l'équipe)
+  - Description : texte libre
+  - Email contact: adresse de la personne-contact pour la collection
+
+Vous pouvez revenir à tout moment sur la collection pour la modifier via l'interface d'administration.
+
+************************
+Synchronisation avec HAL
+************************
+
+Les collections apparaissent dans un tableau sur la page d'accueil (:numref:`page-collections`).
+
+.. _page-collections:
+.. figure:: ./figures/page-collections.png       
+        :width: 90%
+        :align: center
+   
+        Page des collections (accueil)
+
+Les actions possibles sont:
+  
+   - la modification
+   - la synchronisation avec HAL
+   - le classement des publications (voir plus loin)
+   - la consultation des statistiques (également accessible dans le menu local)
+
+La synchronisation permet de récupérer les publications de la structure HAL et de les
+insérer dans la collection (ou de les mettre à jour si elles existent déjà). Cette opération
+doit être effectuée régulièrement pour maintenir la collection en phase avec HAL. 
+
+.. note:: Seules les publications de la période configurée sont chargées. De même, ChristHAL
+   charge un sous-ensemble des types de publication HAL (les REPORT, AUTRE et UNDEFINED sont ignorées).
+
 

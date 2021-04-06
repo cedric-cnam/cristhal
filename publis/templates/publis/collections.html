@@ -18,7 +18,31 @@ Voici la liste des collections HAL. Le tableau ci-dessous ou le menu local vous 
 de consulter le détail d'une collection.
 </div>
 
-<h3>Répartition des publications par collection</h3>
+
+ <div>
+<table>
+<tr><th>Code</th><th>Nom</th><th>Nom Hal</th><th>Indicateurs</th><th>Actions</th></tr>
+{% for coll in collections %}
+<tr>
+<td>{{coll.code}}</td><td>{{coll.nom}}</td><td>{{coll.sigle_hal}}</td><td>Nb publis: {{coll.nb_publis}}</td>
+<td>
+<ul>
+{% if user.is_superuser %}
+ <li><a href="{% url 'admin:publis_collection_change' coll.id %}">Modifier</a></li>
+{% endif %}
+ <li><a href="{% url 'publis:collections' %}?synchro=1&code={{coll.code}}">Synchroniser avec Hal</a></li>
+ <li><a href="{% url 'publis:classement' coll.code %}">Classer les publications</a></li>
+ <li><a href="{% url 'publis:stats_collection' coll.code %}">Statistiques </a></li>
+</ul>
+</td>
+</tr>
+{% endfor %}
+</table>
+</div>
+
+<h3>Statistiques générales sur les collections</h3>
+
+<div>
 <table width="400">
 <tr>
 <td  width="50%"></td>
@@ -54,25 +78,6 @@ de consulter le détail d'une collection.
 </tr>
 </table>
 
- <div>
-<table>
-<tr><th>Code</th><th>Nom</th><th>Nom Hal</th><th>Indicateurs</th><th>Actions</th></tr>
-{% for coll in collections %}
-<tr>
-<td>{{coll.code}}</td><td>{{coll.nom}}</td><td>{{coll.nom_hal}}</td><td>Nb publis: {{coll.nb_publis}}</td>
-<td>
-<ul>
-{% if user.is_superuser %}
- <li><a href="{% url 'admin:publis_collection_change' coll.id %}">Modifier</a></li>
-{% endif %}
- <li><a href="{% url 'publis:collections' %}?synchro=1&code={{coll.code}}">Synchroniser avec Hal</a></li>
- <li><a href="{% url 'publis:classement' coll.code %}">Classer les publications</a></li>
- <li><a href="{% url 'publis:stats_collection' coll.code %}">Statistiques </a></li>
-</ul>
-</td>
-</tr>
-{% endfor %}
-</table>
 </div>
 {% else %}
 Vous n'avez pas encore défini de collection. Voici un 
