@@ -1,0 +1,60 @@
+
+   
+############
+Installation
+############
+
+CristHAL est une application Python s'appuyant sur le *framework* Django (https://www.djangoproject.com/).  
+Les composants de l'architecture technique sont illustrés par la :numref:`archiTechnique`.
+
+.. _archiTechnique:
+.. figure:: ./figures/ArchiTechnique.png       
+        :width: 90%
+        :align: center
+   
+        Les composants techniques
+
+Tous ces composants sont des logiciels libres qui fonctionnent sur toutes les plateformes.
+
+  - Le cœur du système est une application Python/Django. 
+  - Le stockage des données est assuré par MySQL (http://mysql.com)
+  - Un moteur de recherche, ElasticSearch (https://www.elastic.co/fr/elasticsearch/), 
+    est utilisé pour la procédure d'appariement.
+  - Enfin un serveur Web quelconque, doté d'une passerelle WSGI, est requis pour une mise en production 
+
+
+Pour une installation initiale, il n'est pas nécessaire de disposer d'un serveur Web: un serveur intégré
+à Django permet d'effectuer la configuration et les tests, ce que nous appelons "mise en route" 
+dans ce qui suit. Pour une mise en production, un vrai serveur web s'impose, ainsi que quelques précautions
+de configuration.
+
+
+À l'exception (très relative) d'ElasticSearch, cette architecture est très classique et utilisé par des millions
+de sites web. On trouve donc de très nombreuses ressources pour la configuration des différents compsosants. Ce
+qui suis se concentre donc sur la partie spécifique à CristHAL.
+
+
+*************
+Mise en route
+*************
+
+On suppose donc que vous disposez d'une machine équipée de Python (version au moins 3.6), et d'un accès 
+à un serveur MySQL et à un serveur ElasticSearch. Le code de CristHAL peut être récupéré sur
+https://github.com/cedric-cnam/cristhal. 
+
+.. note:: Dans tout ce qui suit, ``python`` et ``pip`` désignent les commandes ``python3`` et ``pip3``.
+ 
+La première chose à faire est d'installer les modules Python nécessaires à CristHAL. Ils sont 
+énumérés dans le fichier ``requirements.txt``.
+
+.. code-block:: bash
+
+    pip3 install -r requirements.txt
+
+
+
+
+Pour bien comprendre en quoi ce rôle a des aspects particuliers dans le cadre d'un système distribué à grande
+échelle, commençons par la couche matérielle qui va principalement nous occuper dans
+ce chapitre.
+

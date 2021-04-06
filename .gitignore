@@ -7,3 +7,4 @@
 # Compilations 
 __pycache__/
 *.py[cod]
+docsrc/_static/

@@ -33,6 +33,7 @@ extensions = [
     'sphinx.ext.mathjax',
     'sphinx.ext.ifconfig',
 ]
+numfig = True
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -49,7 +50,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'anibHal'
+project = u'CristHAL'
 copyright = u'2021, Philippe Rigaux'
 author = u'Philippe Rigaux'
 
@@ -208,7 +209,7 @@ html_static_path = ['_static']
 #html_search_scorer = 'scorer.js'
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'anibHaldoc'
+htmlhelp_basename = 'cristhalDoc'
 
 # -- Options for LaTeX output ---------------------------------------------
 
