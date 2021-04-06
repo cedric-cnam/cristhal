@@ -138,5 +138,8 @@ Pas d'erreur ? Alors vous pouvez accèder avec un navigateur quelconque à http:
 Tout est prêt pour commencer à utiliser l'application (en mode 'tests': pour la mise en production
 voir ci-dessous).
 
+
+******************
 Mise en production
-===================
+*******************
+
