@@ -14,6 +14,8 @@ Contents:
   intro
   installation
   collections
+  referentiel
+  classement
 
 Indices and tables
 ==================

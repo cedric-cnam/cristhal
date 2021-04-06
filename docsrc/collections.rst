@@ -73,3 +73,12 @@ doit être effectuée régulièrement pour maintenir la collection en phase avec
    charge un sous-ensemble des types de publication HAL (les REPORT, AUTRE et UNDEFINED sont ignorées).
 
 
+****************
+Les publications 
+****************
+
+****************
+Les statistiques
+****************
+
+
