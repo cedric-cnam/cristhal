@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Introduction &mdash; Documentation CristHAL 0.1</title>
+  <title>Gestion des collections &mdash; Documentation CristHAL 0.1</title>
   
 
   
@@ -32,8 +32,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Recherche" href="search.html" />
-    <link rel="next" title="Installation" href="installation.html" />
-    <link rel="prev" title="Documentation CristHAL" href="index.html" />
+    <link rel="prev" title="Installation" href="installation.html" />
     
   
 
@@ -92,8 +91,12 @@
             
             
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Gestion des collections</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#definition-d-une-collection">Définition d’une collection</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -139,13 +142,13 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Introduction</li>
+      <li>Gestion des collections</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/intro.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/collections.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -158,42 +161,32 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="introduction">
-<h1>Introduction<a class="headerlink" href="#introduction" title="Lien permanent vers ce titre">¶</a></h1>
-<p>Ce système s’adresse aux institutions de recherche
-qui ont choisi Hal (<a class="reference external" href="https://hal.archives-ouvertes.fr/">https://hal.archives-ouvertes.fr/</a>)
-pour déposer et gérer leurs publications scientifiques. HAL est très utile mais
-présente le double inconvénient de fournir d’une part une classification assez
-sommaire (soit, essentiellement, “Article” et “Communication”),
-et d’autre part d’être très permissif sur les données qui peuvent être déposées.
-Le risque est une incitation inflationiste au dépôt de publications de portée très variable,
-et une difficulté à identifier les publications les plus significatives.</p>
-<p>Cristhal propose de clarifier le contenu d’un dépôt HAL en permettant de classer les publications
-selon des référentiels, qui peuvent être soit les référentiels internationaux comem SCIMAGO,
-soit des référentiels ad-hoc.</p>
-<p>L’architecture fonctionnelle est résumée par la <a class="reference internal" href="#archiclassement"><span class="std std-numref">Fig. 1</span></a>
-Le système récupère les référentiels d’un côté (par import de fichiers CSV),
-les publications d’une collection HAL  de l’autre (via les services Web proposés par HAL)
-et effectue un appariement proposant une classification de chaque publication par
-rapport aux référentiels. Cette proposition doit être validée manuellement grâce à une interface dédiée.
-De nombreuses statistiques peuvent alors être produites.</p>
-<div class="figure align-center" id="id1">
-<span id="archiclassement"></span><a class="reference internal image-reference" href="_images/ArchiClassement.png"><img alt="_images/ArchiClassement.png" src="_images/ArchiClassement.png" style="width: 90%;" /></a>
-<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">Vue d’ensemble de la procédure de classement des publications</span><a class="headerlink" href="#id1" title="Lien permanent vers cette image">¶</a></p>
+  <div class="section" id="gestion-des-collections">
+<span id="chap-collections"></span><h1>Gestion des collections<a class="headerlink" href="#gestion-des-collections" title="Lien permanent vers ce titre">¶</a></h1>
+<p>CristHAL récupère pour les analyser des collections de publications appartenant à une <em>structure</em>
+HAL. Chaque structure a un nom (par exemple CEDRIC-VERTIGO pour l’équipe VERTIGO du Cédric)
+et un identifiant (par exemple 553459 pour cette même équipe). Le
+lien <a class="reference external" href="https://aurehal.archives-ouvertes.fr/structure/browse?critere=cedric&amp;category=*">https://aurehal.archives-ouvertes.fr/structure/browse?critere=cedric&amp;category=*</a>
+donne par exemple la liste des structures (équipes en l’occurrence) du laboratoire
+Cédric.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Reportez-vous à la documentation <a class="reference external" href="https://doc.archives-ouvertes.fr/gerer-un-portail/referentiels/structures-de-recherche/">https://doc.archives-ouvertes.fr/gerer-un-portail/referentiels/structures-de-recherche/</a>
+pour des informations sur la notion de structure de recherche dans HAL.</p>
 </div>
-<p>Les fonctionnalités de CristHAL sont les suivantes</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>Configuration des collections HAL et import des référentiels fournis sous la forme de fichiers CSV</p></li>
-<li><p>Récupération automatique des publications de chaque collection</p></li>
-<li><p>Classement automatique suivi d’une validation manuelle</p></li>
-<li><p>Production de graphiques et statistiques variées</p></li>
-<li><p>Export en PDF ou PNG des données pour insertion dans des rapports et présentations</p></li>
-</ul>
-</div></blockquote>
-<p>CristHAL est une application web écrite en Python/Django disponible sous forme de logiciel libre.
-Elle a été initialement développée pour le laboratoire Cédric (<a class="reference external" href="http://cedric.cnam.fr">http://cedric.cnam.fr</a>) du Cnam
-par Philippe Rigaux.</p>
+<p>Pour demander l’analyse des publications d’une structure dans CristHAL, vous devez
+d’avord la définir, puis la synchroniser avec HAL.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>L’ensemble des publications d’une structure est une <em>collection</em> dans CristHAL.</p>
+</div>
+<div class="section" id="definition-d-une-collection">
+<h2>Définition d’une collection<a class="headerlink" href="#definition-d-une-collection" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="figure align-center" id="id1">
+<span id="architechue"></span><a class="reference internal image-reference" href="_images/ArchiTechnique.png"><img alt="_images/ArchiTechnique.png" src="_images/ArchiTechnique.png" style="width: 90%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 5 </span><span class="caption-text">Les composants techniques</span><a class="headerlink" href="#id1" title="Lien permanent vers cette image">¶</a></p>
+</div>
+</div>
 </div>
 
 
@@ -204,10 +197,8 @@ par Philippe Rigaux.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="installation.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-      
-        <a href="index.html" class="btn btn-neutral float-left" title="Documentation CristHAL" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="installation.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

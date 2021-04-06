@@ -1,5 +1,5 @@
+.. _chap-install:
 
-   
 ############
 Installation
 ############
@@ -39,7 +39,25 @@ Mise en route
 *************
 
 On suppose donc que vous disposez d'une machine équipée de Python (version au moins 3.6), et d'un accès 
-à un serveur MySQL et à un serveur ElasticSearch. Le code de CristHAL peut être récupéré sur
+à un serveur MySQL et à un serveur ElasticSearch. Pour MySQL il est nécessaire de créer 
+une base et un compte administrateur. Voici des exemples de commandes (elles se trouvent dans 
+``install/creationDb.sql``).
+
+.. code-block:: sql
+
+    /* Nom de base à reporter dans cristhal/local_settings.py */
+    create database cristhal CHARACTER SET utf8;
+
+    /*
+    * Nom admin et mot de passe à changer et reporter dans cristhal/local_settings.py
+    */
+    grant all privileges on cristhal.* to cristhalAdmin identified by 'mdpCristhal'
+
+.. important:: Ne les copiez pas telles quelles ! *Changez au moins le mot de passe*
+
+Pas besoin de créer l'index pour ElasticSearch, CristHAL s'en charge à la première connexion.
+
+Le code de CristHAL peut être récupéré sur
 https://github.com/cedric-cnam/cristhal. Installez-le dans un répertoire que nous appelerons ``cristhaldir``.
 
 
@@ -93,10 +111,6 @@ les autres paramètres dans ``ELASTIC_SEARCH``.
       ELASTIC_SEARCH = {"host": "localhost", "port": 9200, 
                   "index": ES_INDEX_REF}
 
-Pour bien comprendre en quoi ce rôle a des aspects particuliers dans le cadre d'un système distribué à grande
-échelle, commençons par la couche matérielle qui va principalement nous occuper dans
-ce chapitre.
-
 Un dernier paramètre à régler est l'emplacement des fichiers journaux. Par défaut:
 
 .. code-block:: python
@@ -120,7 +134,14 @@ dans ``cristhaldir``.
 C'est une commande Django qui crée (ou modifie) le schéma. Si la connexion au serveur MySQL échoue, 
 vous le saurez tout de suite. Sinon, votre schéma est créé. 
 
-C'est presque prêt! CristHAL propose une autre commande pour créer une configuration initiale.
+C'est presque prêt! Maintenant ajoutez un super-utilisateur avec une autre commande Django.
+
+.. code-block:: bash
+
+     python manage.py createsuperuser
+
+Suiviez les instructions (et mémorisez le compte !). Pour finir, 
+CristHAL propose une autre commande pour créer une configuration initiale.
 
 .. code-block:: bash
 
@@ -134,12 +155,62 @@ Il ne reste qu'à lancer le serveur intégré à Django.
 
      python manage.py runserver
 
-Pas d'erreur ? Alors vous pouvez accèder avec un navigateur quelconque à http://localhost:8000.
-Tout est prêt pour commencer à utiliser l'application (en mode 'tests': pour la mise en production
-voir ci-dessous).
+Pas d'erreur ? Alors vous pouvez accèder avec un navigateur quelconque à http://localhost:8000
+et vous devriez obtenir l'écran de la :numref:`ecran-accueil` (qui peut évoluer avec les versions).
 
+.. _ecran-accueil:
+.. figure:: ./figures/ecran-accueil.png       
+        :width: 90%
+        :align: center
+   
+        L'écran d'accueil
+        
+Vous pouvez vous connecter avec le compte super-utilisateur défini précédemment.
+Tout est prêt pour commencer à utiliser l'application (en mode 'tests': pour la mise en production
+voir ci-dessous). Commençons par un peu de configuration.
+
+L'interface d'administration
+============================
+
+Une fois connecté avec un compte d'administration, un menu ``Admin`` apparaît
+(:numref:`ecran-accueil`). 
+
+
+.. _ecran-accueil2:
+.. figure:: ./figures/ecran-accueil2.png       
+        :width: 90%
+        :align: center
+   
+        L'écran d'accueil après connexion
+
+Ce menu donne accès aux fonctions de création et de mise à jour
+des principaux objets configurant CristHAL: utilisateurs, codification, collections,
+sources (du référentiel, etc.)
+
+La création des groupes (définissant des droits d'accès) et des utilisateurs est 
+une fonction standard de Django. Vous pouvez créer quelques utilisateurs: seuls ceux
+dotés du droit 'super-utilisateur' pourront accéder au menu d'administration.
+
+Les autres formulaires sont gérés automatiquement par Django, mais donnent
+accès aux données spécifiques. Pour vous rôder vous pouvez
+accéder à l'interface de définition des configurations. 
+
+Il doit exister au moins une configuration, nommée ``défaut``. Elle est créée à l'initialisation
+de CristHAL et contient plusieurs paramètres:
+
+  - L'adresse des services web HAL (ne pas modifier en principe)
+  - La période (année min et max) de récolte des publications.
+
+Au-delà de la configuration, tout le paramétrage de CristHAL se fait via cette interface
+d'administration.
+
+.. important:: Pour revenir au site principal à partir de l'interface d'administration, il faut
+   suivre le lien 'View site' en haut à droite.
 
 ******************
 Mise en production
 ******************
+
+À faire.
+
 

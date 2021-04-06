@@ -13,6 +13,7 @@ Contents:
 
   intro
   installation
+  collections
 
 Indices and tables
 ==================
