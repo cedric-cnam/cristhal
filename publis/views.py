@@ -29,9 +29,8 @@ def menu_local(contexte):
     menu_local.append ({"url": reverse('publis:instructions'), "lien": "<b>Classement collections</b>", "niveau": 1})
     menu_local.append ({"url": reverse('publis:publications'), "lien": "<b>Publications</b>", "niveau": 1})
     menu_local.append ({"url": "#", "lien": "<hr/>"})
-    if contexte=="collections" or contexte=="classement":
-        if contexte=="collections":
-            menu_local.append({"url": reverse('admin:publis_collection_add'), 
+    if contexte=="collections" :
+        menu_local.append({"url": reverse('admin:publis_collection_add'), 
                                "lien": "Ajout d'une collection", "niveau": 2})
         for coll in Collection.objects.all():
             coll_url = reverse('publis:stats_collection', kwargs={'code_collection': coll.code})
@@ -40,6 +39,10 @@ def menu_local(contexte):
         menu_local.append({"url": reverse('admin:publis_source_add'), 
                                "lien": "Ajout d'une source", "niveau": 2})
         menu_local.append ({"url": reverse('publis:recherche'), "lien": "Recherche dans le référentiel", "niveau": 2})
+    if contexte=="classement":
+        for coll in Collection.objects.all():
+            coll_url = reverse('publis:classement', kwargs={'code_collection': coll.code})
+            menu_local.append({"url": coll_url, "lien": coll.nom, "niveau": 2})
     return menu_local
 
 
@@ -167,6 +170,7 @@ def classement(request, code_collection):
                 }
     # Cherchons la configuration pour avoir des valeurs par défaut
     config = Config.objects.get(code=CODE_CONFIG_DEFAUT)
+    context["annees"] = list(range (config.annee_min_publis, config.annee_max_publis+1))
 
     # Sur validation, envoyer un messqge au responsable 
     

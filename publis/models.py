@@ -382,10 +382,10 @@ class Publication(models.Model):
         return sortie
 
     @staticmethod
-    def get_publis_periode (collection, annee_min, annee_max, type_publi=PUBLI_TOUS_TYPES):
+    def get_publis_periode (collection_code, annee_min, annee_max, type_publi=PUBLI_TOUS_TYPES):
                
         # La requete : toutes les publis de la période
-        if collection == TOUTES_COLLECTIONS:
+        if collection_code == TOUTES_COLLECTIONS:
             publis =  Publication.objects.filter(
                         annee__gte=annee_min).filter(
                         annee__lte=annee_max)
@@ -393,7 +393,7 @@ class Publication(models.Model):
             publis =   Publication.objects.filter(
                         annee__gte=annee_min).filter(
                         annee__lte=annee_max).filter(
-                        collections__code=collection)
+                        collections__code=collection_code)
         
         if not (type_publi == PUBLI_TOUS_TYPES):
             # Filtre supplémentaire sur le type
