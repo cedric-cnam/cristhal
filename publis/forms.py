@@ -43,13 +43,6 @@ class ClassementPubliForm(ModelForm):
 
     
 class PubliSearchForm(forms.Form):
-    class Meta:
-        widgets = {
-        'heureDepart': forms.TimeInput(format='%H:%M', attrs={'type': 'time'}),
-            'dateDepart': forms.DateInput(attrs={'type': 'date'}),
-        'heureArrivee': forms.TimeInput(format='%H:%M', attrs={'type': 'time'}),
-        'dateArrivee': forms.DateInput(attrs={'type': 'date'}),
-        }
         
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -58,7 +51,9 @@ class PubliSearchForm(forms.Form):
         self.helper.form_method = 'post'
         
         self.fields['collection'] = forms.ModelChoiceField(queryset=Collection.objects.all())
+        self.fields['collection'].required = False
         self.fields['classement'] = forms.ModelChoiceField(queryset=ClassementPubli.objects.all())
+        self.fields['classement'].required = False
         self.fields['auteur'] = forms.CharField(label="Nom d'auteur (ou laisser blanc)", required=False)
         #elf.fields['auteur'].required = False         
         self.fields['annee_min'] = forms.IntegerField(label='Année min.') 
