@@ -23,7 +23,7 @@ ALLOWED_HOSTS = []
 #
 # Très important: pas de DEBUG en production
 #
-DEBUG=False
+#DEBUG=False
 #
 
 # Connexion à la base de données
