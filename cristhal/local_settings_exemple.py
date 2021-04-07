@@ -14,7 +14,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 #
 # Clé secrète, À prendre dans une variable d'environnement ou un fichier
 #
-SECRET_KEY = os.environ['SECRET_KEY']
+#SECRET_KEY = os.environ['SECRET_KEY']
 
 #
 # Indiquer les domaines servis par l'app.
@@ -50,7 +50,7 @@ EMAIL_BACKEND='philippe.rigaux@cnam.fr'
 #
 # Fichiers de log
 #
-LOG_DIR = '/var/logs'
+LOG_DIR = '/var/log'
 
 # 
 # Configuration ElasticSearch
