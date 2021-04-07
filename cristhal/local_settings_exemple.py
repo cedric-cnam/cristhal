@@ -9,6 +9,9 @@
 
 """
 import os
+
+from .settings import LOGGING
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 #
@@ -50,8 +53,11 @@ EMAIL_BACKEND='philippe.rigaux@cnam.fr'
 #
 # Fichiers de log. P
 #
+# LOG_DIR = '/var/log'
+#
 # Exemple: pour écrire dans un répertoire logs frère du répertoire courant
-#LOG_DIR = os.path.join(os.path.dirname(BASE_DIR), 'logs')
+LOG_DIR = os.path.join(os.path.dirname(BASE_DIR), 'logs')
+LOGGING["handlers"]["file"]["filename"] = os.path.join(LOG_DIR, 'cristhal.log')
 
 
 # 
