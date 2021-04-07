@@ -48,9 +48,11 @@ DATABASES = {
 EMAIL_BACKEND='philippe.rigaux@cnam.fr'
 
 #
-# Fichiers de log
+# Fichiers de log. P
 #
-LOG_DIR = '/var/log'
+# Exemple: pour écrire dans un répertoire logs frère du répertoire courant
+#LOG_DIR = os.path.join(os.path.dirname(BASE_DIR), 'logs')
+
 
 # 
 # Configuration ElasticSearch
