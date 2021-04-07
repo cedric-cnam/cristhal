@@ -50,9 +50,8 @@ class PubliSearchForm(forms.Form):
         self.helper.form_class = 'blueForms'
         self.helper.form_method = 'post'
         
-        self.fields['collection'] = forms.ModelChoiceField(queryset=Collection.objects.all())
-        self.fields['collection'].required = False
-        self.fields['classement'] = forms.ModelChoiceField(queryset=ClassementPubli.objects.all())
+        self.fields['collection'] = forms.ModelChoiceField(queryset=Collection.objects.all(),initial=0,required=False,empty_label="Toutes")
+        self.fields['classement'] = forms.ModelChoiceField(queryset=ClassementPubli.objects.all(),empty_label="Tous")
         self.fields['classement'].required = False
         self.fields['auteur'] = forms.CharField(label="Nom d'auteur (ou laisser blanc)", required=False)
         #elf.fields['auteur'].required = False         

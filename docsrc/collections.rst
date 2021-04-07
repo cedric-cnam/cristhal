@@ -77,8 +77,4 @@ doit être effectuée régulièrement pour maintenir la collection en phase avec
 Les publications 
 ****************
 
-****************
-Les statistiques
-****************
-
-
+le menu
