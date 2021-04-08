@@ -127,7 +127,7 @@ Le nombre de références d'une source est donné entre parenthèses après char
 Interrogation du référentiel
 ****************************
 
-La fonction "Recherche dans le référentiel" permet d"'effectuer directement une recherche par mots-clés
+La fonction "Recherche dans le référentiel" permet d'effectuer directement une recherche par mots-clés
 et d'obtenir une liste classée par pertinence descendante des 10 premières références correspondant
 aux mots-clés (:numref:`recherche_ref`).
 
@@ -156,7 +156,7 @@ texte des références.
 Les deux principales causes d'un mauvais classement sont:
 
   - Une saisie incorrecte ou incomplète du titre de la revue ou du nom de la conférence
-    dans la publication ; il n'y pas alors de meilleure solution que de corriger 
+    dans la publication ; il n'y a pas alors de meilleure solution que de corriger 
     dans HAL et de recharger la collection.
   - L'absence de la conférence ou de la revue dans le référentiel. On peut choisir 
     de l'ajouter, ou considérer que la publication est "Hors référentiel".

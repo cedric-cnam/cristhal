@@ -72,9 +72,6 @@ doit être effectuée régulièrement pour maintenir la collection en phase avec
 .. note:: Seules les publications de la période configurée sont chargées. De même, ChristHAL
    charge un sous-ensemble des types de publication HAL (les REPORT, AUTRE et UNDEFINED sont ignorées).
 
-
 ****************
 Les publications 
 ****************
-
-le menu

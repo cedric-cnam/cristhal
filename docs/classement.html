@@ -166,11 +166,90 @@
             
   <div class="section" id="classement-des-publications">
 <span id="chap-classement"></span><h1>Classement des publications<a class="headerlink" href="#classement-des-publications" title="Lien permanent vers ce titre">¶</a></h1>
+<p>Le classement des publications s’effectue via une interface de saisie qui permet
+de consulter et de valider l’appariement effectué par le moteur de recherche entre
+les publications d’une collection et le référentiel. CristHAL n’effectue pas
+de classification entièrement automatique en raison des risques d’erreur (notamment
+les publications saisies avec trop peu de précision, ou un référentiel incomplet).</p>
+<p>Le classement s’effectue d’après une échelle qui est paramétrable.</p>
 <div class="section" id="l-echelle-de-classement">
 <h2>L’échelle de classement<a class="headerlink" href="#l-echelle-de-classement" title="Lien permanent vers ce titre">¶</a></h2>
+<p>L’échelle de classement proposée par défaut est celle définie au laboratoire
+Cédric. Elle comprend  7 catégories :</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>le classement « Communication » correspond aux exposés sans comité de lecture (séminaires,
+conférences invitées, etc.)</p></li>
+<li><p>le classement « National » correspond aux publications ayant une portée nationale,</p></li>
+<li><p>seules les revues ou conférences internationales avec actes reçoivent un classement avec
+quatre niveaux ; par analogie avec celui utilisé dans Scimago, ces quatre niveaux
+sont dénommés Q1, Q2, Q3 et Q4.</p></li>
+<li><p>enfin il existe un niveau « Hors référentiel », indiqué par le code « I », qui
+setrt de classement par défaut.</p></li>
+</ul>
+</div></blockquote>
+<p><em>À l’exception du code « Hors référentiel », il n’existe aucune interprétation de cette échelle dans CristHAL qui conditionnerait
+le fonctionnement du système</em>. Vous êtes donc tout à fait libres de la
+conserver, de modifier les intitulés, ou de définir votre propre
+échelle de classement.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>L’échelle doit être définie <em>avant</em> de commencer à classer les publications. Ensuite,
+il reste possible de changer les intitulés mais pas de supprimer un niveau de classement déjà utilisé.
+Enfin, c’est possible avec un peu de SQL direct, ce qu’il vaut mieux éviter…</p>
+</div>
+<p>Dans le menu d’administration, accédez à la fonction de gestion du classement des publications.
+Vous obtenez l’interface de la <a class="reference internal" href="#echelle-classement"><span class="std std-numref">Fig. 10</span></a>.</p>
+<div class="figure align-center" id="id1">
+<span id="echelle-classement"></span><a class="reference internal image-reference" href="_images/echelle_classement.png"><img alt="_images/echelle_classement.png" src="_images/echelle_classement.png" style="width: 90%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 10 </span><span class="caption-text">Administration de l’échelle de classement</span><a class="headerlink" href="#id1" title="Lien permanent vers cette image">¶</a></p>
+</div>
+<p>Vous pouvez tout modifier librement <em>à l’exception du choix « Hors référentiel » que vous ne
+devez pas supprimer</em> (mais vous pouvez changer son intitulé). Encore une fois, il est
+fortement préférable de fixer l’échelle avant de commencer à classer.</p>
 </div>
 <div class="section" id="le-formulaire-de-classement">
 <h2>Le formulaire de classement<a class="headerlink" href="#le-formulaire-de-classement" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Tout est prêt pour effectuer le classement des publications. À partir
+du menu « Classement », choisissez une collection dans le menu local.
+On obtient un formulaire dont un extrait est montré dans la <a class="reference internal" href="#form-classement"><span class="std std-numref">Fig. 11</span></a>.</p>
+<div class="figure align-center" id="id2">
+<span id="form-classement"></span><a class="reference internal image-reference" href="_images/form-classement.png"><img alt="_images/form-classement.png" src="_images/form-classement.png" style="width: 90%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 11 </span><span class="caption-text">Le formulaire de classement</span><a class="headerlink" href="#id2" title="Lien permanent vers cette image">¶</a></p>
+</div>
+<p>Le système propose, pour chaque publication, le classement le plus pertinent pour
+chaque type de source. Ici, nous n’en avons que deux: CORE et SCIMAGO.
+Le classement de chaque source est affiché, selon sa propre codification.
+On voit par exemple que la première publication de la
+<a class="reference internal" href="#form-classement"><span class="std std-numref">Fig. 11</span></a>, dans <em>Machine learning</em>, est classée A dans CORE, et
+Q1 dans SCIMAGO (ce qui est cohérent).</p>
+<p>La dernière colonne permet de choisir le classement de la publication,
+avec un menu déroulant qui propose l’échelle de classement définie dans CristHAL.
+Donc :</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Vous devez définir une correspondance entre les classements des sources
+et celui que vous souhaitez utiliser, et appliquer cette correspondance.
+Toujours dans le cas de la première publication ci-dessus, le classement
+Q1 est celui qui a été choisi en conformité avec les propositions issues des sources.</p></li>
+<li><p>La correspondance entre la publication et la référence doit être claire. Si ce n’est pas le cas
+(exemple de la seconde publication),
+c’est soit que la publication est mal référencée dans HAL (et doit donc être corrigée car nous
+souhaitons  en principe que les publications Hal  soient référencées avec précision), soit que
+le référentiel est incomplet, soit enfin qu’elle
+doit être classée en hors référentiel.</p></li>
+<li><p>Il se peut que le système ne propose que l’une des sources, si aucun appariement crédible
+n’a été proposé dans les autres.</p></li>
+</ul>
+</div></blockquote>
+<p>Une fois le classement choisi dans le menu déroulant, vous pouvez cocher la case « Clasement
+validé » pour indiquer que vous avez étudié et confirmé votre choix.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>À tout moment, et au plus tard avant de quitter la page, vous devez
+valider vos saisies avec le bouton « Valider » qui apparaît en haut du formulaire.</p>
+</div>
+<p>Il est toujours possible de changer les classements à tout moment.</p>
 </div>
 </div>
 
