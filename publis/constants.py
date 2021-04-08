@@ -53,23 +53,6 @@ TYPES_PUBLI= {
 PUBLIS_HAL_EXCLUES = [PUBLI_THESE, PUBLI_HDR, PUBLI_UNDEFINED, 
                       PUBLI_REPORT, PUBLI_AUTRE]
 
-# Codes pour le classement
-NIVEAU_1 = "N1"
-NIVEAU_2 = "N2"
-NIVEAU_3 = "N3"
-NIVEAU_4 = "N4"
-NIVEAU_COMM = "C"
-NIVEAU_NAT = "N"
-NIVEAU_HORS_REF = "I"
-CLASSEMENT_PUBLIS = [{"code": NIVEAU_1, "libelle" : "Q1"},
-                     {"code": NIVEAU_2, "libelle" : "Q2"},
-                     {"code": NIVEAU_3, "libelle" : "Q3"},
-                     {"code": NIVEAU_4, "libelle" : "Q4"},
-                   {"code": NIVEAU_COMM, "libelle" : "Communications"},
-                    {"code": NIVEAU_NAT, "libelle" : "National"},
-                    {"code": NIVEAU_HORS_REF, "libelle" : "Hors référentiel"}
-]
-
 #
 # Sources référentiel
 #

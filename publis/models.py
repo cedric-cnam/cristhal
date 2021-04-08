@@ -367,15 +367,17 @@ class Publication(models.Model):
 
     @staticmethod
     def stats_par_classement(collection, annee_min, annee_max):
+        # On exclut le niveau Comm et le niveau Nat. À paramétrer
+        NIVEAUX_EXCLUS = ["C", "N"]
         # La sortie: un dictionnaire sur le type, chaque entree est un tableau avec le compte par année
         classements = ClassementPubli.objects.all()
         sortie = []
         for classement in classements:
             # Pour cette stat on ne prend pas les comm
-            if not (classement.code in [NIVEAU_COMM, NIVEAU_NAT]):
+            if not (classement.code in NIVEAUX_EXCLUS):
                 sortie.append ({"name": classement.libelle, "y":0, "type": classement.code })
         for publi in Publication.get_publis_periode (collection, annee_min, annee_max):
-            if publi.classement_valide and not (publi.classement.code in [NIVEAU_COMM, NIVEAU_NAT]):
+            if publi.classement_valide and not (publi.classement.code in NIVEAUX_EXCLUS):
                 for count_type in sortie:
                     if count_type["type"] ==  publi.classement.code:
                         count_type["y"] +=  1

@@ -2,7 +2,25 @@ from django.core.management.base import BaseCommand
 
 from publis.models import ClassementPubli, Config
 
-from publis.constants import CLASSEMENT_PUBLIS, HAL_SEARCH_URL, CODE_CONFIG_DEFAUT
+from publis.constants import HAL_SEARCH_URL, CODE_CONFIG_DEFAUT
+
+# Les valeurs du classement par défaut
+
+NIVEAU_1 = "N1"
+NIVEAU_2 = "N2"
+NIVEAU_3 = "N3"
+NIVEAU_4 = "N4"
+NIVEAU_COMM = "C"
+NIVEAU_NAT = "N"
+NIVEAU_HORS_REF = "I"
+CLASSEMENT_PUBLIS = [{"code": NIVEAU_1, "libelle" : "Q1"},
+                     {"code": NIVEAU_2, "libelle" : "Q2"},
+                     {"code": NIVEAU_3, "libelle" : "Q3"},
+                     {"code": NIVEAU_4, "libelle" : "Q4"},
+                   {"code": NIVEAU_COMM, "libelle" : "Communications"},
+                    {"code": NIVEAU_NAT, "libelle" : "National"},
+                    {"code": NIVEAU_HORS_REF, "libelle" : "Hors référentiel"}
+                ]
 
 class Command(BaseCommand):
     """Initialisation de la codification """
