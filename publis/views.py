@@ -245,7 +245,7 @@ def publications(request):
     # Cherchons la configuration pour avoir des valeurs par défaut
     config = Config.objects.get(code=CODE_CONFIG_DEFAUT)
     
-    # Hum ne fonctionne que s'il y a au moins une collection et un classement
+    # Attention au cas où aucune collection n'existe
     if len(context["collections"]) == 0:
         coll_def = None
     else:
