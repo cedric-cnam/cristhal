@@ -6,7 +6,7 @@
 [subrepo]
 	remote = https://github.com/cedric-cnam/publis
 	branch = master
-	commit = a6ef6acdc95f37142b5f56a6998abf67c0793191
-	parent = 6563a77b30cee164d37e8357b3fef2e001bf1855
+	commit = b908804e43819d9533b1308a6acfd34c08d747d7
+	parent = 9f53c0bbabe344792b23648ad8ca45488f2c403c
 	method = merge
 	cmdver = 0.4.3
