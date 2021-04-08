@@ -246,10 +246,14 @@ def publications(request):
     config = Config.objects.get(code=CODE_CONFIG_DEFAUT)
     
     # Hum ne fonctionne que s'il y a au moins une collection et un classement
+    if len(context["collections"]) == 0:
+        coll_def = None
+    else:
+        coll_def = context["collections"][0]
     initial_dict = {
         "annee_min" : config.annee_min_publis,
         "annee_max" : config.annee_max_publis,
-        "collection" : context["collections"][0],
+        "collection" : coll_def,
         "classement" : context["classement_publis"][0],
         }
 
