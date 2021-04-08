@@ -80,9 +80,11 @@ de consulter le détail d'une collection.
 
 </div>
 {% else %}
+<div>
 Vous n'avez pas encore défini de collection. Voici un 
 <a  href="{% url 'admin:publis_collection_add' %}">lien pour créer votre
 première collection.</a> 
+</div>
 {% endif %}
 
 

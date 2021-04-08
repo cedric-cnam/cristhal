@@ -19,7 +19,10 @@ dit "interne".
 <ul>
  {% for source in sources %}
   {% if source.type_source == key %}
-      <li>{{source.description}}, {{source.count_refs}} références. (<a href="{% url 'publis:referentiel'%}?id_source={{source.id}}" aria-current="page">(re)charger)</a></li>
+      <li>{{source.description}}, {{source.count_refs}} références. Actions: 
+         <a href="{% url 'admin:publis_source_change' source.id %}" aria-current="page">Modifier</a> |
+         <a href="{% url 'publis:referentiel'%}?id_source={{source.id}}" aria-current="page">Charger (ou recharger)</a>
+      </li>
    {% endif %}   
   {% endfor %}
 </ul>
