@@ -5,16 +5,12 @@ Classement des publications
 ###########################
 
 ***********************
-Définition d'une source
-***********************
-
-***********************
-Chargement d'une source
+L'échelle de classement
 ***********************
 
 
-****************************
-Interrogation du référentiel
-****************************
+***************************
+Le formulaire de classement
+***************************
 
 

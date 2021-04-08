@@ -109,7 +109,7 @@ Pour l'identifant des sources, utiliser une courte chaîne de caractères, par e
 ``interne_optim``, ....
 
 Il reste à charger ou recharger une source pour l'indexer.  Dans le menu ``Référentiel``, la liste
-des sources apparaît, avec une option ``charger``ou ``recharger``.  
+des sources apparaît, avec une option ``charger`` ou ``recharger``.  
 
 
 .. _page-referentiel:
@@ -120,7 +120,7 @@ des sources apparaît, avec une option ``charger``ou ``recharger``.
         La page du référentiel
 
 Le nombre de références d'une source est donné entre parenthèses après chargement
-(:numref:`page-referentiel`).
+(:numref:`page-referentiel`, après chargement d'un fichier CORE).
 
 
 ****************************
