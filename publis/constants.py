@@ -39,6 +39,7 @@ PUBLI_HDR="HDR"
 PUBLI_REPORT="REPORT"
 PUBLI_UNDEFINED="UNDEFINED"
 PUBLI_OUVRAGE="OUV"
+PUBLI_BREVET="PATENT"
 PUBLI_AUTRE="OTHER"
 PUBLI_TOUS_TYPES="Tous"
 
@@ -52,6 +53,7 @@ TYPES_PUBLI= {
         PUBLI_THESE: "Thèse",
         PUBLI_HDR: "Habilitation",
         PUBLI_REPORT: "Rapport de recherche",
+        PUBLI_BREVET: "Brevet",
 }
 
 # Le tableau suivant indique les types de publi que l'on ne souhaite par charger
