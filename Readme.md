@@ -1,5 +1,7 @@
 # Un système de classement des publications HAL
 
+![Exemple de statistiques](/docsrc/figures/stats-generales.png)
+
 Ce système s'adresse aux institutions de recherche qui ont choisi [Hal](https://hal.archives-ouvertes.fr/) pour déposer et gérer leurs publications
 scientifiques. HAL est très utile mais présente le double inconvénient de fournir d'une part une classification assez sommaire (soit, essentiellement, 'Article'  et 'Communication'), et d'autre part d'être très permissif sur les données qui peuvent être déposées. Le risque est une incitation inflationiste au dépôt de publications de portée très variable, et difficulté à identifier les publications les plus significatives.
 
