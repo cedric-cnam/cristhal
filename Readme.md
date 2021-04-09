@@ -2,8 +2,9 @@
 
 Ce système s'adresse aux institutions de recherche qui ont choisi [Hal](https://hal.archives-ouvertes.fr/) pour déposer et gérer leurs publications
 scientifiques. HAL est très utile mais présente le double inconvénient de fournir d'une part une classification assez sommaire (soit, essentiellement, 'Article'  et 'Communication'), et d'autre part d'être très permissif sur les données qui peuvent être déposées. Le risque est une incitation inflationiste au dépôt de publications de portée très variable, et difficulté à identifier les publications les plus significatives.
-
-<img src="/docsrc/figures/ArchiClassement.png" width="800"> 
+<p align="center">
+<img src="/docsrc/figures/ArchiClassement.png" width="700"> 
+  </p>
 
 Cristhal propose de clarifier le contenu d'un dépôt HAL en permettant de classer les publications selon des référentiels, qui peuvent être soit les référentiels internationaux comme [SCIMAGO](https://www.scimagojr.com/), soit des référentiels ad-hoc. Le système récupère les publications d'une collection HAL d'un côté, les référentiels de l'autre, et effectue un appariement proposant une classification de chaque publication par rapport aux référentiels. Cette proposition doit être validée manuellement. De nombreuses statistiques peuvent alors être produites. 
 
