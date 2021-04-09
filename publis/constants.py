@@ -30,6 +30,7 @@ TOUTES_COLLECTIONS='toutes'
 # Types de publis dans Hal
 PUBLI_CONF = "COMM"
 PUBLI_REVUE="ART"
+PUBLI_POSTER="POSTER"
 PUBLI_DIRECTION_OUVRAGE="DOUV"
 PUBLI_CHAPITRE="COUV"
 PUBLI_OUVRAGE="OUV"
@@ -47,6 +48,10 @@ TYPES_PUBLI= {
         PUBLI_DIRECTION_OUVRAGE: "Direction d'ouvrage",
         PUBLI_CHAPITRE: "Chapitre dans ouvrage",
         PUBLI_OUVRAGE: "Livre",
+        PUBLI_POSTER: "Poster",
+        PUBLI_THESE: "Thèse",
+        PUBLI_HDR: "Habilitation",
+        PUBLI_REPORT: "Rapport de recherche",
 }
 
 # Le tableau suivant indique les types de publi que l'on ne souhaite par charger

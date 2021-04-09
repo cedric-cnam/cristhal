@@ -3,6 +3,8 @@ import requests
 import csv 
 import logging
 
+from django.db.models import Sum, Count
+
 from .constants import *
 from _collections import OrderedDict
 
@@ -10,8 +12,6 @@ from .IndexWrapper import IndexWrapper
 
 # Un journaliseur 
 logger = logging.getLogger("pubrank")
-
-
 
 #################
 class Config(models.Model):
@@ -51,6 +51,15 @@ class Config(models.Model):
                                                      type_publi)
             sortie.append ({"name": coll.code, "y": publis.count()})
             
+        return sortie
+
+    @staticmethod
+    def stats_types_publis():
+        # La sortie: un dictionnaire sur le type de publi, chaque entrée est le nombre de publis par type
+        group_type = Publication.objects.values('type').annotate(Count('idHal'))
+        sortie = []
+        for gr in group_type:
+            sortie.append ({"name": TYPES_PUBLI[gr["type"]], "y": gr["idHal__count"]})
         return sortie
 
 #################

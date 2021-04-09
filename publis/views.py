@@ -24,12 +24,14 @@ def menu_local(contexte):
         Création du menu local selon le contexte (la fonction appelée)
     """
     menu_local = []
-    menu_local.append ({"url": reverse('publis:collections'), "lien": "<b>Stats collections</b>", "niveau": 1})
+    menu_local.append ({"url": reverse('publis:collections'), "lien": "<b>Collections</b>", "niveau": 1})
     menu_local.append ({"url": reverse('publis:referentiel'), "lien": "<b>Référentiel</b>", "niveau": 1})
     menu_local.append ({"url": reverse('publis:instructions'), "lien": "<b>Classement collections</b>", "niveau": 1})
     menu_local.append ({"url": reverse('publis:publications'), "lien": "<b>Publications</b>", "niveau": 1})
     menu_local.append ({"url": "#", "lien": "<hr/>"})
     if contexte=="collections" :
+        menu_local.append({"url": reverse('publis:stats_generales'), 
+                               "lien": "Statistiques générales", "niveau": 2})
         menu_local.append({"url": reverse('admin:publis_collection_add'), 
                                "lien": "Ajout d'une collection", "niveau": 2})
         for coll in Collection.objects.all():
@@ -62,6 +64,20 @@ def collections(request):
         context["message"] = "{0}  publications ont été synchronisées depuis HAL dans la collection {1}".format(
             str(nb_publis), collection.code)
     
+ 
+    # Affichage des collections
+    return render(request, 'publis/collections.html', context)
+
+
+@login_required
+def stats_generales(request):
+    context = {
+                "collections": Collection.objects.all(),
+                 "titre": "Statistiques générales",
+                 "sous_menu": "collections",
+                 "menu_local": menu_local("collections")
+               }
+    
     # Un peu de stats
     # La période est donnée par la config
     config = Config.objects.get(code=CODE_CONFIG_DEFAUT)
@@ -72,12 +88,14 @@ def collections(request):
     context["stats_confs_par_collection"] = Config.stats_collections(config.annee_min_publis, 
                                                                       config.annee_max_publis,
                                                                       PUBLI_CONF)
+
+    context["stats_type_publis"] = Config.stats_types_publis()
     context["stats_annee_type"] = Publication.stats_par_annee_type(TOUTES_COLLECTIONS, 
                                                                    config.annee_min_publis, 
                                                                    config.annee_max_publis)
 
     # Affichage des collections
-    return render(request, 'publis/collections.html', context)
+    return render(request, 'publis/stats_generales.html', context)
 
 
 @login_required

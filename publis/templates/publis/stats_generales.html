@@ -1,0 +1,72 @@
+{% extends "layout.html" %} 
+{% load i18n %} 
+
+ 
+
+{% block content %}
+
+<script>
+    Highcharts.setOptions(
+            {% include "publis/charts/options.json" %}
+    );
+ </script>
+ 
+ {% if collections %}
+ 
+
+
+<div>
+<table width="400">
+<tr>
+<td  width="33%"></td>
+<td  width="33%"></td>
+<td  width="33%"></td>
+</tr>
+<tr>
+<td>
+<div id="stats_revues_par_collection"></div>
+ <script>
+    Highcharts.chart('stats_revues_par_collection', 
+       {% include "publis/charts/diagramme_camembert.json" with chart_titre='Répartition revues par collection' chart_donnees=stats_revues_par_collection|safe %}
+    );
+ </script>
+</td>
+<td width="33%"> <div id="stats_confs_par_collection"></div>
+<script>
+    Highcharts.chart('stats_confs_par_collection', 
+       {% include "publis/charts/diagramme_camembert.json" with chart_titre='Répartition conférences par collection'  chart_donnees=stats_confs_par_collection|safe %}
+    );
+ </script>
+ </td>
+ <td width="33%"> <div id="stats_types_publis"></div>
+
+<script>
+    Highcharts.chart('stats_types_publis', 
+       {% include "publis/charts/diagramme_camembert.json" with chart_titre='Répartition par type de publication'  chart_donnees=stats_type_publis|safe %}
+    );
+ </script>
+ </td>
+</tr>
+<tr>
+ <td colspan='3' width="100%"> 
+<div id="stats_annee_type"></div>
+ <script>
+    Highcharts.chart('stats_annee_type', 
+       {% include "publis/charts/diagramme_barres.json" with chart_annees=annees  chart_donnees=stats_annee_type %}
+    );
+ </script>
+ </td>
+</tr>
+</table>
+
+</div>
+{% else %}
+<div>
+Vous n'avez pas encore défini de collection. Voici un 
+<a  href="{% url 'admin:publis_collection_add' %}">lien pour créer votre
+première collection.</a> 
+</div>
+{% endif %}
+
+
+{% endblock content %}
