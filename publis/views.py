@@ -7,6 +7,7 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from collections import namedtuple
 from django.forms import modelformset_factory
+from django.conf import settings
 
 from .constants import *
 from .models  import Collection, Referentiel, Publication, Source, Config
@@ -16,8 +17,9 @@ from  .forms import ClassementPubliForm, PubliSearchForm
 from publis.constants import CHOIX_SOURCES
 from publis.models import ClassementPubli
 
+
 # Un journaliseur 
-logger = logging.getLogger("pubrank")
+logger = logging.getLogger(settings.LOGGER_NAME)
 
 def menu_local(contexte):
     """ 

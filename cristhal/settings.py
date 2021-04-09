@@ -94,6 +94,7 @@ DATABASES = {
 #
 # Configuration du journal
 #
+LOGGER_NAME="cristhal"
 LOG_DIR = os.path.join(BASE_DIR, 'logs')
 LOGGING = {
     'version': 1,
@@ -117,7 +118,7 @@ LOGGING = {
         },
     },
     'loggers': {
-        'cristhal': {
+        LOGGER_NAME: {
             'handlers': ['file'],
             'level': 'INFO',
             'propagate': False,

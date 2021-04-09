@@ -4,6 +4,7 @@ import csv
 import logging
 
 from django.db.models import Sum, Count
+from django.conf import settings
 
 from .constants import *
 from _collections import OrderedDict
@@ -11,7 +12,7 @@ from _collections import OrderedDict
 from .IndexWrapper import IndexWrapper
 
 # Un journaliseur 
-logger = logging.getLogger("pubrank")
+logger = logging.getLogger(settings.LOGGER_NAME)
 
 #################
 class Config(models.Model):
