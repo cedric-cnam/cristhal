@@ -6,6 +6,7 @@ scientifiques. HAL est très utile mais présente le double inconvénient de fou
 <img src="/docsrc/figures/ArchiClassement.png" width="700"> 
   </p>
 
+L’architecture fonctionnelle est résumée par la figure ci-dessus.
 Cristhal propose de clarifier le contenu d'un dépôt HAL en permettant de classer les publications selon des référentiels, qui peuvent être soit les référentiels internationaux comme [SCIMAGO](https://www.scimagojr.com/), soit des référentiels ad-hoc. Le système récupère les publications d'une collection HAL d'un côté, les référentiels de l'autre, et effectue un appariement proposant une classification de chaque publication par rapport aux référentiels. Cette proposition doit être validée manuellement. De nombreuses statistiques peuvent alors être produites. 
 
 Les fonctionnalités sont les suivantes
