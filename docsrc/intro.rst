@@ -14,7 +14,7 @@ Le risque est une incitation inflationiste au dépôt de publications de portée
 et une difficulté à identifier les publications les plus significatives.
 
 Cristhal propose de clarifier le contenu d'un dépôt HAL en permettant de classer les publications 
-selon des référentiels, qui peuvent être soit les référentiels internationaux comem SCIMAGO, 
+selon des référentiels, qui peuvent être soit les référentiels internationaux comme SCIMAGO, 
 soit des référentiels ad-hoc. 
 
 L'architecture fonctionnelle est résumée par la :numref:`archiClassement`
