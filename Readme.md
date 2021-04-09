@@ -14,10 +14,16 @@ Les fonctionnalités sont les suivantes
   - Classement automatique suivi d'une validation manuelle
   - Production de graphiques et statistiques variées
   - Export en PDF ou PNG des données pour insertion dans des rapports et présentations
+
+Les statistiques sont produites sous forme de graphiques exportables:
+
 <p align="center">
 <img src="/docsrc/figures/stats-generales.png" width="600"> 
 </p>
-CristHAL est une application web Python/Django disponible en libre accès, initialement développée pour le laboratoire [Cédric](http://cedric.cnam.fr) du Cnam par Philippe Rigaux. Toutes les informations pour l'installer et l'utiliser se trouvent dans la [documentation en ligne](https://cedric-cnam.github.io/cristhal/).
+
+Les classements sont à la base de graphiques qui analysent l'évolution des publications.
+
 <p align="center">
 <img src="/docsrc/figures/stats_annee_classement.png" width="700"> 
 </p>
+CristHAL est une application web Python/Django disponible en libre accès, initialement développée pour le laboratoire [Cédric](http://cedric.cnam.fr) du Cnam par Philippe Rigaux. Toutes les informations pour l'installer et l'utiliser se trouvent dans la [documentation en ligne](https://cedric-cnam.github.io/cristhal/).
