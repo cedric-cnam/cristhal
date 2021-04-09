@@ -8,8 +8,7 @@ from django.db.transaction import commit
 from .constants import CODE_CONFIG_DEFAUT
 
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit
-from crispy_forms.layout import Layout, Submit, Row, Column, Div
+from crispy_forms.layout import Layout, Submit,Fieldset, MultiField, Row, Column, Div
 
 
 class ClassementPubliForm(ModelForm):
@@ -47,8 +46,8 @@ class PubliSearchForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.form_class = 'blueForms'
         self.helper.form_method = 'post'
+        self.helper.action = 'publis:publications'
         
         self.fields['collection'] = forms.ModelChoiceField(queryset=Collection.objects.all(),initial=0,required=False,empty_label="Toutes")
         self.fields['classement'] = forms.ModelChoiceField(queryset=ClassementPubli.objects.all(),empty_label="Tous")
@@ -58,13 +57,15 @@ class PubliSearchForm(forms.Form):
         self.fields['annee_min'] = forms.IntegerField(label='Année min.') 
         self.fields['annee_max'] = forms.IntegerField(label='Année min.') 
 
+        self.helper.form_class = 'form-inline'
+        self.helper.field_template = 'bootstrap3/layout/inline_field.html'
         self.helper.layout = Layout(
-         Row(
-                Column('collection', css_class='form-group col-md-8 mb-0'),
+         Div(
+                Column('collection', css_class='form-group col-md-4 mb-0'),
                 Column('auteur', css_class='form-group col-md-4 mb-0'),
                 css_class='form-row'
             ),
-          Row(
+          Div(
                 Column('classement', css_class='form-group col-md-4 mb-0'),                
                 Column('annee_min', css_class='form-group col-md-4 mb-0'),
                 Column('annee_max', css_class='form-group col-md-4 mb-0'),
