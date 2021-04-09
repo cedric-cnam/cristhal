@@ -211,6 +211,51 @@ d'administration.
 Mise en production
 ******************
 
-À faire.
+Pour une mise en production, il faut associer CristHAL à un serveur Web, et changer un peu la
+configuration.
+
+
+Le serveur web
+==============
+
+CristHAL est une application Django standard, et l'association avec un serveur ne
+présente aucune spécification. Dans le répertoire ``cristhaldir/cristhal`` se trouve
+un fichier ``wsgi.py`` qui sert à créer une passerelle WSGI avec un serveur
+comme Apache, Nginx ou Gunicorn.
+
+La documentation  explique en détail la procédure pour ces différents serveurs:
+https://docs.djangoproject.com/fr/3.1/howto/deployment/wsgi/.
+
+Configuration en production
+===========================
+
+Il faut évidemment adapter la configuration pour s'assurer de la protection de l'application
+si elle est exposée sur le Web. Là encore, la documentation
+https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/ nous dit l'essentiel,
+et on trouve de très nombreux tutoriels qui détaillent les précautions à prendre.
+
+La configuration de CristHAL peut se placer dans le fichier ``local_settings.py`` (vous pouvez
+en créer un spécifique à l'environnement de production). Voici quelques 
+modifications essentielles. La première chose à faire
+est de quitter le mode *debug*.
+
+.. code-block:: python
+
+    Debug = False
+    
+Ajouter également une clé secrète. Une bonne pratique est de la définir comme 
+variable d'environnement et de la paramétrer ainsi.
+
+.. code-block:: bash 
+
+     SECRET_KEY = os.environ['SECRET_KEY']
+
+Enfin il faut spécifier les domaines servis par l'application dans le tableau suivant.
+
+.. code-block:: bash 
+
+    ALLOWED_HOSTS = []
+    
+
 
 

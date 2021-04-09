@@ -100,12 +100,17 @@
 <li class="toctree-l3"><a class="reference internal" href="#l-interface-d-administration">L’interface d’administration</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#mise-en-production">Mise en production</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mise-en-production">Mise en production</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#le-serveur-web">Le serveur web</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configuration-en-production">Configuration en production</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="collections.html">Gestion des collections</a></li>
 <li class="toctree-l1"><a class="reference internal" href="referentiel.html">Gestion du référentiel</a></li>
 <li class="toctree-l1"><a class="reference internal" href="classement.html">Classement des publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statistiques.html">Les statistiques</a></li>
 </ul>
 
             
@@ -335,7 +340,40 @@ suivre le lien “View site” en haut à droite.</p>
 </div>
 <div class="section" id="mise-en-production">
 <h2>Mise en production<a class="headerlink" href="#mise-en-production" title="Lien permanent vers ce titre">¶</a></h2>
-<p>À faire.</p>
+<p>Pour une mise en production, il faut associer CristHAL à un serveur Web, et changer un peu la
+configuration.</p>
+<div class="section" id="le-serveur-web">
+<h3>Le serveur web<a class="headerlink" href="#le-serveur-web" title="Lien permanent vers ce titre">¶</a></h3>
+<p>CristHAL est une application Django standard, et l’association avec un serveur ne
+présente aucune spécification. Dans le répertoire <code class="docutils literal notranslate"><span class="pre">cristhaldir/cristhal</span></code> se trouve
+un fichier <code class="docutils literal notranslate"><span class="pre">wsgi.py</span></code> qui sert à créer une passerelle WSGI avec un serveur
+comme Apache, Nginx ou Gunicorn.</p>
+<p>La documentation  explique en détail la procédure pour ces différents serveurs:
+<a class="reference external" href="https://docs.djangoproject.com/fr/3.1/howto/deployment/wsgi/">https://docs.djangoproject.com/fr/3.1/howto/deployment/wsgi/</a>.</p>
+</div>
+<div class="section" id="configuration-en-production">
+<h3>Configuration en production<a class="headerlink" href="#configuration-en-production" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Il faut évidemment adapter la configuration pour s’assurer de la protection de l’application
+si elle est exposée sur le Web. Là encore, la documentation
+<a class="reference external" href="https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/">https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/</a> nous dit l’essentiel,
+et on trouve de très nombreux tutoriels qui détaillent les précautions à prendre.</p>
+<p>La configuration de CristHAL peut se placer dans le fichier <code class="docutils literal notranslate"><span class="pre">local_settings.py</span></code> (vous pouvez
+en créer un spécifique à l’environnement de production). Voici quelques
+modifications essentielles. La première chose à faire
+est de quitter le mode <em>debug</em>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Debug</span> <span class="o">=</span> <span class="kc">False</span>
+</pre></div>
+</div>
+<p>Ajouter également une clé secrète. Une bonne pratique est de la définir comme
+variable d’environnement et de la paramétrer ainsi.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">SECRET_KEY</span> <span class="o">=</span> os.environ<span class="o">[</span><span class="s1">&#39;SECRET_KEY&#39;</span><span class="o">]</span>
+</pre></div>
+</div>
+<p>Enfin il faut spécifier les domaines servis par l’application dans le tableau suivant.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">ALLOWED_HOSTS</span> <span class="o">=</span> <span class="o">[]</span>
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 
@@ -362,7 +400,7 @@ suivre le lien “View site” en haut à droite.</p>
         
         
         
-          Built with <a href="https://www.sphinx-doc.org/en/master/">Sphinx</a> on 2021/04/08 using the <a href="https://github.com/audeering/sphinx-audeering-theme/">audEERING theme</a>
+          Built with <a href="https://www.sphinx-doc.org/en/master/">Sphinx</a> on 2021/04/09 using the <a href="https://github.com/audeering/sphinx-audeering-theme/">audEERING theme</a>
         
     </p>
   </div>

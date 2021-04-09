@@ -75,3 +75,8 @@ doit être effectuée régulièrement pour maintenir la collection en phase avec
 ****************
 Les publications 
 ****************
+
+La gestion des publications est pour l'instant centrée sur leur classement et sur les statistiques
+qui en découlent. Un formulaire permet de rechercher les publications selon certains critères. À l'avenir
+il sera possible d'effectuer des exports selon divers formats (Bibtex notamment), groupés
+par classement.
