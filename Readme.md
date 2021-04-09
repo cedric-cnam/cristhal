@@ -27,4 +27,6 @@ Les classements sont à la base de graphiques qui analysent l'évolution des pub
 <p align="center">
 <img src="/docsrc/figures/stats_annee_classement.png" width="700"> 
 </p>
-CristHAL est une application web Python/Django disponible en libre accès, initialement développée pour le laboratoire ![Cédric](http://cedric.cnam.fr) du Cnam par Philippe Rigaux. Toutes les informations pour l'installer et l'utiliser se trouvent dans la ![documentation en ligne](https://cedric-cnam.github.io/cristhal/).
+CristHAL est une application web Python/Django disponible en libre accès, initialement développée pour le laboratoire 
+[Cédric](http://cedric.cnam.fr) du Cnam par Philippe Rigaux. Toutes les informations pour l'installer et l'utiliser se trouvent dans la 
+[documentation en ligne](https://cedric-cnam.github.io/cristhal/).
