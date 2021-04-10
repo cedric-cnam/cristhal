@@ -291,20 +291,23 @@ def publications(request):
         # Récupération des données soumies
         form = PubliSearchForm(request.POST)
         if form.is_valid():
+            print ("Exectution/ Annee mi  {0}".format(form.cleaned_data["annee_min"]))
             # Effectuons la recherche
             context["resultat"] = Publication.objects.filter(
                             annee__gte=form.cleaned_data["annee_min"]).filter(
                             annee__lte=form.cleaned_data["annee_max"]).filter(
                             chaine_auteurs__contains=form.cleaned_data["auteur"].upper())
-        if form.cleaned_data["classement"] is not None:
-            context["resultat"] = context["resultat"].filter(
-                            classement=form.cleaned_data["classement"])
-        if form.cleaned_data["classement"] is not None:
-            context["resultat"] = context["resultat"].filter(
-                            collections=form.cleaned_data["collection"])
+            if not (form.cleaned_data["classement"] == 'tous'):
+                print ("Raffinement class")
+                context["resultat"] = context["resultat"].filter(
+                            classement__code=form.cleaned_data["classement"])
+            if not (form.cleaned_data["collection"] == 'toutes'):
+                print ("Raffinement coll")
+                context["resultat"] = context["resultat"].filter(
+                            collections__code=form.cleaned_data["collection"])
 
-            # Le formulaire est réinitialisé avec les données soumises
-            context["form_recherche"] = PubliSearchForm(None, initial=form.cleaned_data)
+        # Le formulaire est réinitialisé avec les données soumises
+        context["form_recherche"] = PubliSearchForm(None, initial=form.cleaned_data)
         
     return render(request, 'publis/publications.html', context)
 

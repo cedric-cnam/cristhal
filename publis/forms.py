@@ -49,26 +49,28 @@ class PubliSearchForm(forms.Form):
         self.helper.form_method = 'post'
         self.helper.action = 'publis:publications'
         
-        self.fields['collection'] = forms.ModelChoiceField(queryset=Collection.objects.all(),initial=0,required=False,empty_label="Toutes")
-        self.fields['classement'] = forms.ModelChoiceField(queryset=ClassementPubli.objects.all(),empty_label="Tous")
-        self.fields['classement'].required = False
+        choix_coll = [("toutes", "Toutes")]
+        for coll in Collection.objects.all():
+            choix_coll.append ((coll.code, coll.nom))
+        choix_class = [("tous", "Tous")]
+        for classement in ClassementPubli.objects.all():
+            choix_class.append ((classement.code, classement.libelle))
+        self.fields['collection'] = forms.ChoiceField(choices=choix_coll)
+        self.fields['classement'] = forms.ChoiceField(choices=choix_class)
         self.fields['auteur'] = forms.CharField(label="Nom d'auteur (ou laisser blanc)", required=False)
-        #elf.fields['auteur'].required = False         
         self.fields['annee_min'] = forms.IntegerField(label='Année min.') 
         self.fields['annee_max'] = forms.IntegerField(label='Année min.') 
 
-        self.helper.form_class = 'form-inline'
-        self.helper.field_template = 'bootstrap3/layout/inline_field.html'
         self.helper.layout = Layout(
-         Div(
-                Column('collection', css_class='form-group col-md-4 mb-0'),
+         Row(
+                Column('collection', css_class='form-group col-md-6 mb-0'),
                 Column('auteur', css_class='form-group col-md-4 mb-0'),
                 css_class='form-row'
             ),
-          Div(
-                Column('classement', css_class='form-group col-md-4 mb-0'),                
-                Column('annee_min', css_class='form-group col-md-4 mb-0'),
-                Column('annee_max', css_class='form-group col-md-4 mb-0'),
+          Row(
+                Column('classement', css_class='form-group col-md-4'),                
+                Column('annee_min', css_class='form-group col-md-3'),
+                Column('annee_max', css_class='form-group col-md-3'),
                 css_class='form-row'
             ),
             Submit('submit', 'Exécuter la recherche')
