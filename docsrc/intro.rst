@@ -37,6 +37,7 @@ Les fonctionnalités de CristHAL sont les suivantes
   - Récupération automatique des publications de chaque collection
   - Classement automatique suivi d'une validation manuelle
   - Production de graphiques et statistiques variées (:numref:`stats-generales` et :numref:`stats_annee_classement`) 
+  - Recherche des publications par formulaire ou par SQL
   - Export en PDF ou PNG des données pour insertion dans des rapports et présentations
 
 

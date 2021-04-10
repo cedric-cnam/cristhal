@@ -40,7 +40,14 @@ Mise en route
 
 On suppose donc que vous disposez d'une machine équipée de Python (version au moins 3.6), et d'un accès 
 à un serveur MySQL et à un serveur ElasticSearch. Pour MySQL il est nécessaire de créer 
-une base et un compte administrateur. Voici des exemples de commandes (elles se trouvent dans 
+une base et deux  comptes
+
+ - un compte administrateur disposant de tous lesdroits sur la base
+ - un compte ne disposant que des droits de lecture ; ce deuxième compte
+   est utilisé pour exécuter des requête SQL saisie en formulaire: mieux vaut
+   éviter les fausses manœuvres.
+
+Voici des exemples de commandes (elles se trouvent dans 
 ``install/creationDb.sql``).
 
 .. code-block:: sql
@@ -52,6 +59,9 @@ une base et un compte administrateur. Voici des exemples de commandes (elles se 
     * Nom admin et mot de passe à changer et reporter dans cristhal/local_settings.py
     */
     grant all privileges on cristhal.* to cristhalAdmin identified by 'mdpCristhal'
+
+   /* Compte avec droits de lecture uniquement, pour les requête SQL */
+    grant select on cristhal.* to cristhalLecteur identified by 'mdpLecteur'
 
 .. important:: Ne les copiez pas telles quelles ! *Changez au moins le mot de passe*
 
@@ -98,8 +108,22 @@ vos paramètres de site.
             'OPTIONS': {
                 'sql_mode': 'STRICT_ALL_TABLES',
             },
-        }
+        },
+    'lecteur': {
+        'ENGINE': 'django.db.backends.mysql',
+        'OPTIONS': {
+        'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        },
+        'NAME': 'cristhal',
+        'USER': 'cristhalLecteur',
+        'PASSWORD': 'mdpLecteur',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
     }
+  }
+
+.. note: Il faut définit deux connexions, une pour l'administrateur, et l'autre
+   pour le compte 'lecteur'. Ne changez pas les noms des connexions.
 
 La configuration d'accès au serveur ElasticSearch est indiquée dans les variables suivantes.
 Vous pouvez conserver la valeur de  ``ES_INDEX_REF`` si vous le souhaitez.  Indiquez 

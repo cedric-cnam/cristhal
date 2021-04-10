@@ -14,7 +14,7 @@ Le risque est une incitation inflationiste au dépôt de publications de portée
 et une difficulté à identifier les publications les plus significatives.
 
 Cristhal propose de clarifier le contenu d'un dépôt HAL en permettant de classer les publications 
-selon des référentiels, qui peuvent être soit les référentiels internationaux comem SCIMAGO, 
+selon des référentiels, qui peuvent être soit les référentiels internationaux comme SCIMAGO, 
 soit des référentiels ad-hoc. 
 
 L'architecture fonctionnelle est résumée par la :numref:`archiClassement`
@@ -37,6 +37,7 @@ Les fonctionnalités de CristHAL sont les suivantes
   - Récupération automatique des publications de chaque collection
   - Classement automatique suivi d'une validation manuelle
   - Production de graphiques et statistiques variées (:numref:`stats-generales` et :numref:`stats_annee_classement`) 
+  - Recherche des publications par formulaire ou par SQL
   - Export en PDF ou PNG des données pour insertion dans des rapports et présentations
 
 
