@@ -122,8 +122,8 @@ vos paramètres de site.
     }
   }
 
-Il faut définir deux connexions, une pour l'administrateur, et l'autre
-pour le compte 'lecteur'. Ne changez pas les noms des connexions.
+.. note:: Il faut définir deux connexions, une pour l'administrateur, et l'autre
+   pour le compte 'lecteur'. Ne changez pas les noms des connexions.
 
 La configuration d'accès au serveur ElasticSearch est indiquée dans les variables suivantes.
 Vous pouvez conserver la valeur de  ``ES_INDEX_REF`` si vous le souhaitez.  Indiquez 
