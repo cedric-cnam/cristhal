@@ -88,7 +88,19 @@ DATABASES = {
         'PASSWORD': 'mdpCristhal',
         'HOST': '127.0.0.1',
         'PORT': '3306',
+    },
+    'lecteur': {
+        'ENGINE': 'django.db.backends.mysql',
+        'OPTIONS': {
+        'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        },
+        'NAME': 'cristhal',
+        'USER': 'cristhalLecteur',
+        'PASSWORD': 'mdpLecteur',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
     }
+
 }
 
 #

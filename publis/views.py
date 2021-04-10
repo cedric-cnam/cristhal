@@ -320,7 +320,7 @@ def sql(request):
     context["rows"] = []
     
     if request.GET.get('envoi_requete'):
-        connection = connections['default']
+        connection = connections['lecteur']
             
         # On prend la requête
         context["requete_sql"] = request.GET.get('requete_sql') 
@@ -337,7 +337,7 @@ def sql(request):
                 context["erreur"] = False
             except Exception as exc : 
                 context["erreur"] = True
-                context["message"] = str(exc)
+                context["message"] = "Erreur: " + str(exc)
         
     return render(request, 'publis/sql.html', context)
 
