@@ -294,15 +294,19 @@ def publications(request):
             # Effectuons la recherche
             context["resultat"] = Publication.objects.filter(
                             annee__gte=form.cleaned_data["annee_min"]).filter(
-                            annee__lte=form.cleaned_data["annee_max"]).filter(
-                            chaine_auteurs__contains=form.cleaned_data["auteur"].upper())
+                            annee__lte=form.cleaned_data["annee_max"])
             if not (form.cleaned_data["classement"] == 'tous'):
                 context["resultat"] = context["resultat"].filter(
                             classement__code=form.cleaned_data["classement"])
             if not (form.cleaned_data["collection"] == 'toutes'):
                 context["resultat"] = context["resultat"].filter(
                             collections__code=form.cleaned_data["collection"])
-
+            if not (form.cleaned_data["auteur"] ==''):
+                res = []
+                for pub in context["resultat"]:
+                    if form.cleaned_data["auteur"].upper() in pub.chaine_auteurs.upper():
+                        res.append(pub)
+                context["resultat"] = res
         # Le formulaire est réinitialisé avec les données soumises
         context["form_recherche"] = PubliSearchForm(None, initial=form.cleaned_data)
         
