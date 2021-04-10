@@ -9,6 +9,8 @@ from collections import namedtuple
 from django.forms import modelformset_factory
 from django.conf import settings
 
+from django.db import connection, connections
+
 from .constants import *
 from .models  import Collection, Referentiel, Publication, Source, Config
 from .IndexWrapper import IndexWrapper
@@ -47,6 +49,11 @@ def menu_local(contexte):
         for coll in Collection.objects.all():
             coll_url = reverse('publis:classement', kwargs={'code_collection': coll.code})
             menu_local.append({"url": coll_url, "lien": coll.nom, "niveau": 2})
+    if contexte=="publications" :
+        menu_local.append({"url": reverse('publis:publications'), 
+                               "lien": "Recherche par formulaire", "niveau": 2})
+        menu_local.append({"url": reverse('publis:sql'), 
+                               "lien": "Recherche par SQL", "niveau": 2})
     return menu_local
 
 
@@ -301,6 +308,38 @@ def publications(request):
         
     return render(request, 'publis/publications.html', context)
 
+
+@login_required
+def sql(request):
+    context = {"titre": "Recherche directe par SQL", 
+               "collections": Collection.objects.all(),
+                    "sous_menu" : "publications",
+                  "menu_local": menu_local("publications"),
+                "requete_sql": "select * from Publi"}
+    context["cols"] = []
+    context["rows"] = []
+    
+    if request.GET.get('envoi_requete'):
+        connection = connections['default']
+            
+        # On prend la requête
+        context["requete_sql"] = request.GET.get('requete_sql') 
+        # On ajoute une clause "limit"
+        requete_sql = context["requete_sql"].replace(";", " ") + " limit 200 "
+        
+        with connection.cursor() as cursor:
+            try:
+                cursor.execute(requete_sql)
+                context["rows"] = namedtuplefetchall(cursor)
+                for coldesc in cursor.description:
+                    context["cols"].append(coldesc[0])
+                context["resultat"] = True
+                context["erreur"] = False
+            except Exception as exc : 
+                context["erreur"] = True
+                context["message"] = str(exc)
+        
+    return render(request, 'publis/sql.html', context)
 
 
 # Pour obtenir des nuplets nommés

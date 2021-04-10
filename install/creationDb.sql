@@ -7,3 +7,7 @@
 
     grant all privileges on cristhal.* 
         to cristhalAdmin identified by 'mdpCristhal'
+
+   /* Compte avec droits de lecture uniquement, pour les requête SQL */
+    grant select on cristhal.* 
+        to cristhalLecteur identified by 'mdpLecteur'

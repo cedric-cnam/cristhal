@@ -1,0 +1,48 @@
+{% extends "layout.html" %} 
+{% load i18n %} 
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<form method="get" action="{% url 'publis:sql'  %}"
+    onsubmit="return required_field('requete_sql', 'Saisissez une requête SQL')">
+    {% csrf_token %}
+    <fieldset>
+    <input type="hidden" id="envoi_requete" name="envoi_requete"  value="1"/>
+         <table border="0">
+        <tr>
+        <td>
+        <span> </span> <label for="requete_sql"><h4>{% trans "Saisissez une requête SQL" %}</h4></label>
+        <textarea rows="5" cols="80" id="requete_sql" id="requete_sql" name="requete_sql">{{requete_sql}}</textarea>
+        <br/>
+         <input type="submit" value="{% trans 'Exécuter' %}" />
+        </td>
+         </tr>
+     
+        </table>
+        </fieldset>
+</form>
+
+{% if resultat %}
+   <h3>Résultat</h3>
+   
+   <table border="1">
+   
+   <tr>
+  {% for col in cols %}
+       <th>{{col}}</th>
+  {% endfor %}
+  </tr>
+  {% for row in rows %}
+     <tr>
+       {% for  cell in row  %}
+          <td>{{cell}}</td>
+       {% endfor %}
+       </tr>
+  {% endfor %}
+  </table>
+{% endif %}
+      
+  
+{% endblock content %}
