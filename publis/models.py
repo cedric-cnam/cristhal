@@ -316,7 +316,7 @@ class Publication(models.Model):
        Les publications importées de Hal
     """
     
-    idHal = models.CharField(max_length=100, primary_key=True)
+    id_hal = models.CharField(max_length=100, primary_key=True)
     titre = models.CharField(max_length=255)
     annee = models.IntegerField()
     type = models.CharField(max_length=30)
