@@ -111,4 +111,14 @@ pouvez entrer librement toute requête *d'interrogation* et obtenir le résultat
 
 .. important:: Le compte de connexion utilisé par ce formulaire **ne permet pas** les mises à jour.
 
+Voici le schéma de la base. Les **clés primaires** sont en gras, les *clés étrangères* en italiques.
 
+  - Source (**id**, fichier, description, identifiant_source, delimiteur, type_source)
+  - Referentiel (**id**, ref_locale,  type, acronyme, titre, champ_plein_texte, classement, *source_id*)
+  - Collection (**id**, code, sigle_hal, id_hal, nom, description, email_contact)
+  - Auteur (**id**, nom_complet, id_hal)
+  - ClassementPubli (**code**, libelle)
+  - Publi (**id_hal**, titre, annee, type, chaine_auteurs, revue_titre, conf_titre, 
+    ouvrage_titre, classement_valide, *classement_id*)
+  - Publi_auteurs (**id**, *publication_id*, *auteur_id*)
+  - Publi_collections (**id**, *publication_id*, *collection_id*)

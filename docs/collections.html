@@ -262,6 +262,20 @@ pouvez entrer librement toute requête <em>d’interrogation</em> et obtenir le 
 <p class="admonition-title">Important</p>
 <p>Le compte de connexion utilisé par ce formulaire <strong>ne permet pas</strong> les mises à jour.</p>
 </div>
+<p>Voici le schéma de la base. Les <strong>clés primaires</strong> sont en gras, les <em>clés étrangères</em> en italiques.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Source (<strong>id</strong>, fichier, description, identifiant_source, delimiteur, type_source)</p></li>
+<li><p>Referentiel (<strong>id</strong>, ref_locale,  type, acronyme, titre, champ_plein_texte, classement, <em>source_id</em>)</p></li>
+<li><p>Collection (<strong>id</strong>, code, sigle_hal, id_hal, nom, description, email_contact)</p></li>
+<li><p>Auteur (<strong>id</strong>, nom_complet, id_hal)</p></li>
+<li><p>ClassementPubli (<strong>code</strong>, libelle)</p></li>
+<li><p>Publi (<strong>id_hal</strong>, titre, annee, type, chaine_auteurs, revue_titre, conf_titre,
+ouvrage_titre, classement_valide, <em>classement_id</em>)</p></li>
+<li><p>Publi_auteurs (<strong>id</strong>, <em>publication_id</em>, <em>auteur_id</em>)</p></li>
+<li><p>Publi_collections (<strong>id</strong>, <em>publication_id</em>, <em>collection_id</em>)</p></li>
+</ul>
+</div></blockquote>
 </div>
 </div>
 </div>
