@@ -76,7 +76,39 @@ doit être effectuée régulièrement pour maintenir la collection en phase avec
 Les publications 
 ****************
 
-La gestion des publications est pour l'instant centrée sur leur classement et sur les statistiques
-qui en découlent. Un formulaire permet de rechercher les publications selon certains critères. À l'avenir
-il sera possible d'effectuer des exports selon divers formats (Bibtex notamment), groupés
-par classement.
+Les publications peuvent être recherchées et classées grâce à des formulaires
+ou à l'interrogation directe par SQL (pour les experts), puis exportées en différents formats.
+
+Recherche par formulaire
+========================
+
+Un premier formulaire permet de rechercher les publications selon certains critères. 
+
+
+.. _form-publis:
+.. figure:: ./figures/form-publis.png       
+        :width: 90%
+        :align: center
+   
+        Formulaire de recherche des publications
+
+Ce formulaire est régulièrement étendu avec de nouveaux critères.
+
+
+Recherche par SQL
+=================
+
+Si vous connaissez SQL, il n'y a (presque) pas de limite à l'exploration de la base de données.
+Le formulaire d'interrogation par SQL est montré dans la :numref:`form-sql`. Vous
+pouvez entrer librement toute requête *d'interrogation* et obtenir le résultat.
+
+.. _form-sql:
+.. figure:: ./figures/form-sql.png       
+        :width: 90%
+        :align: center
+   
+        Formulaire de recherche par SQL
+
+.. important:: Le compte de connexion utilisé par ce formulaire **ne permet pas** les mises à jour.
+
+
