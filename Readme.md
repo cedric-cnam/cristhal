@@ -14,7 +14,7 @@ Les fonctionnalités sont les suivantes
   - Récupération automatique des publications de chaque collection
   - Classement automatique suivi d'une validation manuelle
   - Production de graphiques et statistiques variées (cf. exemples ci-dessous)
-  - Export en PDF ou PNG des données pour insertion dans des rapports et présentations
+  - Export des données (Bibtex, CSV) et graphiques (PNG, PDF) pour insertion dans des rapports et présentations
 
 Les statistiques sont produites sous forme de graphiques exportables:
 
