@@ -17,10 +17,10 @@ Les composants de l'architecture technique sont illustrés par la :numref:`archi
 Tous ces composants sont des logiciels libres qui fonctionnent sur toutes les plateformes.
 
   - Le cœur du système est une application Python/Django. 
-  - Le stockage des données est assuré par MySQL (http://mysql.com)
+  - Le stockage des données est assuré par MySQL (http://mysql.com).
   - Un moteur de recherche, ElasticSearch (https://www.elastic.co/fr/elasticsearch/), 
     est utilisé pour la procédure d'appariement.
-  - Enfin un serveur Web quelconque, doté d'une passerelle WSGI, est requis pour une mise en production 
+  - Enfin un serveur Web quelconque, doté d'une passerelle WSGI, est requis pour une mise en production.
 
 
 Pour une installation initiale, il n'est pas nécessaire de disposer d'un serveur Web: un serveur intégré
@@ -28,10 +28,9 @@ Pour une installation initiale, il n'est pas nécessaire de disposer d'un serveu
 dans ce qui suit. Pour une mise en production, un vrai serveur web s'impose, ainsi que quelques précautions
 de configuration.
 
-
 À l'exception (très relative) d'ElasticSearch, cette architecture est très classique et utilisé par des millions
 de sites web. On trouve donc de très nombreuses ressources pour la configuration des différents compsosants. Ce
-qui suis se concentre donc sur la partie spécifique à CristHAL.
+qui suit se concentre donc sur la partie spécifique à CristHAL.
 
 
 *************
@@ -42,9 +41,9 @@ On suppose donc que vous disposez d'une machine équipée de Python (version au 
 à un serveur MySQL et à un serveur ElasticSearch. Pour MySQL il est nécessaire de créer 
 une base et deux  comptes
 
- - un compte administrateur disposant de tous lesdroits sur la base
+ - un compte administrateur disposant de tous les droits sur la base
  - un compte ne disposant que des droits de lecture ; ce deuxième compte
-   est utilisé pour exécuter des requête SQL saisie en formulaire: mieux vaut
+   est utilisé pour exécuter des requêtes SQL saisies dans un formulaire: mieux vaut
    éviter les fausses manœuvres.
 
 Voici des exemples de commandes (elles se trouvent dans 
@@ -58,10 +57,10 @@ Voici des exemples de commandes (elles se trouvent dans
     /*
     * Nom admin et mot de passe à changer et reporter dans cristhal/local_settings.py
     */
-    grant all privileges on cristhal.* to cristhalAdmin identified by 'mdpCristhal'
+    grant all privileges on cristhal.* to cristhalAdmin identified by 'mdpCristhal';
 
-   /* Compte avec droits de lecture uniquement, pour les requête SQL */
-    grant select on cristhal.* to cristhalLecteur identified by 'mdpLecteur'
+   /* Compte avec droits de lecture uniquement, pour les requêtes SQL */
+    grant select on cristhal.* to cristhalLecteur identified by 'mdpLecteur';
 
 .. important:: Ne les copiez pas telles quelles ! *Changez au moins le mot de passe*
 
@@ -71,7 +70,8 @@ Le code de CristHAL peut être récupéré sur
 https://github.com/cedric-cnam/cristhal. Installez-le dans un répertoire que nous appelerons ``cristhaldir``.
 
 
-.. note:: Dans tout ce qui suit, ``python`` et ``pip`` désignent respectivement les commandes ``python3`` et ``pip3``.
+.. note:: Dans tout ce qui suit, ``python`` et ``pip`` s'appliquent à Python3,
+   et correspondent dans certains environnements aux commandes ``python3`` et ``pip3``.
  
 La première chose à faire est d'installer les modules Python nécessaires à CristHAL. Ils sont 
 énumérés dans le fichier ``requirements.txt``.
@@ -135,14 +135,15 @@ les autres paramètres dans ``ELASTIC_SEARCH``.
       ELASTIC_SEARCH = {"host": "localhost", "port": 9200, 
                   "index": ES_INDEX_REF}
 
-Un dernier paramètre à régler est l'emplacement des fichiers journaux. Par défaut:
+Un dernier paramètre à régler est l'emplacement des fichiers journaux. Le chemin
+proposé par défaut est:
 
 .. code-block:: python
 
-     LOG_DIR = '/var/logs'
+     LOG_DIR = '/var/log'
     
 Indiquez le chemin qui convient (et vérifiez qu'il est possible d'écrire dans ce répertoire pour
-le processus qui exécute CristHAL).
+le processus qui exécute CristHAL). 
 
 
 Création du schéma et initialisation
@@ -191,7 +192,7 @@ et vous devriez obtenir l'écran de la :numref:`ecran-accueil` (qui peut évolue
         
 Vous pouvez vous connecter avec le compte super-utilisateur défini précédemment.
 Tout est prêt pour commencer à utiliser l'application (en mode 'tests': pour la mise en production
-voir ci-dessous). Commençons par un peu de configuration.
+voir ci-dessous). Commençons par l'interface d'administration.
 
 L'interface d'administration
 ============================
@@ -243,7 +244,7 @@ Le serveur web
 ==============
 
 CristHAL est une application Django standard, et l'association avec un serveur ne
-présente aucune spécification. Dans le répertoire ``cristhaldir/cristhal`` se trouve
+présente aucune spécificité. Dans le répertoire ``cristhaldir/cristhal`` se trouve
 un fichier ``wsgi.py`` qui sert à créer une passerelle WSGI avec un serveur
 comme Apache, Nginx ou Gunicorn.
 
