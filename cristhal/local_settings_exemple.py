@@ -41,6 +41,17 @@ DATABASES = {
         'OPTIONS': {
             'sql_mode': 'STRICT_ALL_TABLES',
         },
+    },
+        'lecteur': {
+        'ENGINE': 'django.db.backends.mysql',
+        'OPTIONS': {
+        'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        },
+        'NAME': 'cristhal',
+        'USER': 'cristhalLecteur',
+        'PASSWORD': 'mdpLecteur',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
     }
 }
 
@@ -53,12 +64,13 @@ EMAIL_BACKEND='philippe.rigaux@cnam.fr'
 #
 # Fichiers de log. P
 #
-# LOG_DIR = '/var/log'
+LOG_DIR = '/var/log'
 #
 # Exemple: pour écrire dans un répertoire logs frère du répertoire courant
-LOG_DIR = os.path.join(os.path.dirname(BASE_DIR), 'logs')
-LOGGING["handlers"]["file"]["filename"] = os.path.join(LOG_DIR, 'cristhal.log')
+#LOG_DIR = os.path.join(os.path.dirname(BASE_DIR), 'logs')
 
+# Ne pas toucher cette ligne
+LOGGING["handlers"]["file"]["filename"] = os.path.join(LOG_DIR, 'cristhal.log')
 
 # 
 # Configuration ElasticSearch
