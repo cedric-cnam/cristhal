@@ -142,9 +142,14 @@ def referentiel(request):
 
     if request.method == 'GET' and 'id_source' in request.GET:
         source = Source.objects.get(id=request.GET['id_source'])
-        nb_refs = source.chargement_fichier()
-        context["message"]="%s références ont été chargées depuis le fichier source %s " %  (
-            str(nb_refs), os.path.basename(source.fichier.name))
+        try:
+            nb_refs = source.chargement_fichier()
+            context["message"]="%s références ont été chargées depuis le fichier source %s " %  (
+                str(nb_refs), os.path.basename(source.fichier.name))
+        except Exception as ex:
+            context["message"] = "Erreur pendant le chargement du fichier : {0}. Avez-vous bien vérifié le format ?".format(
+                str(ex))
+                    
         
     return render(request, 'publis/referentiel.html', context)
 
