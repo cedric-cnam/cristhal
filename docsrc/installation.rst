@@ -137,7 +137,7 @@ les autres paramètres dans ``ELASTIC_SEARCH``.
 
 Certains fichiers (les CSV des sources du référentiel notamment) sont 
 stockés dans un répertoire local spécifié par le paramètre ``MEDIA_ROOT``.
-Par défaut il est dans ``cristhaldir``.
+Par défaut, ce répertoire se nomme 'media' et il se trouve dans ``cristhaldir``.
 
 .. code-block:: python
  
