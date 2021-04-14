@@ -59,3 +59,5 @@ par Philippe Rigaux.
         :align: center
    
         Graphique montrant les classements des publications par année
+
+Un environnement de test est disponible à http://cristhal.cnam.fr/. Demander un compte d'accès à philippe.rigaux@cnam.fr.
