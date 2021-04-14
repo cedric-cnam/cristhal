@@ -58,8 +58,8 @@ class PubliSearchForm(forms.Form):
         self.fields['collection'] = forms.ChoiceField(choices=choix_coll)
         self.fields['classement'] = forms.ChoiceField(choices=choix_class)
         self.fields['auteur'] = forms.CharField(label="Nom d'auteur (ou laisser blanc)", required=False)
-        self.fields['annee_min'] = forms.IntegerField(label='Année min.') 
-        self.fields['annee_max'] = forms.IntegerField(label='Année min.') 
+        self.fields['annee_min'] = forms.IntegerField(label='Année min') 
+        self.fields['annee_max'] = forms.IntegerField(label='Année max') 
 
         self.helper.layout = Layout(
          Row(

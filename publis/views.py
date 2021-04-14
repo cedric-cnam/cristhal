@@ -32,6 +32,7 @@ def menu_local(contexte):
     menu_local.append ({"url": reverse('publis:referentiel'), "lien": "<b>Référentiel</b>", "niveau": 1})
     menu_local.append ({"url": reverse('publis:instructions'), "lien": "<b>Classement collections</b>", "niveau": 1})
     menu_local.append ({"url": reverse('publis:publications'), "lien": "<b>Publications</b>", "niveau": 1})
+    menu_local.append ({"url": reverse('publis:export'), "lien": "<b>Export</b>", "niveau": 1})
     menu_local.append ({"url": "#", "lien": "<hr/>"})
     if contexte=="collections" :
         menu_local.append({"url": reverse('publis:stats_generales'), 
@@ -349,6 +350,18 @@ def sql(request):
                 context["message"] = "Erreur: " + str(exc)
         
     return render(request, 'publis/sql.html', context)
+
+@login_required
+def export(request):
+    context = {"titre": "Export des données et graphiques", 
+                    "sous_menu" : "export",
+                  "menu_local": menu_local("export")
+                }
+    
+    # Cherchons la configuration pour avoir des valeurs par défaut
+    config = Config.objects.get(code=CODE_CONFIG_DEFAUT)
+    
+    return render(request, 'publis/export.html', context)
 
 
 # Pour obtenir des nuplets nommés

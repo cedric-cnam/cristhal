@@ -9,8 +9,7 @@ import json
 import logging
 
 # Get an instance of a logger
-logger = logging.getLogger(__name__)
-
+logger = logging.getLogger(settings.LOGGER_NAME)
 
 
 class ReferentielIndex(Document):
