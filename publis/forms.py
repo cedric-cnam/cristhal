@@ -34,7 +34,7 @@ class ClassementPubliForm(ModelForm):
            On surcharge la méthode save() pour ne conserve
         '''
         form_data = super(ClassementPubliForm, self).save(commit=False)
-        publi = Publication.objects.get(idHal=form_data.idHal)
+        publi = Publication.objects.get(id_hal=form_data.id_hal)
         publi.classement = form_data.classement
         publi.classement_valide = form_data.classement_valide
         publi.save()

@@ -57,10 +57,10 @@ class Config(models.Model):
     @staticmethod
     def stats_types_publis():
         # La sortie: un dictionnaire sur le type de publi, chaque entrée est le nombre de publis par type
-        group_type = Publication.objects.values('type').annotate(Count('idHal'))
+        group_type = Publication.objects.values('type').annotate(Count('id_hal'))
         sortie = []
         for gr in group_type:
-            sortie.append ({"name": TYPES_PUBLI[gr["type"]], "y": gr["idHal__count"]})
+            sortie.append ({"name": TYPES_PUBLI[gr["type"]], "y": gr["id_hal__count"]})
         return sortie
 
 #################
@@ -111,11 +111,11 @@ class Collection(models.Model):
             if not (doc["docType_s"] in PUBLIS_HAL_EXCLUES):
                 # Si elle existe, on la garde avec son classement
                 try:
-                    publi = Publication.objects.get(idHal=doc["halId_s"])
-                    #print ("Modification de la publi " + publi.idHal)
+                    publi = Publication.objects.get(id_hal=doc["halId_s"])
+                    #print ("Modification de la publi " + publi.id_hal)
                 except Publication.DoesNotExist:
-                    publi = Publication(idHal=doc["halId_s"])
-                    #print ("Création de la publi " + publi.idHal)
+                    publi = Publication(id_hal=doc["halId_s"])
+                    #print ("Création de la publi " + publi.id_hal)
                 # On modifie d'après le JSON
                 publi.fromJson(doc)
                 publi.save()
@@ -434,7 +434,7 @@ class Publication(models.Model):
             chaine_auteurs = ""
             for auteur in jsonDoc["authIdHalFullName_fs"]:
                 comps = auteur.split(FACET_SEP)
-                # Premier compoosant: idHal, second: nom complet
+                # Premier composant: id_hal, second: nom complet
                 try:
                     auteur = Auteur.objects.get(nom_complet=comps[1])
                 except Auteur.DoesNotExist:

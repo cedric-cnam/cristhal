@@ -23,14 +23,14 @@
        
        <tr><td>(Type HAL: {{ form.type.value }})
   {%if form.type.value == 'COMM' %}
-     <a target="_blank" href="https://hal-cnam.archives-ouvertes.fr/{{form.idHal.value}}">{{ form.titre.value }}</a>, {{ form.annee.value }}, {{form.auteurs.value}}, publié dans <b>{{form.conf_titre.value}}</b>
+     <a target="_blank" href="https://hal-cnam.archives-ouvertes.fr/{{form.id_hal.value}}">{{ form.titre.value }}</a>, {{ form.annee.value }}, {{form.auteurs.value}}, publié dans <b>{{form.conf_titre.value}}</b>
   {% else %}
-      <a target="_blank" href="https://hal-cnam.archives-ouvertes.fr/{{form.idHal.value}}">{{ form.titre.value }}</a>, {{ form.annee.value }}, {{form.auteurs.value}}, publié dans <b>{{form.revue_titre.value}}</b>
+      <a target="_blank" href="https://hal-cnam.archives-ouvertes.fr/{{form.id_hal.value}}">{{ form.titre.value }}</a>, {{ form.annee.value }}, {{form.auteurs.value}}, publié dans <b>{{form.revue_titre.value}}</b>
   {% endif %}
   </td>
   <td>
       {% for bestref in bestrefs %}
-            {% if bestref.idHal == form.idHal.value %}
+            {% if bestref.id_hal == form.id_hal.value %}
                 <ul>
               {% for ref in bestref.meilleures_ref %}
                 <li>{{ref.title}}</b>, avec classement {{ref.rank}} (source {{ref.source}})</li>
@@ -39,7 +39,7 @@
             {% endif %}
        {% endfor %}
    <td>
-    {{form.idHal}}  
+    {{form.id_hal}}  
     {{form.classement}} 
     Classement&nbsp;validé?  {{form.classement_valide}} 
   </td>

@@ -258,7 +258,7 @@ def classement(request, code_collection):
                 meilleures_ref.append(ref)
                 trouve_interne = True
 
-        bestref = {"idHal": publi.idHal, "meilleures_ref": meilleures_ref}
+        bestref = {"idHal": publi.id_hal, "meilleures_ref": meilleures_ref}
         context["bestrefs"].append(bestref)
 
     return render(request, 'publis/classement.html', context)
