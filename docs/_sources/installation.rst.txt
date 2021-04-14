@@ -135,6 +135,18 @@ les autres paramètres dans ``ELASTIC_SEARCH``.
       ELASTIC_SEARCH = {"host": "localhost", "port": 9200, 
                   "index": ES_INDEX_REF}
 
+Certains fichiers (les CSV des sources du référentiel notamment) sont 
+stockés dans un répertoire local spécifié par le paramètre ``MEDIA_ROOT``.
+Par défaut il est dans ``cristhaldir``.
+
+.. code-block:: python
+ 
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+Il est préférerable d'indiquer un répertoire distinct de l'application. Dans
+tous les cas, le compte utilisateur sous lequel l'application s'exécute doit
+avoir le droit d'y écrire.
+
 Un dernier paramètre à régler est l'emplacement des fichiers journaux. Le chemin
 proposé par défaut est:
 

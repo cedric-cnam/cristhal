@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Gestion des collections &mdash; documentation CristHAL 0.1</title>
+  <title>Gestion des collections &mdash; Documentation CristHAL 1.0</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.1
+                1.0
               </div>
             
           
@@ -180,15 +180,15 @@ lien <a class="reference external" href="https://aurehal.archives-ouvertes.fr/st
 donne par exemple la liste des structures (équipes en l’occurrence) du laboratoire
 Cédric.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Reportez-vous à la documentation <a class="reference external" href="https://doc.archives-ouvertes.fr/gerer-un-portail/referentiels/structures-de-recherche/">https://doc.archives-ouvertes.fr/gerer-un-portail/referentiels/structures-de-recherche/</a>
+<p class="admonition-title">Note</p>
+<p>Reportez-vous à la documentation <a class="reference external" href="https://doc.archives-ouvertes.fr/gerer-un-portail/referentiels/structures-de-recherche/">https://doc.archives-ouvertes.fr/gerer-un-portail/referentiels/structures-de-recherche/</a>
 pour des informations sur la notion de structure de recherche dans HAL.</p>
 </div>
 <p>Pour demander l’analyse des publications d’une structure dans CristHAL, vous devez
 d’avord la définir, puis la synchroniser avec HAL.</p>
 <div class="admonition important">
-<p class="first admonition-title">Important</p>
-<p class="last">L’ensemble des publications d’une structure est une <em>collection</em> dans CristHAL.</p>
+<p class="admonition-title">Important</p>
+<p>L’ensemble des publications d’une structure est une <em>collection</em> dans CristHAL.</p>
 </div>
 <div class="section" id="definition-d-une-collection">
 <h2>Définition d’une collection<a class="headerlink" href="#definition-d-une-collection" title="Lien permanent vers ce titre">¶</a></h2>
@@ -196,17 +196,17 @@ d’avord la définir, puis la synchroniser avec HAL.</p>
 formulaire de la <a class="reference internal" href="#creer-collection"><span class="std std-numref">Fig. 7</span></a>.</p>
 <div class="figure align-center" id="id1">
 <span id="creer-collection"></span><a class="reference internal image-reference" href="_images/creer-collection.png"><img alt="_images/creer-collection.png" src="_images/creer-collection.png" style="width: 90%;" /></a>
-<p class="caption"><span class="caption-number">Fig. 7 </span><span class="caption-text">Création d’une collection</span></p>
+<p class="caption"><span class="caption-number">Fig. 7 </span><span class="caption-text">Création d’une collection</span><a class="headerlink" href="#id1" title="Lien permanent vers cette image">¶</a></p>
 </div>
 <p>Les données sont les suivantes</p>
 <blockquote>
 <div><ul class="simple">
-<li>Code : un code (unique) CristHAL pour faire référence à la collection (par exemple l’acronyme de l’équipe)</li>
-<li>Sigle HAL : le sigle de la structure dans HAL (unique)</li>
-<li>Id HAl: identifiant de la structure dans HAL (unique)</li>
-<li>Nom : un texte bref utilisé pour les affichages (par exemple le nom de l’équipe)</li>
-<li>Description : texte libre</li>
-<li>Email contact: adresse de la personne-contact pour la collection</li>
+<li><p>Code : un code (unique) CristHAL pour faire référence à la collection (par exemple l’acronyme de l’équipe)</p></li>
+<li><p>Sigle HAL : le sigle de la structure dans HAL (unique)</p></li>
+<li><p>Id HAl: identifiant de la structure dans HAL (unique)</p></li>
+<li><p>Nom : un texte bref utilisé pour les affichages (par exemple le nom de l’équipe)</p></li>
+<li><p>Description : texte libre</p></li>
+<li><p>Email contact: adresse de la personne-contact pour la collection</p></li>
 </ul>
 </div></blockquote>
 <p>Vous pouvez revenir à tout moment sur la collection pour la modifier via l’interface d’administration.</p>
@@ -216,23 +216,23 @@ formulaire de la <a class="reference internal" href="#creer-collection"><span cl
 <p>Les collections apparaissent dans un tableau sur la page d’accueil (<a class="reference internal" href="#page-collections"><span class="std std-numref">Fig. 8</span></a>).</p>
 <div class="figure align-center" id="id2">
 <span id="page-collections"></span><a class="reference internal image-reference" href="_images/page-collections.png"><img alt="_images/page-collections.png" src="_images/page-collections.png" style="width: 90%;" /></a>
-<p class="caption"><span class="caption-number">Fig. 8 </span><span class="caption-text">Page des collections (accueil)</span></p>
+<p class="caption"><span class="caption-number">Fig. 8 </span><span class="caption-text">Page des collections (accueil)</span><a class="headerlink" href="#id2" title="Lien permanent vers cette image">¶</a></p>
 </div>
 <p>Les actions possibles sont:</p>
 <blockquote>
 <div><ul class="simple">
-<li>la modification</li>
-<li>la synchronisation avec HAL</li>
-<li>le classement des publications (voir plus loin)</li>
-<li>la consultation des statistiques (également accessible dans le menu local)</li>
+<li><p>la modification</p></li>
+<li><p>la synchronisation avec HAL</p></li>
+<li><p>le classement des publications (voir plus loin)</p></li>
+<li><p>la consultation des statistiques (également accessible dans le menu local)</p></li>
 </ul>
 </div></blockquote>
 <p>La synchronisation permet de récupérer les publications de la structure HAL et de les
 insérer dans la collection (ou de les mettre à jour si elles existent déjà). Cette opération
 doit être effectuée régulièrement pour maintenir la collection en phase avec HAL.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Seules les publications de la période configurée sont chargées. De même, ChristHAL
+<p class="admonition-title">Note</p>
+<p>Seules les publications de la période configurée sont chargées. De même, ChristHAL
 charge un sous-ensemble des types de publication HAL (les REPORT, AUTRE et UNDEFINED sont ignorées).</p>
 </div>
 </div>
@@ -245,7 +245,7 @@ ou à l’interrogation directe par SQL (pour les experts), puis exportées en d
 <p>Un premier formulaire permet de rechercher les publications selon certains critères.</p>
 <div class="figure align-center" id="id3">
 <span id="form-publis"></span><a class="reference internal image-reference" href="_images/form-publis.png"><img alt="_images/form-publis.png" src="_images/form-publis.png" style="width: 90%;" /></a>
-<p class="caption"><span class="caption-number">Fig. 9 </span><span class="caption-text">Formulaire de recherche des publications</span></p>
+<p class="caption"><span class="caption-number">Fig. 9 </span><span class="caption-text">Formulaire de recherche des publications</span><a class="headerlink" href="#id3" title="Lien permanent vers cette image">¶</a></p>
 </div>
 <p>Ce formulaire est régulièrement étendu avec de nouveaux critères.</p>
 </div>
@@ -256,24 +256,24 @@ Le formulaire d’interrogation par SQL est montré dans la <a class="reference 
 pouvez entrer librement toute requête <em>d’interrogation</em> et obtenir le résultat.</p>
 <div class="figure align-center" id="id4">
 <span id="form-sql"></span><a class="reference internal image-reference" href="_images/form-sql.png"><img alt="_images/form-sql.png" src="_images/form-sql.png" style="width: 90%;" /></a>
-<p class="caption"><span class="caption-number">Fig. 10 </span><span class="caption-text">Formulaire de recherche par SQL</span></p>
+<p class="caption"><span class="caption-number">Fig. 10 </span><span class="caption-text">Formulaire de recherche par SQL</span><a class="headerlink" href="#id4" title="Lien permanent vers cette image">¶</a></p>
 </div>
 <div class="admonition important">
-<p class="first admonition-title">Important</p>
-<p class="last">Le compte de connexion utilisé par ce formulaire <strong>ne permet pas</strong> les mises à jour.</p>
+<p class="admonition-title">Important</p>
+<p>Le compte de connexion utilisé par ce formulaire <strong>ne permet pas</strong> les mises à jour.</p>
 </div>
 <p>Voici le schéma de la base. Les <strong>clés primaires</strong> sont en gras, les <em>clés étrangères</em> en italiques.</p>
 <blockquote>
 <div><ul class="simple">
-<li>Source (<strong>id</strong>, fichier, description, identifiant_source, delimiteur, type_source)</li>
-<li>Referentiel (<strong>id</strong>, ref_locale,  type, acronyme, titre, champ_plein_texte, classement, <em>source_id</em>)</li>
-<li>Collection (<strong>id</strong>, code, sigle_hal, id_hal, nom, description, email_contact)</li>
-<li>Auteur (<strong>id</strong>, nom_complet, id_hal)</li>
-<li>ClassementPubli (<strong>code</strong>, libelle)</li>
-<li>Publi (<strong>id_hal</strong>, titre, annee, type, chaine_auteurs, revue_titre, conf_titre,
-ouvrage_titre, classement_valide, <em>classement_id</em>)</li>
-<li>Publi_auteurs (<strong>id</strong>, <em>publication_id</em>, <em>auteur_id</em>)</li>
-<li>Publi_collections (<strong>id</strong>, <em>publication_id</em>, <em>collection_id</em>)</li>
+<li><p>Source (<strong>id</strong>, fichier, description, identifiant_source, delimiteur, type_source)</p></li>
+<li><p>Referentiel (<strong>id</strong>, ref_locale,  type, acronyme, titre, champ_plein_texte, classement, <em>source_id</em>)</p></li>
+<li><p>Collection (<strong>id</strong>, code, sigle_hal, id_hal, nom, description, email_contact)</p></li>
+<li><p>Auteur (<strong>id</strong>, nom_complet, id_hal)</p></li>
+<li><p>ClassementPubli (<strong>code</strong>, libelle)</p></li>
+<li><p>Publi (<strong>id_hal</strong>, titre, annee, type, chaine_auteurs, revue_titre, conf_titre,
+ouvrage_titre, classement_valide, <em>classement_id</em>)</p></li>
+<li><p>Publi_auteurs (<strong>id</strong>, <em>publication_id</em>, <em>auteur_id</em>)</p></li>
+<li><p>Publi_collections (<strong>id</strong>, <em>publication_id</em>, <em>collection_id</em>)</p></li>
 </ul>
 </div></blockquote>
 </div>
@@ -303,7 +303,7 @@ ouvrage_titre, classement_valide, <em>classement_id</em>)</li>
         
         
         
-          Built with <a href="https://www.sphinx-doc.org/en/master/">Sphinx</a> on 2021/04/12 using the <a href="https://github.com/audeering/sphinx-audeering-theme/">audEERING theme</a>
+          Built with <a href="https://www.sphinx-doc.org/en/master/">Sphinx</a> on 2021/04/14 using the <a href="https://github.com/audeering/sphinx-audeering-theme/">audEERING theme</a>
         
     </p>
   </div>
@@ -334,22 +334,11 @@ ouvrage_titre, classement_valide, <em>classement_id</em>)</li>
 
     
     
-      <script type="text/javascript">
-          var DOCUMENTATION_OPTIONS = {
-              URL_ROOT:'./',
-              VERSION:'0.1',
-              LANGUAGE:'fr',
-              COLLAPSE_INDEX:false,
-              FILE_SUFFIX:'.html',
-              HAS_SOURCE:  true,
-              SOURCELINK_SUFFIX: '.txt'
-          };
-      </script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/translations.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/translations.js"></script>
     
 
   

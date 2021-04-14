@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Installation &mdash; documentation CristHAL 0.1</title>
+  <title>Installation &mdash; Documentation CristHAL 1.0</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.1
+                1.0
               </div>
             
           
@@ -181,20 +181,20 @@
 Les composants de l’architecture technique sont illustrés par la <a class="reference internal" href="#architechnique"><span class="std std-numref">Fig. 4</span></a>.</p>
 <div class="figure align-center" id="id1">
 <span id="architechnique"></span><a class="reference internal image-reference" href="_images/ArchiTechnique.png"><img alt="_images/ArchiTechnique.png" src="_images/ArchiTechnique.png" style="width: 90%;" /></a>
-<p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">Les composants techniques</span></p>
+<p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">Les composants techniques</span><a class="headerlink" href="#id1" title="Lien permanent vers cette image">¶</a></p>
 </div>
 <p>Tous ces composants sont des logiciels libres qui fonctionnent sur toutes les plateformes.</p>
 <blockquote>
 <div><ul class="simple">
-<li>Le cœur du système est une application Python/Django.</li>
-<li>Le stockage des données est assuré par MySQL (<a class="reference external" href="http://mysql.com">http://mysql.com</a>).</li>
-<li>Un moteur de recherche, ElasticSearch (<a class="reference external" href="https://www.elastic.co/fr/elasticsearch/">https://www.elastic.co/fr/elasticsearch/</a>),
-est utilisé pour la procédure d’appariement.</li>
-<li>Enfin un serveur Web quelconque, doté d’une passerelle WSGI, est requis pour une mise en production.</li>
+<li><p>Le cœur du système est une application Python/Django.</p></li>
+<li><p>Le stockage des données est assuré par MySQL (<a class="reference external" href="http://mysql.com">http://mysql.com</a>).</p></li>
+<li><p>Un moteur de recherche, ElasticSearch (<a class="reference external" href="https://www.elastic.co/fr/elasticsearch/">https://www.elastic.co/fr/elasticsearch/</a>),
+est utilisé pour la procédure d’appariement.</p></li>
+<li><p>Enfin un serveur Web quelconque, doté d’une passerelle WSGI, est requis pour une mise en production.</p></li>
 </ul>
 </div></blockquote>
 <p>Pour une installation initiale, il n’est pas nécessaire de disposer d’un serveur Web: un serveur intégré
-à Django permet d’effectuer la configuration et les tests, ce que nous appelons «&nbsp;mise en route&nbsp;»
+à Django permet d’effectuer la configuration et les tests, ce que nous appelons « mise en route »
 dans ce qui suit. Pour une mise en production, un vrai serveur web s’impose, ainsi que quelques précautions
 de configuration.</p>
 <p>À l’exception (très relative) d’ElasticSearch, cette architecture est très classique et utilisé par des millions
@@ -207,15 +207,15 @@ qui suit se concentre donc sur la partie spécifique à CristHAL.</p>
 une base et deux  comptes</p>
 <blockquote>
 <div><ul class="simple">
-<li>un compte administrateur disposant de tous les droits sur la base</li>
-<li>un compte ne disposant que des droits de lecture ; ce deuxième compte
+<li><p>un compte administrateur disposant de tous les droits sur la base</p></li>
+<li><p>un compte ne disposant que des droits de lecture ; ce deuxième compte
 est utilisé pour exécuter des requêtes SQL saisies dans un formulaire: mieux vaut
-éviter les fausses manœuvres.</li>
+éviter les fausses manœuvres.</p></li>
 </ul>
 </div></blockquote>
 <p>Voici des exemples de commandes (elles se trouvent dans
-<code class="docutils literal"><span class="pre">install/creationDb.sql</span></code>).</p>
-<div class="highlight-sql"><div class="highlight"><pre><span></span> <span class="cm">/* Nom de base à reporter dans cristhal/local_settings.py */</span>
+<code class="docutils literal notranslate"><span class="pre">install/creationDb.sql</span></code>).</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span> <span class="cm">/* Nom de base à reporter dans cristhal/local_settings.py */</span>
  <span class="k">create</span> <span class="k">database</span> <span class="n">cristhal</span> <span class="nb">CHARACTER</span> <span class="k">SET</span> <span class="n">utf8</span><span class="p">;</span>
 
  <span class="cm">/*</span>
@@ -228,33 +228,33 @@ est utilisé pour exécuter des requêtes SQL saisies dans un formulaire: mieux 
 </pre></div>
 </div>
 <div class="admonition important">
-<p class="first admonition-title">Important</p>
-<p class="last">Ne les copiez pas telles quelles ! <em>Changez au moins le mot de passe</em></p>
+<p class="admonition-title">Important</p>
+<p>Ne les copiez pas telles quelles ! <em>Changez au moins le mot de passe</em></p>
 </div>
 <p>Pas besoin de créer l’index pour ElasticSearch, CristHAL s’en charge à la première connexion.</p>
 <p>Le code de CristHAL peut être récupéré sur
-<a class="reference external" href="https://github.com/cedric-cnam/cristhal">https://github.com/cedric-cnam/cristhal</a>. Installez-le dans un répertoire que nous appelerons <code class="docutils literal"><span class="pre">cristhaldir</span></code>.</p>
+<a class="reference external" href="https://github.com/cedric-cnam/cristhal">https://github.com/cedric-cnam/cristhal</a>. Installez-le dans un répertoire que nous appelerons <code class="docutils literal notranslate"><span class="pre">cristhaldir</span></code>.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Dans tout ce qui suit, <code class="docutils literal"><span class="pre">python</span></code> et <code class="docutils literal"><span class="pre">pip</span></code> s’appliquent à Python3,
-et correspondent dans certains environnements aux commandes <code class="docutils literal"><span class="pre">python3</span></code> et <code class="docutils literal"><span class="pre">pip3</span></code>.</p>
+<p class="admonition-title">Note</p>
+<p>Dans tout ce qui suit, <code class="docutils literal notranslate"><span class="pre">python</span></code> et <code class="docutils literal notranslate"><span class="pre">pip</span></code> s’appliquent à Python3,
+et correspondent dans certains environnements aux commandes <code class="docutils literal notranslate"><span class="pre">python3</span></code> et <code class="docutils literal notranslate"><span class="pre">pip3</span></code>.</p>
 </div>
 <p>La première chose à faire est d’installer les modules Python nécessaires à CristHAL. Ils sont
-énumérés dans le fichier <code class="docutils literal"><span class="pre">requirements.txt</span></code>.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>pip3 install -r requirements.txt
+énumérés dans le fichier <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip3 install -r requirements.txt
 </pre></div>
 </div>
 <p>On peut passer à la configuration des accès serveurs.</p>
 <div class="section" id="acces-mysql-et-elasticsearch">
 <h3>Accès MySQL et ElasticSearch<a class="headerlink" href="#acces-mysql-et-elasticsearch" title="Lien permanent vers ce titre">¶</a></h3>
-<p>Les accès aux serveurs sont configurés dans des fichiers du répertoire <code class="docutils literal"><span class="pre">cristhaldir/cristhal</span></code>. La configuration
-générale est dans le fichier <code class="docutils literal"><span class="pre">settings.py</span></code>, la configuration spécifique à un site doit
-être placée dans un fichier <code class="docutils literal"><span class="pre">local_settngs.py</span></code> dont les options prennent priorité sur le premier.</p>
-<p>Dans <code class="docutils literal"><span class="pre">cristhaldir/cristhal</span></code>, copiez <code class="docutils literal"><span class="pre">local_settings_exemple.py</span></code> en <code class="docutils literal"><span class="pre">local_settings.py</span></code>. Puis éditez
+<p>Les accès aux serveurs sont configurés dans des fichiers du répertoire <code class="docutils literal notranslate"><span class="pre">cristhaldir/cristhal</span></code>. La configuration
+générale est dans le fichier <code class="docutils literal notranslate"><span class="pre">settings.py</span></code>, la configuration spécifique à un site doit
+être placée dans un fichier <code class="docutils literal notranslate"><span class="pre">local_settngs.py</span></code> dont les options prennent priorité sur le premier.</p>
+<p>Dans <code class="docutils literal notranslate"><span class="pre">cristhaldir/cristhal</span></code>, copiez <code class="docutils literal notranslate"><span class="pre">local_settings_exemple.py</span></code> en <code class="docutils literal notranslate"><span class="pre">local_settings.py</span></code>. Puis éditez
 ce dernier.</p>
-<p>La configuration d’accès au serveur MySQL est indiquée dans la variable <code class="docutils literal"><span class="pre">DATABASES</span></code>. Reportez-y
+<p>La configuration d’accès au serveur MySQL est indiquée dans la variable <code class="docutils literal notranslate"><span class="pre">DATABASES</span></code>. Reportez-y
 vos paramètres de site.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>  <span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>  <span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{</span>
       <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
           <span class="s1">&#39;ENGINE&#39;</span><span class="p">:</span> <span class="s1">&#39;django.db.backends.mysql&#39;</span><span class="p">,</span>
           <span class="s1">&#39;NAME&#39;</span><span class="p">:</span> <span class="s1">&#39;nom_bd_locale&#39;</span><span class="p">,</span>
@@ -281,21 +281,30 @@ vos paramètres de site.</p>
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Il faut définir deux connexions, une pour l’administrateur, et l’autre
+<p class="admonition-title">Note</p>
+<p>Il faut définir deux connexions, une pour l’administrateur, et l’autre
 pour le compte “lecteur”. Ne changez pas les noms des connexions.</p>
 </div>
 <p>La configuration d’accès au serveur ElasticSearch est indiquée dans les variables suivantes.
-Vous pouvez conserver la valeur de  <code class="docutils literal"><span class="pre">ES_INDEX_REF</span></code> si vous le souhaitez.  Indiquez
-les autres paramètres dans <code class="docutils literal"><span class="pre">ELASTIC_SEARCH</span></code>.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">ES_INDEX_REF</span> <span class="o">=</span> <span class="s2">&quot;cristhal&quot;</span>
+Vous pouvez conserver la valeur de  <code class="docutils literal notranslate"><span class="pre">ES_INDEX_REF</span></code> si vous le souhaitez.  Indiquez
+les autres paramètres dans <code class="docutils literal notranslate"><span class="pre">ELASTIC_SEARCH</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ES_INDEX_REF</span> <span class="o">=</span> <span class="s2">&quot;cristhal&quot;</span>
 <span class="n">ELASTIC_SEARCH</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;host&quot;</span><span class="p">:</span> <span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="s2">&quot;port&quot;</span><span class="p">:</span> <span class="mi">9200</span><span class="p">,</span>
             <span class="s2">&quot;index&quot;</span><span class="p">:</span> <span class="n">ES_INDEX_REF</span><span class="p">}</span>
 </pre></div>
 </div>
+<p>Certains fichiers (les CSV des sources du référentiel notamment) sont
+stockés dans un répertoire local spécifié par le paramètre <code class="docutils literal notranslate"><span class="pre">MEDIA_ROOT</span></code>.
+Par défaut il est dans <code class="docutils literal notranslate"><span class="pre">cristhaldir</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">MEDIA_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s1">&#39;media&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Il est préférerable d’indiquer un répertoire distinct de l’application. Dans
+tous les cas, le compte utilisateur sous lequel l’application s’exécute doit
+avoir le droit d’y écrire.</p>
 <p>Un dernier paramètre à régler est l’emplacement des fichiers journaux. Le chemin
 proposé par défaut est:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">LOG_DIR</span> <span class="o">=</span> <span class="s1">&#39;/var/log&#39;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">LOG_DIR</span> <span class="o">=</span> <span class="s1">&#39;/var/log&#39;</span>
 </pre></div>
 </div>
 <p>Indiquez le chemin qui convient (et vérifiez qu’il est possible d’écrire dans ce répertoire pour
@@ -304,31 +313,31 @@ le processus qui exécute CristHAL).</p>
 <div class="section" id="creation-du-schema-et-initialisation">
 <h3>Création du schéma et initialisation<a class="headerlink" href="#creation-du-schema-et-initialisation" title="Lien permanent vers ce titre">¶</a></h3>
 <p>Si votre configuration est correcte, vous devez pouvoir exécuter la commande suivante
-dans <code class="docutils literal"><span class="pre">cristhaldir</span></code>.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>python manage.py migrate
+dans <code class="docutils literal notranslate"><span class="pre">cristhaldir</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python manage.py migrate
 </pre></div>
 </div>
 <p>C’est une commande Django qui crée (ou modifie) le schéma. Si la connexion au serveur MySQL échoue,
 vous le saurez tout de suite. Sinon, votre schéma est créé.</p>
 <p>C’est presque prêt! Maintenant ajoutez un super-utilisateur avec une autre commande Django.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>python manage.py createsuperuser
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python manage.py createsuperuser
 </pre></div>
 </div>
 <p>Suiviez les instructions (et mémorisez le compte !). Pour finir,
 CristHAL propose une autre commande pour créer une configuration initiale.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>python manage.py init_publis
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python manage.py init_publis
 </pre></div>
 </div>
 <p>Quelques messages vous indiquent les opérations effectuées.</p>
 <p>Il ne reste qu’à lancer le serveur intégré à Django.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>python manage.py runserver
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python manage.py runserver
 </pre></div>
 </div>
 <p>Pas d’erreur ? Alors vous pouvez accèder avec un navigateur quelconque à <a class="reference external" href="http://localhost:8000">http://localhost:8000</a>
 et vous devriez obtenir l’écran de la <a class="reference internal" href="#ecran-accueil"><span class="std std-numref">Fig. 5</span></a> (qui peut évoluer avec les versions).</p>
 <div class="figure align-center" id="id2">
 <span id="ecran-accueil"></span><a class="reference internal image-reference" href="_images/ecran-accueil.png"><img alt="_images/ecran-accueil.png" src="_images/ecran-accueil.png" style="width: 90%;" /></a>
-<p class="caption"><span class="caption-number">Fig. 5 </span><span class="caption-text">L’écran d’accueil</span></p>
+<p class="caption"><span class="caption-number">Fig. 5 </span><span class="caption-text">L’écran d’accueil</span><a class="headerlink" href="#id2" title="Lien permanent vers cette image">¶</a></p>
 </div>
 <p>Vous pouvez vous connecter avec le compte super-utilisateur défini précédemment.
 Tout est prêt pour commencer à utiliser l’application (en mode “tests”: pour la mise en production
@@ -336,11 +345,11 @@ voir ci-dessous). Commençons par l’interface d’administration.</p>
 </div>
 <div class="section" id="l-interface-d-administration">
 <h3>L’interface d’administration<a class="headerlink" href="#l-interface-d-administration" title="Lien permanent vers ce titre">¶</a></h3>
-<p>Une fois connecté avec un compte d’administration, un menu <code class="docutils literal"><span class="pre">Admin</span></code> apparaît
+<p>Une fois connecté avec un compte d’administration, un menu <code class="docutils literal notranslate"><span class="pre">Admin</span></code> apparaît
 (<a class="reference internal" href="#ecran-accueil"><span class="std std-numref">Fig. 5</span></a>).</p>
 <div class="figure align-center" id="id3">
 <span id="ecran-accueil2"></span><a class="reference internal image-reference" href="_images/ecran-accueil2.png"><img alt="_images/ecran-accueil2.png" src="_images/ecran-accueil2.png" style="width: 90%;" /></a>
-<p class="caption"><span class="caption-number">Fig. 6 </span><span class="caption-text">L’écran d’accueil après connexion</span></p>
+<p class="caption"><span class="caption-number">Fig. 6 </span><span class="caption-text">L’écran d’accueil après connexion</span><a class="headerlink" href="#id3" title="Lien permanent vers cette image">¶</a></p>
 </div>
 <p>Ce menu donne accès aux fonctions de création et de mise à jour
 des principaux objets configurant CristHAL: utilisateurs, codification, collections,
@@ -351,19 +360,19 @@ dotés du droit “super-utilisateur” pourront accéder au menu d’administra
 <p>Les autres formulaires sont gérés automatiquement par Django, mais donnent
 accès aux données spécifiques. Pour vous rôder vous pouvez
 accéder à l’interface de définition des configurations.</p>
-<p>Il doit exister au moins une configuration, nommée <code class="docutils literal"><span class="pre">défaut</span></code>. Elle est créée à l’initialisation
+<p>Il doit exister au moins une configuration, nommée <code class="docutils literal notranslate"><span class="pre">défaut</span></code>. Elle est créée à l’initialisation
 de CristHAL et contient plusieurs paramètres:</p>
 <blockquote>
 <div><ul class="simple">
-<li>L’adresse des services web HAL (ne pas modifier en principe)</li>
-<li>La période (année min et max) de récolte des publications.</li>
+<li><p>L’adresse des services web HAL (ne pas modifier en principe)</p></li>
+<li><p>La période (année min et max) de récolte des publications.</p></li>
 </ul>
 </div></blockquote>
 <p>Au-delà de la configuration, tout le paramétrage de CristHAL se fait via cette interface
 d’administration.</p>
 <div class="admonition important">
-<p class="first admonition-title">Important</p>
-<p class="last">Pour revenir au site principal à partir de l’interface d’administration, il faut
+<p class="admonition-title">Important</p>
+<p>Pour revenir au site principal à partir de l’interface d’administration, il faut
 suivre le lien “View site” en haut à droite.</p>
 </div>
 </div>
@@ -375,8 +384,8 @@ configuration.</p>
 <div class="section" id="le-serveur-web">
 <h3>Le serveur web<a class="headerlink" href="#le-serveur-web" title="Lien permanent vers ce titre">¶</a></h3>
 <p>CristHAL est une application Django standard, et l’association avec un serveur ne
-présente aucune spécificité. Dans le répertoire <code class="docutils literal"><span class="pre">cristhaldir/cristhal</span></code> se trouve
-un fichier <code class="docutils literal"><span class="pre">wsgi.py</span></code> qui sert à créer une passerelle WSGI avec un serveur
+présente aucune spécificité. Dans le répertoire <code class="docutils literal notranslate"><span class="pre">cristhaldir/cristhal</span></code> se trouve
+un fichier <code class="docutils literal notranslate"><span class="pre">wsgi.py</span></code> qui sert à créer une passerelle WSGI avec un serveur
 comme Apache, Nginx ou Gunicorn.</p>
 <p>La documentation  explique en détail la procédure pour ces différents serveurs:
 <a class="reference external" href="https://docs.djangoproject.com/fr/3.1/howto/deployment/wsgi/">https://docs.djangoproject.com/fr/3.1/howto/deployment/wsgi/</a>.</p>
@@ -387,20 +396,20 @@ comme Apache, Nginx ou Gunicorn.</p>
 si elle est exposée sur le Web. Là encore, la documentation
 <a class="reference external" href="https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/">https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/</a> nous dit l’essentiel,
 et on trouve de très nombreux tutoriels qui détaillent les précautions à prendre.</p>
-<p>La configuration de CristHAL peut se placer dans le fichier <code class="docutils literal"><span class="pre">local_settings.py</span></code> (vous pouvez
+<p>La configuration de CristHAL peut se placer dans le fichier <code class="docutils literal notranslate"><span class="pre">local_settings.py</span></code> (vous pouvez
 en créer un spécifique à l’environnement de production). Voici quelques
 modifications essentielles. La première chose à faire
 est de quitter le mode <em>debug</em>.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Debug</span> <span class="o">=</span> <span class="bp">False</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Debug</span> <span class="o">=</span> <span class="kc">False</span>
 </pre></div>
 </div>
 <p>Ajouter également une clé secrète. Une bonne pratique est de la définir comme
 variable d’environnement et de la paramétrer ainsi.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nv">SECRET_KEY</span> <span class="o">=</span> os.environ<span class="o">[</span><span class="s1">&#39;SECRET_KEY&#39;</span><span class="o">]</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">SECRET_KEY</span> <span class="o">=</span> os.environ<span class="o">[</span><span class="s1">&#39;SECRET_KEY&#39;</span><span class="o">]</span>
 </pre></div>
 </div>
 <p>Enfin il faut spécifier les domaines servis par l’application dans le tableau suivant.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nv">ALLOWED_HOSTS</span> <span class="o">=</span> <span class="o">[]</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">ALLOWED_HOSTS</span> <span class="o">=</span> <span class="o">[]</span>
 </pre></div>
 </div>
 </div>
@@ -430,7 +439,7 @@ variable d’environnement et de la paramétrer ainsi.</p>
         
         
         
-          Built with <a href="https://www.sphinx-doc.org/en/master/">Sphinx</a> on 2021/04/12 using the <a href="https://github.com/audeering/sphinx-audeering-theme/">audEERING theme</a>
+          Built with <a href="https://www.sphinx-doc.org/en/master/">Sphinx</a> on 2021/04/14 using the <a href="https://github.com/audeering/sphinx-audeering-theme/">audEERING theme</a>
         
     </p>
   </div>
@@ -461,22 +470,11 @@ variable d’environnement et de la paramétrer ainsi.</p>
 
     
     
-      <script type="text/javascript">
-          var DOCUMENTATION_OPTIONS = {
-              URL_ROOT:'./',
-              VERSION:'0.1',
-              LANGUAGE:'fr',
-              COLLAPSE_INDEX:false,
-              FILE_SUFFIX:'.html',
-              HAS_SOURCE:  true,
-              SOURCELINK_SUFFIX: '.txt'
-          };
-      </script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/translations.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/translations.js"></script>
     
 
   
