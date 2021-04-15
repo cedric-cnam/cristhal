@@ -347,8 +347,8 @@ class Publication(models.Model):
     def bibtex_hal(self):
         ''' Récupération du bibtex produit par HAL 
         '''
-        hal_query = QUERY_HAL_PUBLI.format(self.id_hal)
-        return requests.get(url=hal_query)
+        hal_query = QUERY_HAL_PUBLI.format(id_hal=self.id_hal)
+        return requests.get(url=hal_query).content.decode('UTF-8')
 
     @staticmethod
     def stats_par_annee_type(collection, annee_min, annee_max):

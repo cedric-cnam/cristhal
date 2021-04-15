@@ -34,7 +34,6 @@ def menu_local(contexte):
     menu_local.append ({"url": reverse('publis:referentiel'), "lien": "<b>Référentiel</b>", "niveau": 1})
     menu_local.append ({"url": reverse('publis:instructions'), "lien": "<b>Classement collections</b>", "niveau": 1})
     menu_local.append ({"url": reverse('publis:publications'), "lien": "<b>Publications</b>", "niveau": 1})
-    menu_local.append ({"url": reverse('publis:export'), "lien": "<b>Export</b>", "niveau": 1})
     menu_local.append ({"url": "#", "lien": "<hr/>"})
     if contexte=="collections" :
         menu_local.append({"url": reverse('publis:stats_generales'), 
@@ -419,8 +418,7 @@ def export(coll, context):
                             annee__lte=config.annee_max_publis).filter(
                             classement=classement).filter(
                             collections=coll):
-                print ("Write " + publi.titre)
-                filehandle.write(publi.bibtex_hal())
+                filehandle.writelines([publi.bibtex_hal(), "\n"])
 
     return context
 

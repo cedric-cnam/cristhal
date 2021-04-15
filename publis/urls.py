@@ -12,5 +12,4 @@ urlpatterns = [
 	path('instructions/', views.instructions, name='instructions'),
 	path('publications/', views.publications, name='publications'),
 	path('publications/sql/', views.sql, name='sql'),
-	path('export/', views.export, name='export'),
 ]

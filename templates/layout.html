@@ -40,11 +40,6 @@
    {% else %}
     <li><a href="{% url 'publis:publications' %}">Publications</a></li>
    {% endif %}
-       {% if sous_menu == 'export' %}
-    <li><a class="current" href="{% url 'publis:export' %}">Export</a></li>
-   {% else %}
-    <li><a href="{% url 'publis:export' %}">Export</a></li>
-   {% endif %}
    
 {% if user.is_superuser %}
         <li><a href="{% url 'admin:index'  %}">Admin</a></li>
