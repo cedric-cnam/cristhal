@@ -12,6 +12,13 @@ MAX_ROWS = 1000
 # Motif de l'URL de recherche des publis
 QUERY_PUBLIS=HAL_SEARCH_URL + "CEDRIC-CNAM?wt=json&fq=publicationDateY_i:[{ymin:d} TO {ymax:d}]&sort=producedDate_tdate%20desc" 
 
+# Recherche d'un auteur
+QUERY_AUTEUR="https://api.archives-ouvertes.fr/ref/author/?fq=idHal_s:{id_hal:s} "
+
+# https://api.archives-ouvertes.fr/ref/author/?wt=xml&q=docid:554062
+# 554062
+# https://api.archives-ouvertes.fr/ref/author/?wt=xml&q=docid:554062&fl=firstName_s&fl=lastName_s&fl=structure_fs
+# https://api.archives-ouvertes.fr/search/authorstructure/?firstName_t=philippe&lastName_t=rigaux
 # Liste des champs à récupérer
 CHAMPS = ["halId_s",  "journalTitle_s", "title_s", 
         "docType_s", 
