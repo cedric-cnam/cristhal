@@ -21,7 +21,7 @@
 
    <ul>
   {% for publi in resultat %}
-       <li>{{publi.titre}},  {{publi.annee}}. <b>Auteur(s)</b> {{publi.chaine_auteurs}}. Classement {{publi.classement}}</li>
+       <li>({{publi.id_hal}}), {{publi.titre}},  {{publi.annee}}. <b>Auteur(s)</b> {{publi.chaine_auteurs}}. Classement {{publi.classement}}</li>
   {% endfor %}
   </ul> 
 {% endif %}

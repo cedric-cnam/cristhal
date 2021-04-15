@@ -343,6 +343,13 @@ class Publication(models.Model):
     def __init__(self, *args, **kwargs):
         super(Publication, self).__init__(*args, **kwargs)
 
+
+    def bibtex_hal(self):
+        ''' Récupération du bibtex produit par HAL 
+        '''
+        hal_query = QUERY_HAL_PUBLI.format(self.id_hal)
+        return requests.get(url=hal_query)
+
     @staticmethod
     def stats_par_annee_type(collection, annee_min, annee_max):
         publis = Publication.get_publis_periode (collection, annee_min, annee_max)                        

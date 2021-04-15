@@ -9,6 +9,8 @@ from collections import namedtuple
 from django.forms import modelformset_factory
 from django.conf import settings
 
+from django.template.response import SimpleTemplateResponse
+
 from django.db import connection, connections
 
 from .constants import *
@@ -66,14 +68,24 @@ def collections(request):
                  "sous_menu": "collections",
                  "menu_local": menu_local("collections")
                }
-    
+    #  Vérifications de la configuration
+    if not os.path.isdir(settings.EXPORT_DIR):
+        context["message"] = "Le répertoire {0} doit exister avant tout export".format(
+            settings.EXPORT_DIR)
+    if not os.access(settings.EXPORT_DIR, os.W_OK):
+            context["message"] = "Le répertoire {0} doit permettre l'écriture de fichiers ".format(
+            settings.EXPORT_DIR)
+
     # Si paramètre, on déclenche une nouvelle synchro
     if request.GET.get ("synchro", "0") == "1":
         collection = Collection.objects.get (code=request.GET.get ("code"))
         nb_publis = collection.synchro_hal()
         context["message"] = "{0}  publications ont été synchronisées depuis HAL dans la collection {1}".format(
             str(nb_publis), collection.code)
-    
+    # Si export, on exporte !
+    if request.GET.get ("export", "0") == "1":
+        collection = Collection.objects.get (code=request.GET.get ("code"))
+        context = export(collection, context)
  
     # Affichage des collections
     return render(request, 'publis/collections.html', context)
@@ -351,18 +363,66 @@ def sql(request):
         
     return render(request, 'publis/sql.html', context)
 
-@login_required
-def export(request):
-    context = {"titre": "Export des données et graphiques", 
-                    "sous_menu" : "export",
-                  "menu_local": menu_local("export")
-                }
-    
+
+def export(coll, context):
+    '''
+        Export des données d'une collection
+    '''
+    context["export_dir"] = settings.EXPORT_DIR
     # Cherchons la configuration pour avoir des valeurs par défaut
     config = Config.objects.get(code=CODE_CONFIG_DEFAUT)
+    periode = range (config.annee_min_publis, config.annee_max_publis+1)
     
-    return render(request, 'publis/export.html', context)
+    # Lecture des modèles de graphiques 
+    diag_barres = SimpleTemplateResponse ('publis/charts/diagramme_barres.json', {})
+    diag_camembert = SimpleTemplateResponse ('publis/charts/diagramme_camembert.json', {})
+ 
+    # On  crée le répertoire pour la collection s'il n'existe pas
+    coll_dir = os.path.join(settings.EXPORT_DIR, coll.code)
+    if not os.path.isdir(coll_dir):
+        os.mkdir (coll_dir)
+    prefixe_fichier = "graphiques_" + coll.code
+    
+    # Export des graphiques
+    diag_barres.context_data["chart_annees"] = list(periode)
+    diag_barres.context_data["chart_donnees"] = Publication.stats_par_annee_type(
+        coll.code, config.annee_min_publis, config.annee_max_publis)
+    with open(os.path.join(coll_dir, 
+                            prefixe_fichier + "_par_annee_type.json"), 
+                               'w') as filehandle:
+        filehandle.write(str(diag_barres.rendered_content))
+    diag_barres.context_data["chart_donnees"] = Publication.stats_par_annee_classement(
+            coll.code, config.annee_min_publis, config.annee_max_publis)
+    with open(os.path.join(coll_dir, 
+                            prefixe_fichier + "_par_annee_classement.json"), 
+                            'w') as filehandle:
+        filehandle.write(str(diag_barres.rendered_content))
 
+    diag_camembert.context_data["chart_annees"] = periode
+    diag_camembert.context_data["chart_donnees"] =  Publication.stats_par_classement(
+            coll.code, config.annee_min_publis, config.annee_max_publis)
+    with open(os.path.join(coll_dir, 
+                            prefixe_fichier +"_par_classement.json"), 
+                               'w') as filehandle:
+        filehandle.write(str(diag_camembert.rendered_content))
+    context["message"] = "Les données de la collection {0} ont été exportées dans le répertoire {1}".format(
+        coll.nom, coll_dir)
+    
+    # Export des publis en Bibtex
+    prefixe_fichier = "publis_" + coll.code
+    for classement in ClassementPubli.objects.all():
+        with open(os.path.join(coll_dir, 
+                    prefixe_fichier +"_{0}.bib".format(classement.code)),
+                    'w') as filehandle:
+            for publi in Publication.objects.filter(
+                            annee__gte=config.annee_min_publis).filter(
+                            annee__lte=config.annee_max_publis).filter(
+                            classement=classement).filter(
+                            collections=coll):
+                print ("Write " + publi.titre)
+                filehandle.write(publi.bibtex_hal())
+
+    return context
 
 # Pour obtenir des nuplets nommés
 #

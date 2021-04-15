@@ -181,6 +181,12 @@ STATIC_ROOT=''
 STATIC_URL =  "/static/"
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
 
+#
+# Répertoire pour les fichiers exportés. Par défaut: 'export' dans cristhaldir
+#
+
+EXPORT_DIR = os.path.join(BASE_DIR, 'export')
+
 # Nom de l'index pour le référentiel des publis
 ES_INDEX_REF = "cristhal"
 
