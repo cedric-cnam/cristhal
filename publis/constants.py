@@ -18,7 +18,7 @@ QUERY_AUTEUR="https://api.archives-ouvertes.fr/ref/author/?fq=idHal_s:{id_hal:s}
 # https://api.archives-ouvertes.fr/ref/author/?wt=xml&q=docid:554062
 # 554062
 # https://api.archives-ouvertes.fr/ref/author/?wt=xml&q=docid:554062&fl=firstName_s&fl=lastName_s&fl=structure_fs
-# https://api.archives-ouvertes.fr/search/authorstructure/?firstName_t=philippe&lastName_t=rigaux
+# https://api.archives-ouvertes.fr/search/authorstructure/?firstName_t=philippe&lastName_t=rigaux&getParents=false
 # Liste des champs à récupérer
 CHAMPS = ["halId_s",  "journalTitle_s", "title_s", 
         "docType_s", 
