@@ -1,5 +1,7 @@
 import os
 import logging
+import zipfile
+from io import BytesIO
 
 # Django import
 from django.shortcuts import render
@@ -9,6 +11,8 @@ from collections import namedtuple
 from django.forms import modelformset_factory
 from django.conf import settings
 
+from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.template.response import SimpleTemplateResponse
 
 from django.db import connection, connections
@@ -65,15 +69,19 @@ def collections(request):
                 "collections": Collection.objects.all(),
                  "titre": "Liste des collections",
                  "sous_menu": "collections",
-                 "menu_local": menu_local("collections")
+                 "menu_local": menu_local("collections"),
+                "export_dir": settings.EXPORT_DIR
                }
     #  Vérifications de la configuration
-    if not os.path.isdir(settings.EXPORT_DIR):
-        context["message"] = "Le répertoire {0} doit exister avant tout export".format(
-            settings.EXPORT_DIR)
-    if not os.access(settings.EXPORT_DIR, os.W_OK):
+    if not os.path.isdir(settings.MEDIA_ROOT):
+        context["message"] = alerte("Attention: le répertoire {0} de stockage des fichiers exportés / importés n'existe pas".format(
+            settings.MEDIA_ROOT))
+    elif not os.access(settings.MEDIA_ROOT, os.W_OK):
             context["message"] = "Le répertoire {0} doit permettre l'écriture de fichiers ".format(
-            settings.EXPORT_DIR)
+            settings.MEDIA_ROOT)
+    elif not os.path.isdir(settings.EXPORT_DIR):
+            # On essaie de le créer, normalement c'est dans MEDIA
+            os.mkdir (settings.EXPORT_DIR)
 
     # Si paramètre, on déclenche une nouvelle synchro
     if request.GET.get ("synchro", "0") == "1":
@@ -84,8 +92,11 @@ def collections(request):
     # Si export, on exporte !
     if request.GET.get ("export", "0") == "1":
         collection = Collection.objects.get (code=request.GET.get ("code"))
-        context = export(collection, context)
- 
+        contenu_zip = export(collection, context)
+        resp = HttpResponse(contenu_zip.getvalue(), content_type = "application/x-zip-compressed")
+        resp["Content-Disposition"] = "attachment; filename=%s" %  (collection.code + ".zip")
+        return resp 
+
     # Affichage des collections
     return render(request, 'publis/collections.html', context)
 
@@ -367,7 +378,7 @@ def export(coll, context):
     '''
         Export des données d'une collection
     '''
-    context["export_dir"] = settings.EXPORT_DIR
+
     # Cherchons la configuration pour avoir des valeurs par défaut
     config = Config.objects.get(code=CODE_CONFIG_DEFAUT)
     periode = range (config.annee_min_publis, config.annee_max_publis+1)
@@ -404,8 +415,6 @@ def export(coll, context):
                             prefixe_fichier +"_par_classement.json"), 
                                'w') as filehandle:
         filehandle.write(str(diag_camembert.rendered_content))
-    context["message"] = "Les données de la collection {0} ont été exportées dans le répertoire {1}".format(
-        coll.nom, coll_dir)
     
     # Export des publis en Bibtex
     prefixe_fichier = "publis_" + coll.code
@@ -420,7 +429,21 @@ def export(coll, context):
                             collections=coll):
                 filehandle.writelines([publi.bibtex_hal(), "\n"])
 
-    return context
+    # Pour finir on met tout ça dans un zip et on envoie
+    contenu_zip = BytesIO()
+    zf = zipfile.ZipFile(contenu_zip, "w")
+    for file in os.listdir(coll_dir):   
+        if file.endswith(".json") or file.endswith(".bib") or file.endswith(".tex"):
+             zf.write(os.path.join(coll_dir,file), file)         
+    zf.close()
+
+    return contenu_zip
+
+#
+# Pour mettre un message en rouge (mieux: définir un CSS)
+#
+def alerte (message):
+    return "<font color='red'>{0}</font>".format(message)
 
 # Pour obtenir des nuplets nommés
 #

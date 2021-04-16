@@ -18,6 +18,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 #
 # Stockage des fichiers, comme les CSV des sources par exemple
+# Il est sans doute préférable de le placer hors de l'arborescence cristhal
 #
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -182,10 +183,11 @@ STATIC_URL =  "/static/"
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
 
 #
-# Répertoire pour les fichiers exportés. Par défaut: 'export' dans cristhaldir
+# Répertoire pour les fichiers exportés. Par défaut dans 'media'.
+# Attention aux droits d'accès: cristhal essaiera de la créer s'il n'existe pas
 #
 
-EXPORT_DIR = os.path.join(BASE_DIR, 'export')
+EXPORT_DIR = os.path.join(MEDIA_ROOT, 'export')
 
 # Nom de l'index pour le référentiel des publis
 ES_INDEX_REF = "cristhal"
