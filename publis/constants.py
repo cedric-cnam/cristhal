@@ -31,6 +31,10 @@ FACET_SEP="_FacetSep_"
 # Requête publis équipe
 QUERY_HAL_COLL = HAL_SEARCH_URL + "?wt=json&q=*:*&facet=true&fq=publicationDateY_i:[{ymin:d} TO {ymax:d}]&fq=structId_i:{coll_id:d}"
 
+# Requête pour une publi
+QUERY_HAL_PUBLI = HAL_SEARCH_URL + "?wt=bibtex&fq=halId_s:{id_hal:s}"
+
+
 # Quand on veut traiter toutes les collections
 TOUTES_COLLECTIONS='toutes'
 

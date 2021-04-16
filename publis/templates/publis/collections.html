@@ -30,8 +30,9 @@ de consulter le détail d'une collection.
 {% if user.is_superuser %}
  <li><a href="{% url 'admin:publis_collection_change' coll.id %}">Modifier</a></li>
 {% endif %}
- <li><a href="{% url 'publis:collections' %}?synchro=1&code={{coll.code}}">Synchroniser avec Hal</a></li>
- <li><a href="{% url 'publis:classement' coll.code %}">Classer les publications</a></li>
+ <li><a href="{% url 'publis:collections' %}?synchro=1&code={{coll.code}}">Synchro avec Hal</a></li>
+ <li><a href="{% url 'publis:classement' coll.code %}">Classement</a></li>
+ <li><a href="{% url 'publis:collections' %}?export=1&code={{coll.code}}">Export</a></li>
  <li><a href="{% url 'publis:stats_collection' coll.code %}">Statistiques </a></li>
 </ul>
 </td>
