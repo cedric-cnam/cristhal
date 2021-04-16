@@ -398,14 +398,14 @@ def export(coll, context):
     diag_barres.context_data["chart_donnees"] = Publication.stats_par_annee_type(
         coll.code, config.annee_min_publis, config.annee_max_publis)
     with open(os.path.join(coll_dir, 
-                            prefixe_fichier + "_par_annee_type.json"), 
-                               'w') as filehandle:
+                            prefixe_fichier + "_par_annee_type.json"),
+                               mode='w',  encoding="utf-8") as filehandle:
         filehandle.write(str(diag_barres.rendered_content))
     diag_barres.context_data["chart_donnees"] = Publication.stats_par_annee_classement(
             coll.code, config.annee_min_publis, config.annee_max_publis)
     with open(os.path.join(coll_dir, 
-                            prefixe_fichier + "_par_annee_classement.json"), 
-                            'w') as filehandle:
+                            prefixe_fichier + "_par_annee_classement.json"),
+                            mode='w',  encoding="utf-8") as filehandle:
         filehandle.write(str(diag_barres.rendered_content))
 
     diag_camembert.context_data["chart_annees"] = periode
@@ -413,7 +413,7 @@ def export(coll, context):
             coll.code, config.annee_min_publis, config.annee_max_publis)
     with open(os.path.join(coll_dir, 
                             prefixe_fichier +"_par_classement.json"), 
-                               'w') as filehandle:
+                               mode='w',  encoding="utf-8") as filehandle:
         filehandle.write(str(diag_camembert.rendered_content))
     
     # Export des publis en Bibtex
@@ -421,7 +421,7 @@ def export(coll, context):
     for classement in ClassementPubli.objects.all():
         with open(os.path.join(coll_dir, 
                     prefixe_fichier +"_{0}.bib".format(classement.code)),
-                    'w') as filehandle:
+                    mode='w',  encoding="utf-8") as filehandle:
             for publi in Publication.objects.filter(
                             annee__gte=config.annee_min_publis).filter(
                             annee__lte=config.annee_max_publis).filter(
