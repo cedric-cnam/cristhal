@@ -46,7 +46,7 @@ tableau de la page d'accueil.
 À partir des exports en JSON, on peut produire les formats graphiques
 avec les outils Highcharts (https://www.highcharts.com/docs/export-module).
 Il faut essentiellement installer le *Highcharts export server*, en fait 
-un utilitaire Javascript, selon les instructions qui se trouve
+un utilitaire Javascript, selon les instructions qui se trouvent
 sur la page 
 Github https://github.com/highcharts/node-export-server/blob/master/README.md.
 
@@ -58,7 +58,7 @@ le répertoire d'export et en entrant la commande (sous un système de type Unix
 
     make
 
-Les PDF sont produits à partir des JSON. Il est très facile de produire d'autres 
+les PDF sont produits à partir des JSON. Il est très facile de produire d'autres 
 formats.
 
 
