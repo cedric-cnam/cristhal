@@ -140,6 +140,7 @@ def stats_collection(request, code_collection):
     # La période est donnée par la config
     config = Config.objects.get(code=CODE_CONFIG_DEFAUT)
 
+    context["collection"] = Collection.objects.get(code=code_collection)
     context["annees"] = list(range (config.annee_min_publis, config.annee_max_publis+1))
     context["stats_annee_type"] = Publication.stats_par_annee_type(code_collection, 
                                                                    config.annee_min_publis, 

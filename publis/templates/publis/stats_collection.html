@@ -11,6 +11,20 @@
     );
  </script>
  
+ <ul>
+ {% for auteur in collection.auteurs.all %}
+ <li>{{auteur}}</li>
+ {% endfor %}
+ </ul>
+ 
+ 
+<div id="reseau_auteurs"></div>
+ <script>
+    Highcharts.chart('reseau_auteurs', 
+       {% include "publis/charts/diagramme_reseau.json" with chart_titre=""  chart_annees=annees  chart_donnees=stats_annee_type %}
+    );
+ </script>
+ 
  
 <h3>Publications par année et par type</h3>
 

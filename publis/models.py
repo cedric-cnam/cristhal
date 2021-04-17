@@ -64,6 +64,27 @@ class Config(models.Model):
         return sortie
 
 #################
+class Auteur(models.Model):
+
+    """
+       Une table pour collecter les auteurs et co-auteurs
+    """
+    
+    # 
+    nom_complet = models.CharField(max_length=255)
+    # On essaie de récupérer l'id HAL quand il existe
+    id_hal = models.CharField(max_length=40,unique=True, null=True)
+    
+    class Meta:
+        db_table = "Auteur"
+
+    def __str__(self):              # __unicode__ on Python 2
+        return self.nom_complet
+
+    def __init__(self, *args, **kwargs):
+        super(Auteur, self).__init__(*args, **kwargs)
+
+#################
 class Collection(models.Model):
     """
         Paramétrage d'une collection Hal
@@ -77,6 +98,8 @@ class Collection(models.Model):
     # Le nom local, à utiliser pour les affichages
     nom = models.CharField(max_length=80, default="À définir")
     description = models.TextField()
+    # Les auteurs qui on publié pour la collection
+    auteurs = models.ManyToManyField(Auteur,related_name='collections')
     email_contact = models.CharField(max_length=40)
     
     class Meta:
@@ -268,26 +291,6 @@ class Referentiel(models.Model):
         super(Referentiel, self).__init__(*args, **kwargs)
 
 
-#################
-class Auteur(models.Model):
-
-    """
-       Une table pour collecter les auteurs et co-auteurs
-    """
-    
-    # 
-    nom_complet = models.CharField(max_length=255)
-    # On essaie de récupérer l'id HAL quand il existe
-    id_hal = models.CharField(max_length=40,unique=True, null=True)
-    
-    class Meta:
-        db_table = "Auteur"
-
-    def __str__(self):              # __unicode__ on Python 2
-        return self.nom_complet
-
-    def __init__(self, *args, **kwargs):
-        super(Auteur, self).__init__(*args, **kwargs)
 
 
 #################
@@ -439,6 +442,7 @@ class Publication(models.Model):
         
         if "authIdHalFullName_fs" in jsonDoc.keys():
             chaine_auteurs = ""
+            pos_auteur =0
             for auteur in jsonDoc["authIdHalFullName_fs"]:
                 comps = auteur.split(FACET_SEP)
                 # Premier composant: id_hal, second: nom complet
@@ -446,11 +450,29 @@ class Publication(models.Model):
                     auteur = Auteur.objects.get(nom_complet=comps[1])
                 except Auteur.DoesNotExist:
                     auteur = Auteur(nom_complet=comps[1])
-                    #Peut-être on a l'id HAL
-                    if comps[0] != '':
-                        auteur.id_hal = comps[0]
+
+                auteur.nom_complet = comps[1]
+                auteur.save()
+                #Peut-être on a l'id HAL
+                if comps[0] != '':
+                    auteur.id_hal = comps[0]
                     auteur.save()
-                chaine_auteurs +=  comps[1] + ' '      
+                # Cherchons l'identifiant de structure
+                if "authStructId_i" in jsonDoc.keys():
+                    # On doit trouver l'id structure à la même position
+                    id_structure = jsonDoc["authStructId_i"][pos_auteur]
+                    # S'agit-il d'une collection connue?
+                    try:
+                        coll = Collection.objects.get(id_hal=id_structure)
+                        # L'auteur a publié pour la collection
+                        coll.auteurs.add(auteur)
+                    except Collection.DoesNotExist:
+                        #print ("Structure {0} inconnue pour {1}".format(
+                        #    str(id_structure), auteur.nom_complet))
+                        # On ne connait pas cette collection
+                        pass
+                chaine_auteurs +=  comps[1] + ' '
+                pos_auteur += 1
                 
             self.chaine_auteurs = chaine_auteurs
             self.auteurs.add(auteur)

@@ -9,31 +9,29 @@ HAL_SEARCH_URL = "https://api.archives-ouvertes.fr/search/"
 
 # Une limite sur le nombre de publis à chercher...
 MAX_ROWS = 1000
-# Motif de l'URL de recherche des publis
-QUERY_PUBLIS=HAL_SEARCH_URL + "CEDRIC-CNAM?wt=json&fq=publicationDateY_i:[{ymin:d} TO {ymax:d}]&sort=producedDate_tdate%20desc" 
-
-# Recherche d'un auteur
-QUERY_AUTEUR="https://api.archives-ouvertes.fr/ref/author/?fq=idHal_s:{id_hal:s} "
-
-# https://api.archives-ouvertes.fr/ref/author/?wt=xml&q=docid:554062
-# 554062
-# https://api.archives-ouvertes.fr/ref/author/?wt=xml&q=docid:554062&fl=firstName_s&fl=lastName_s&fl=structure_fs
-# https://api.archives-ouvertes.fr/search/authorstructure/?firstName_t=philippe&lastName_t=rigaux&getParents=false
-# Liste des champs à récupérer
-CHAMPS = ["halId_s",  "journalTitle_s", "title_s", 
-        "docType_s", 
-        "authIdHalFullName_fs", 
-        "conferenceTitle_s", "bookTitle_s",
-         "publicationDateY_i", "publisher_s", "rteamStructAcronym_s"]
-
 # Séparateur de facettes dans HAL
 FACET_SEP="_FacetSep_"
+# Motif de l'URL de recherche des publis
+QUERY_PUBLIS=HAL_SEARCH_URL + "CEDRIC-CNAM?wt=json&fq=publicationDateY_i:[{ymin:d} TO {ymax:d}]&sort=producedDate_tdate%20desc" 
+# Recherche d'un auteur par son id HAL
+QUERY_AUTEUR="https://api.archives-ouvertes.fr/ref/author/?fq=idHal_s:{id_hal:s}&&fl=firstName_s&fl=lastName_s&fl=structure_fs"
+# Recherche d'un auteur par son identifiant interne
+QUERY_AUTEUR_ID="https://api.archives-ouvertes.fr/ref/author/?wt=json&q=docid:{id:d}"
+# Recherche structure par id interne
+QUERY_STRUCTURE="https://api.archives-ouvertes.fr/ref/structure/?wt=json&q=docid:{id:d}"
+# Recherche des structures d'un auteur
+QUERY_STRUCTURES_AUTEUR="https://api.archives-ouvertes.fr/search/authorstructure/?firstName_t={prenom:s}&lastName_t={nom:s}&getParents=false"
 # Requête publis équipe
 QUERY_HAL_COLL = HAL_SEARCH_URL + "?wt=json&q=*:*&facet=true&fq=publicationDateY_i:[{ymin:d} TO {ymax:d}]&fq=structId_i:{coll_id:d}"
-
 # Requête pour une publi
 QUERY_HAL_PUBLI = HAL_SEARCH_URL + "?wt=bibtex&fq=halId_s:{id_hal:s}"
-
+# Liste des champs à récupérer pour une publi
+CHAMPS = ["halId_s",  "journalTitle_s", "title_s", 
+        "docType_s", 
+        "authIdHalFullName_fs", "authIdFullName_fs",
+        "authStructId_i", "authIdHasStructure_fs",
+        "conferenceTitle_s", "bookTitle_s",
+         "publicationDateY_i", "publisher_s"]
 
 # Quand on veut traiter toutes les collections
 TOUTES_COLLECTIONS='toutes'
