@@ -66,7 +66,7 @@ formats.
 Export des bibtex
 *****************
 
-CritHAL exporte des fichiers ``.bib`` contenant les entrées Bibtex des
+CristHAL exporte des fichiers ``.bib`` contenant les entrées Bibtex des
 publications de la collection exportée. Ces entrées sont celles produites
 par HAL.
 
