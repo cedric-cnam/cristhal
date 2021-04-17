@@ -15,6 +15,7 @@ Contents:
   collections
   referentiel
   classement
+  export
   statistiques
 
 Indices and tables
