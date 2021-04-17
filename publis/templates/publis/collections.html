@@ -24,8 +24,9 @@ de consulter le détail d'une collection.
 <tr><th>Code</th><th>Nom</th><th>Nom Hal</th><th>Indicateurs</th><th>Actions</th></tr>
 {% for coll in collections %}
 <tr>
-<td>{{coll.code}}</td><td>{{coll.nom}}</td><td>{{coll.sigle_hal}}</td><td>Nb publis: {{coll.nb_publis}}</td>
-<td>
+<td>{{coll.code}}</td><td>{{coll.nom}}</td><td>{{coll.sigle_hal}}</td>
+<td>Nb publis: {{coll.nb_publis}}</td>
+<td  valign="top" style="white-space:nowrap">
 <ul>
 {% if user.is_superuser %}
  <li><a href="{% url 'admin:publis_collection_change' coll.id %}">Modifier</a></li>
