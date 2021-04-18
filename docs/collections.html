@@ -106,6 +106,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="referentiel.html">Gestion du référentiel</a></li>
 <li class="toctree-l1"><a class="reference internal" href="classement.html">Classement des publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="export.html">Export des données</a></li>
 <li class="toctree-l1"><a class="reference internal" href="statistiques.html">Les statistiques</a></li>
 </ul>
 
@@ -201,9 +202,14 @@ formulaire de la <a class="reference internal" href="#creer-collection"><span cl
 <p>Les données sont les suivantes</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>Code : un code (unique) CristHAL pour faire référence à la collection (par exemple l’acronyme de l’équipe)</p></li>
+<li><p>Code : un code (unique) CristHAL pour faire référence à la collection
+(par exemple l’acronyme de l’équipe). Ce code n’est pas utilisé pour
+accéder à HAL mais sert par exemple à nommer un répertoire d’export.
+Recommandation: choisir une chaîne de caractère courte, informative, sans espace,
+en minuscules et sans caractères spéciaux.</p></li>
 <li><p>Sigle HAL : le sigle de la structure dans HAL (unique)</p></li>
-<li><p>Id HAl: identifiant de la structure dans HAL (unique)</p></li>
+<li><p>Id HAL: identifiant de la structure dans HAL (unique). C’est cet identifiant
+qui sert à charger les publications de la structure.</p></li>
 <li><p>Nom : un texte bref utilisé pour les affichages (par exemple le nom de l’équipe)</p></li>
 <li><p>Description : texte libre</p></li>
 <li><p>Email contact: adresse de la personne-contact pour la collection</p></li>
@@ -303,7 +309,7 @@ ouvrage_titre, classement_valide, <em>classement_id</em>)</p></li>
         
         
         
-          Built with <a href="https://www.sphinx-doc.org/en/master/">Sphinx</a> on 2021/04/14 using the <a href="https://github.com/audeering/sphinx-audeering-theme/">audEERING theme</a>
+          Built with <a href="https://www.sphinx-doc.org/en/master/">Sphinx</a> on 2021/04/18 using the <a href="https://github.com/audeering/sphinx-audeering-theme/">audEERING theme</a>
         
     </p>
   </div>

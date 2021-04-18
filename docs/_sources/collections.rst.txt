@@ -36,9 +36,14 @@ formulaire de la :numref:`creer-collection`.
 
 Les données sont les suivantes
 
-  - Code : un code (unique) CristHAL pour faire référence à la collection (par exemple l'acronyme de l'équipe)
+  - Code : un code (unique) CristHAL pour faire référence à la collection 
+    (par exemple l'acronyme de l'équipe). Ce code n'est pas utilisé pour
+    accéder à HAL mais sert par exemple à nommer un répertoire d'export.
+    Recommandation: choisir une chaîne de caractère courte, informative, sans espace, 
+    en minuscules et sans caractères spéciaux.
   - Sigle HAL : le sigle de la structure dans HAL (unique)
-  - Id HAl: identifiant de la structure dans HAL (unique)
+  - Id HAL: identifiant de la structure dans HAL (unique). C'est cet identifiant
+    qui sert à charger les publications de la structure.
   - Nom : un texte bref utilisé pour les affichages (par exemple le nom de l'équipe)
   - Description : texte libre
   - Email contact: adresse de la personne-contact pour la collection
