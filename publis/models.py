@@ -2,6 +2,7 @@ from django.db import models
 import requests
 import csv 
 import logging
+import datetime
 
 from django.db.models import Sum, Count
 from django.conf import settings
@@ -84,6 +85,25 @@ class Auteur(models.Model):
     def __init__(self, *args, **kwargs):
         super(Auteur, self).__init__(*args, **kwargs)
 
+#
+# Participation des auteurs aux collections
+#
+class Participation(models.Model):
+    auteur = models.ForeignKey('Auteur', related_name='participation',on_delete=models.CASCADE)
+    collection = models.ForeignKey('Collection', related_name='participation',on_delete=models.CASCADE)
+    # On prévoir d'enregistrer la période de participation
+    date_debut = models.DateField()
+    date_fin = models.DateField()
+
+    class Meta:
+        db_table = "Participation"
+        constraints = [
+            models.UniqueConstraint(fields=['auteur','collection'],
+                                    name='UnicitéAuteurCollection'),
+        ]
+    def __str__(self):
+        return self.auteur
+
 #################
 class Collection(models.Model):
     """
@@ -99,7 +119,11 @@ class Collection(models.Model):
     nom = models.CharField(max_length=80, default="À définir")
     description = models.TextField()
     # Les auteurs qui on publié pour la collection
-    auteurs = models.ManyToManyField(Auteur,related_name='collections')
+    auteurs = models.ManyToManyField(Auteur,
+                                     related_name='collections',
+                                     through='Participation',
+                                     blank=True
+                                     )
     email_contact = models.CharField(max_length=40)
     
     class Meta:
@@ -320,7 +344,7 @@ class Publication(models.Model):
     """
     
     id_hal = models.CharField(max_length=100, primary_key=True)
-    titre = models.CharField(max_length=255)
+    titre = models.TextField()
     annee = models.IntegerField()
     type = models.CharField(max_length=30)
     # Une publication peut être dans plusieurs collections
@@ -329,9 +353,9 @@ class Publication(models.Model):
     auteurs = models.ManyToManyField(Auteur, blank=True)
     # Une chaîne avec le nom des auteurs pour la recherche
     chaine_auteurs = models.TextField(blank=True, null=True)
-    revue_titre = models.CharField(max_length=255, blank=True, null=True)
-    conf_titre = models.CharField(max_length=255, blank=True, null=True)
-    ouvrage_titre = models.CharField(max_length=255, blank=True, null=True)
+    revue_titre = models.TextField(blank=True, null=True)
+    conf_titre = models.TextField(blank=True, null=True)
+    ouvrage_titre = models.TextField(blank=True, null=True)
     
     # Classement des publis + indicateur si le classement a été validé
     classement =  models.ForeignKey(ClassementPubli,default='I',on_delete=models.PROTECT)
@@ -464,11 +488,25 @@ class Publication(models.Model):
                     # S'agit-il d'une collection connue?
                     try:
                         coll = Collection.objects.get(id_hal=id_structure)
-                        # L'auteur a publié pour la collection
-                        coll.auteurs.add(auteur)
+                        # L'auteur a participé à la collection
+                        try:
+                            part = Participation.objects.get(auteur=auteur,
+                                                              collection=coll)
+                            # Ajustons la période
+                            if part.date_debut.year > self.annee:
+                                 part.date_debut = datetime.date(self.annee, 1,1)
+                            if part.date_fin.year < self.annee:
+                                 part.date_fin = datetime.date(self.annee, 12,31)
+                            part.save()
+                        except Participation.DoesNotExist:
+                            # Créons le lien
+                            part = Participation(auteur=auteur,
+                                                collection=coll,
+                                                date_debut=datetime.date(self.annee, 1,1),
+                                                date_fin=datetime.date(self.annee, 12,31)
+                                                )
+                            part.save()
                     except Collection.DoesNotExist:
-                        #print ("Structure {0} inconnue pour {1}".format(
-                        #    str(id_structure), auteur.nom_complet))
                         # On ne connait pas cette collection
                         pass
                 chaine_auteurs +=  comps[1] + ' '

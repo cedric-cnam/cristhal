@@ -72,7 +72,9 @@ def collections(request):
                  "menu_local": menu_local("collections"),
                 "export_dir": settings.EXPORT_DIR
                }
+    config = Config.objects.get(code=CODE_CONFIG_DEFAUT)
     #  Vérifications de la configuration
+    
     if not os.path.isdir(settings.MEDIA_ROOT):
         context["message"] = alerte("Attention: le répertoire {0} de stockage des fichiers exportés / importés n'existe pas".format(
             settings.MEDIA_ROOT))
@@ -87,8 +89,11 @@ def collections(request):
     if request.GET.get ("synchro", "0") == "1":
         collection = Collection.objects.get (code=request.GET.get ("code"))
         nb_publis = collection.synchro_hal()
-        context["message"] = "{0}  publications ont été synchronisées depuis HAL dans la collection {1}".format(
-            str(nb_publis), collection.code)
+        context["message"] = '''{0}  publications ont été synchronisées 
+                        depuis HAL dans la collection {1} 
+                        pour la période {2}-{3}.'''.format(
+                 str(nb_publis), collection.code, config.annee_min_publis,
+                 config.annee_max_publis)
     # Si export, on exporte !
     if request.GET.get ("export", "0") == "1":
         collection = Collection.objects.get (code=request.GET.get ("code"))
