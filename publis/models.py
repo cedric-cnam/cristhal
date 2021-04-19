@@ -519,31 +519,34 @@ class Publication(models.Model):
                 # Cherchons l'identifiant de structure
                 if "authStructId_i" in jsonDoc.keys():
                     # On doit trouver l'id structure à la même position
-                    id_structure = jsonDoc["authStructId_i"][pos_auteur]
-                    # S'agit-il d'une collection connue?
-                    try:
-                        coll = Collection.objects.get(id_hal=id_structure)
-                        # L'auteur a participé à la collection
+                    if pos_auteur < len(jsonDoc["authStructId_i"]):
+                        id_structure = jsonDoc["authStructId_i"][pos_auteur]
+                        # S'agit-il d'une collection connue?
                         try:
-                            part = Participation.objects.get(auteur=auteur,
+                            coll = Collection.objects.get(id_hal=id_structure)
+                            # L'auteur a participé à la collection
+                            try:
+                                part = Participation.objects.get(auteur=auteur,
                                                               collection=coll)
-                            # Ajustons la période
-                            if part.date_debut.year > self.annee:
-                                 part.date_debut = datetime.date(self.annee, 1,1)
-                            if part.date_fin.year < self.annee:
-                                 part.date_fin = datetime.date(self.annee, 12,31)
-                            part.save()
-                        except Participation.DoesNotExist:
-                            # Créons le lien
-                            part = Participation(auteur=auteur,
+                                # Ajustons la période
+                                if part.date_debut.year > self.annee:
+                                    part.date_debut = datetime.date(self.annee, 1,1)
+                                if part.date_fin.year < self.annee:
+                                    part.date_fin = datetime.date(self.annee, 12,31)
+                                part.save()
+                            except Participation.DoesNotExist:
+                                # Créons le lien
+                                part = Participation(auteur=auteur,
                                                 collection=coll,
                                                 date_debut=datetime.date(self.annee, 1,1),
                                                 date_fin=datetime.date(self.annee, 12,31)
                                                 )
-                            part.save()
-                    except Collection.DoesNotExist:
-                        # On ne connait pas cette collection
-                        pass
+                                part.save()
+                        except Collection.DoesNotExist:
+                            # On ne connait pas cette collection
+                            pass
+                    else:
+                        logger.warning ("Pas de structure indiquée pour les auteurs de la publi " + self.titre)
                 chaine_auteurs +=  comps[1] + ' '
                 pos_auteur += 1
                 

@@ -29,7 +29,7 @@ QUERY_HAL_PUBLI = HAL_SEARCH_URL + "?wt=bibtex&fq=halId_s:{id_hal:s}"
 CHAMPS = ["halId_s",  "journalTitle_s", "title_s", 
         "docType_s", 
         "authIdHalFullName_fs", "authIdFullName_fs",
-        "authStructId_i", "authIdHasStructure_fs",
+        "authStructId_i", 
         "conferenceTitle_s", "bookTitle_s",
          "publicationDateY_i", "publisher_s"]
 
