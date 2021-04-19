@@ -10,18 +10,14 @@
             {% include "publis/charts/options.json" %}
     );
  </script>
+
  
- <ul>
- {% for auteur in collection.auteurs.all %}
- <li>{{auteur}}</li>
- {% endfor %}
- </ul>
- 
- 
+<h3>Réseau des co-publiants</h3>
+
 <div id="reseau_auteurs"></div>
  <script>
     Highcharts.chart('reseau_auteurs', 
-       {% include "publis/charts/diagramme_reseau.json" with chart_titre=""  chart_annees=annees  chart_donnees=stats_annee_type %}
+       {% include "publis/charts/diagramme_reseau.json" with chart_titre=""  chart_annees=annees  chart_donnees=stats_reseau_coauteurs|safe %}
     );
  </script>
  

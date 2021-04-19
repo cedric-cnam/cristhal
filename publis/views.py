@@ -156,7 +156,8 @@ def stats_collection(request, code_collection):
     context["stats_classement"] = Publication.stats_par_classement(code_collection, 
                                                                     config.annee_min_publis,  
                                                                     config.annee_max_publis)
-
+    context["stats_reseau_coauteurs"] = context["collection"].stats_reseau_coauteurs()
+    
     return render(request, 'publis/stats_collection.html', context)
 
 @login_required

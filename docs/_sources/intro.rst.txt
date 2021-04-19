@@ -53,6 +53,13 @@ Elle a été initialement développée pour le laboratoire Cédric (http://cedri
 par Philippe Rigaux. 
 
 
+.. _reseau-coauteurs:
+.. figure:: ./figures/reseau-coauteurs.png       
+        :width: 90%
+        :align: center
+   
+        Réseau des co-auteurs au sein d'une collection
+
 .. _stats_annee_classement:
 .. figure:: ./figures/stats_annee_classement.png       
         :width: 90%

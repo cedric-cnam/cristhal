@@ -178,6 +178,38 @@ class Collection(models.Model):
     def nb_publis(self):
         return self.publication_set.count()
 
+    def stats_reseau_coauteurs(self):
+        # Prenons tous les auteurs attachés à la collection
+        auteurs_collection = {}
+        for auteur in self.auteurs.all():
+            auteurs_collection[auteur.id] = auteur
+        # Maintenant on parcourt les publis et on produit les arêtes coauteurs
+        aretes = {}
+        for publi in self.publication_set.all():
+            for a1 in publi.auteurs.all():
+                for a2 in publi.auteurs.all():
+                    if not (a1.id == a2.id):
+                        # L'arête est identifiée par la paire d'id, dans l'ordre
+                        id_arete = str(min(a1.id,a2.id)) + "-" + str(max(a1.id,a2.id))
+                        if id_arete in aretes:
+                            # On incrémente le nombre de liens
+                            aretes[id_arete]["nb_collab"] += 1
+                        else:
+                            aretes[id_arete] = {"auteur1" : a1,
+                                                "auteur2": a2,
+                                                "nb_collab": 1}
+        # Pour finir on construit les arêtes du graphe au format Highgraph
+        graphe =[]
+        for arete in aretes.values():
+            # On ne s'intéresse qu'aux arête avec un auteur de la collection
+            if (arete["auteur1"].id in auteurs_collection and
+                arete["auteur2"].id in auteurs_collection):
+                graphe.append ({"from": arete["auteur1"].nom_complet,
+                        "to": arete["auteur2"].nom_complet,
+                        "width": arete["nb_collab"] / 2,
+                        "color": "orange"})
+        return graphe
+
 #################
 class Source(models.Model):
     """ 
@@ -481,6 +513,9 @@ class Publication(models.Model):
                 if comps[0] != '':
                     auteur.id_hal = comps[0]
                     auteur.save()
+                # Ajoutons l'auteur
+                self.auteurs.add(auteur)
+
                 # Cherchons l'identifiant de structure
                 if "authStructId_i" in jsonDoc.keys():
                     # On doit trouver l'id structure à la même position
@@ -513,5 +548,4 @@ class Publication(models.Model):
                 pos_auteur += 1
                 
             self.chaine_auteurs = chaine_auteurs
-            self.auteurs.add(auteur)
             self.save()
