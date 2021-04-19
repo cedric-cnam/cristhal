@@ -23,13 +23,7 @@
             enabled: true
         },
         data: {{chart_donnees}},
-        nodes: [{
-            id: 'Philippe Rigaux',
-            color: 'orange'
-        }, {
-            id: 'Francesco Foscarin',
-            color: 'black'
-        }]
+        nodes: []
     }]
 
 }
