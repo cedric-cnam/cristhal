@@ -11,6 +11,7 @@ HAL_SEARCH_URL = "https://api.archives-ouvertes.fr/search/"
 MAX_ROWS = 1000
 # Séparateur de facettes dans HAL
 FACET_SEP="_FacetSep_"
+JOIN_SEP="_JoinSep_"
 # Motif de l'URL de recherche des publis
 QUERY_PUBLIS=HAL_SEARCH_URL + "CEDRIC-CNAM?wt=json&fq=publicationDateY_i:[{ymin:d} TO {ymax:d}]&sort=producedDate_tdate%20desc" 
 # Recherche d'un auteur par son id HAL
@@ -29,7 +30,7 @@ QUERY_HAL_PUBLI = HAL_SEARCH_URL + "?wt=bibtex&fq=halId_s:{id_hal:s}"
 CHAMPS = ["halId_s",  "journalTitle_s", "title_s", 
         "docType_s", 
         "authIdHalFullName_fs", "authIdFullName_fs",
-        "authStructId_i", 
+        "authIdHasStructure_fs",
         "conferenceTitle_s", "bookTitle_s",
          "publicationDateY_i", "publisher_s"]
 

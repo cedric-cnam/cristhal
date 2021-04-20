@@ -149,6 +149,8 @@ class Collection(models.Model):
             hal_query += "&fl=" + c
         hal_query += "&rows=" + str(MAX_ROWS)
         
+        # Nettoyage de la participation des auteurs à la collection
+        Participation.objects.filter(collection=self).delete()
         # On récupère toutes les publis de Hal pour synchroniser la base
         logger.info("Requête HAL : " + hal_query)
         i_doc = 0
@@ -496,59 +498,58 @@ class Publication(models.Model):
             self.ouvrage_titre = jsonDoc["title_s"]
         self.save()
         
-        if "authIdHalFullName_fs" in jsonDoc.keys():
+        if "authIdHasStructure_fs" in jsonDoc.keys():
             chaine_auteurs = ""
-            pos_auteur =0
-            for auteur in jsonDoc["authIdHalFullName_fs"]:
-                comps = auteur.split(FACET_SEP)
-                # Premier composant: id_hal, second: nom complet
-                try:
-                    auteur = Auteur.objects.get(nom_complet=comps[1])
-                except Auteur.DoesNotExist:
-                    auteur = Auteur(nom_complet=comps[1])
-
-                auteur.nom_complet = comps[1]
-                auteur.save()
-                #Peut-être on a l'id HAL
-                if comps[0] != '':
-                    auteur.id_hal = comps[0]
-                    auteur.save()
-                # Ajoutons l'auteur
-                self.auteurs.add(auteur)
-
-                # Cherchons l'identifiant de structure
-                if "authStructId_i" in jsonDoc.keys():
-                    # On doit trouver l'id structure à la même position
-                    if pos_auteur < len(jsonDoc["authStructId_i"]):
-                        id_structure = jsonDoc["authStructId_i"][pos_auteur]
-                        # S'agit-il d'une collection connue?
-                        try:
-                            coll = Collection.objects.get(id_hal=id_structure)
-                            # L'auteur a participé à la collection
-                            try:
-                                part = Participation.objects.get(auteur=auteur,
-                                                              collection=coll)
-                                # Ajustons la période
-                                if part.date_debut.year > self.annee:
-                                    part.date_debut = datetime.date(self.annee, 1,1)
-                                if part.date_fin.year < self.annee:
-                                    part.date_fin = datetime.date(self.annee, 12,31)
-                                part.save()
-                            except Participation.DoesNotExist:
-                                # Créons le lien
-                                part = Participation(auteur=auteur,
-                                                collection=coll,
-                                                date_debut=datetime.date(self.annee, 1,1),
-                                                date_fin=datetime.date(self.annee, 12,31)
-                                                )
-                                part.save()
-                        except Collection.DoesNotExist:
-                            # On ne connait pas cette collection
-                            pass
-                    else:
-                        logger.warning ("Pas de structure indiquée pour les auteurs de la publi " + self.titre)
-                chaine_auteurs +=  comps[1] + ' '
-                pos_auteur += 1
+            nom_auteur_courant = "xxx"
+            # On a une liste des structures référencées pour la publi
+            for structure in jsonDoc["authIdHasStructure_fs"]:
+                champs_structure = structure.split(FACET_SEP)
+                id_auteur = champs_structure[0]
+                # Il faut encore décomposer...
+                detail_structure = champs_structure[1].split(JOIN_SEP)
+                id_structure = detail_structure[1]
+                nom_auteur = detail_structure[0]
                 
+                # Créons l'auteur si c'est la première fois qu'on le trouve
+                if not (nom_auteur_courant == nom_auteur):
+                    try:
+                        auteur = Auteur.objects.get(nom_complet=nom_auteur)
+                    except Auteur.DoesNotExist:
+                        auteur = Auteur(nom_complet=nom_auteur)
+                        auteur.nom_complet = nom_auteur
+                        auteur.save()
+                    #Peut-être on a l'id HAL. Pas garanti...
+                    if id_auteur != '':
+                        auteur.id_hal = id_auteur
+                        auteur.save()
+                    # Ajoutons l'auteur à la collection
+                    self.auteurs.add(auteur)
+                    nom_auteur_courant = nom_auteur
+                    chaine_auteurs +=  nom_auteur + ' '
+                # Maintenant on enregistre la participation de l'auteur
+                # à l'une des collections connues si c'est le cas
+                try:
+                    coll = Collection.objects.get(id_hal=id_structure)
+                            # Trouvé ! L'auteur a participé à la collection
+                    try:
+                        part = Participation.objects.get(auteur=auteur,
+                                                            collection=coll)
+                        # Ajustons la période
+                        if part.date_debut.year > self.annee:
+                            part.date_debut = datetime.date(self.annee, 1,1)
+                        if part.date_fin.year < self.annee:
+                             part.date_fin = datetime.date(self.annee, 12,31)
+                        part.save()
+                    except Participation.DoesNotExist:
+                        # Créons le lien
+                        part = Participation(auteur=auteur,
+                                        collection=coll,
+                                        date_debut=datetime.date(self.annee, 1,1),
+                                        date_fin=datetime.date(self.annee, 12,31)
+                                        )
+                        part.save()
+                except Collection.DoesNotExist:
+                    # On ne connait pas cette collection, on continue
+                    pass
             self.chaine_auteurs = chaine_auteurs
             self.save()
