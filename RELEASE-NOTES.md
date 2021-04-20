@@ -1,4 +1,4 @@
-# xxx 2021 - "Participation des auteurs aux collections"
+# 20 avril 2021 - "Participation des auteurs aux collections"
 
 Extraction des informations donnant la participation des auteurs aux collections
 
