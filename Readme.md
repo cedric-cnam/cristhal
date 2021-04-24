@@ -32,5 +32,9 @@ CristHAL est une application web Python/Django disponible en libre accès, initi
 [documentation en ligne](https://cedric-cnam.github.io/cristhal/).
 
 
+<p align="center">
+<img src="/docsrc/figures/reseau-coauteurs.png" width="700"> 
+</p>
+
 Un environnement de test est disponible à http://cristhal.cnam.fr/. Demander un compte d'accès à philippe.rigaux@cnam.fr.
 
