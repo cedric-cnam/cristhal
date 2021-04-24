@@ -36,10 +36,12 @@ Les fonctionnalités de CristHAL sont les suivantes
   - Configuration des collections HAL et import des référentiels fournis sous la forme de fichiers CSV
   - Récupération automatique des publications de chaque collection
   - Classement automatique suivi d'une validation manuelle
-  - Production de graphiques et statistiques variées (:numref:`stats-generales` et :numref:`stats_annee_classement`) 
+  - Production de graphiques et statistiques variées 
+    (:numref:`stats-generales` et :numref:`stats_annee_classement`) sur les publications classées
+  - Graphes de collaborations entre auteurs et entre collections (:numref:`reseau-coauteurs`)
   - Recherche des publications par formulaire ou par SQL
-  - Export en PDF ou PNG des données pour insertion dans des rapports et présentations
-
+  - Export des figures en PDF ou PNG 
+  - Exports en Latex, Bibtex ou CSV des données pour insertion dans des rapports et présentations
 
 .. _stats-generales:
 .. figure:: ./figures/stats-generales.png       
