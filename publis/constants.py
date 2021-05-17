@@ -53,22 +53,6 @@ PUBLI_BREVET="PATENT"
 PUBLI_AUTRE="OTHER"
 PUBLI_TOUS_TYPES="Tous"
 
-TYPES_PUBLI= {
-        PUBLI_REVUE: "Articles revue",
-        PUBLI_CONF: "Conférence",
-        PUBLI_DIRECTION_OUVRAGE: "Direction d'ouvrage",
-        PUBLI_CHAPITRE: "Chapitre dans ouvrage",
-        PUBLI_OUVRAGE: "Livre",
-        PUBLI_POSTER: "Poster",
-        PUBLI_THESE: "Thèse",
-        PUBLI_HDR: "Habilitation",
-        PUBLI_REPORT: "Rapport de recherche",
-        PUBLI_BREVET: "Brevet",
-}
-
-# Le tableau suivant indique les types de publi que l'on ne souhaite par charger
-PUBLIS_HAL_EXCLUES = [PUBLI_THESE, PUBLI_HDR, PUBLI_UNDEFINED, 
-                      PUBLI_REPORT, PUBLI_AUTRE]
 
 #
 # Sources référentiel

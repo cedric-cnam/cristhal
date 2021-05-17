@@ -15,6 +15,23 @@ from .IndexWrapper import IndexWrapper
 # Un journaliseur 
 logger = logging.getLogger(settings.LOGGER_NAME)
 
+
+#################
+class TypesHAL(models.Model):
+
+    """
+       Les types de publication HAL
+    """
+    
+    code = models.CharField(max_length=8, primary_key=True)
+    libelle = models.CharField(max_length=255,)
+    
+    class Meta:
+        db_table = "TypesHAL"
+
+    def __str__(self):              # __unicode__ on Python 2
+        return "%s" % (self.libelle)
+
 #################
 class Config(models.Model):
     """
@@ -27,10 +44,13 @@ class Config(models.Model):
     
     code = models.CharField(max_length=20, default="défaut", primary_key=True)
     
-    # URL d'interrogation de Ham
+    # URL d'interrogation de Hal
     url_hal = models.CharField(max_length=80, default=HAL_SEARCH_URL)
     annee_min_publis = models.IntegerField(default=ANNEE_MIN_PUBLI)
     annee_max_publis = models.IntegerField(default=ANNEE_MAX_PUBLI)
+
+    # Les types de publi HAL à charger
+    types_publis = models.ManyToManyField(TypesHAL)
 
     class Meta:
         db_table = "Config"
@@ -61,7 +81,8 @@ class Config(models.Model):
         group_type = Publication.objects.values('type').annotate(Count('id_hal'))
         sortie = []
         for gr in group_type:
-            sortie.append ({"name": TYPES_PUBLI[gr["type"]], "y": gr["id_hal__count"]})
+            type_publi = TypesHAL.objects.get(code=gr["type"])
+            sortie.append ({"name": type_publi["libelle"], "y": gr["id_hal__count"]})
         return sortie
 
 #################
@@ -157,7 +178,7 @@ class Collection(models.Model):
         r = requests.get(url=hal_query)
         docs = r.json()["response"]["docs"]
         for doc in docs: 
-            if not (doc["docType_s"] in PUBLIS_HAL_EXCLUES):
+            if doc["docType_s"] in config.types_publis.code:
                 # Si elle existe, on la garde avec son classement
                 try:
                     publi = Publication.objects.get(id_hal=doc["halId_s"])
@@ -348,9 +369,6 @@ class Referentiel(models.Model):
     def __init__(self, *args, **kwargs):
         super(Referentiel, self).__init__(*args, **kwargs)
 
-
-
-
 #################
 class ClassementPubli(models.Model):
 
@@ -416,15 +434,15 @@ class Publication(models.Model):
         publis = Publication.get_publis_periode (collection, annee_min, annee_max)                        
         # La sortie: un dictionnaire sur le type, chaque entree est un tableau avec le compte par année
         sortie = OrderedDict()
-        for type_publi, libelle_publi in TYPES_PUBLI.items():
-            sortie[libelle_publi] = list()
+        for type_publi in TypesHAL.objects.all():
+            sortie[type_publi["libelle"]] = list()
             for annee in range (annee_min, annee_max+1):
                 nb_par_annee = 0
                 # On trouve dans le résultat de la requete les publis pour cette annee et ce type                
                 for publi in publis:
-                    if publi.type == type_publi and publi.annee==annee:
+                    if publi.type == type_publi["code"] and publi.annee==annee:
                         nb_par_annee += 1
-                sortie[libelle_publi].append(nb_par_annee)
+                sortie[type_publi["libelle"]].append(nb_par_annee)
         return sortie
 
     @staticmethod

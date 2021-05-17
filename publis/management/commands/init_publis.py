@@ -1,8 +1,8 @@
 from django.core.management.base import BaseCommand
 
-from publis.models import ClassementPubli, Config
+from publis.models import ClassementPubli, Config, TypesHAL
 
-from publis.constants import HAL_SEARCH_URL, CODE_CONFIG_DEFAUT
+from publis.constants import *
 
 # Les valeurs du classement par défaut
 
@@ -21,6 +21,27 @@ CLASSEMENT_PUBLIS = [{"code": NIVEAU_1, "libelle" : "Q1"},
                     {"code": NIVEAU_NAT, "libelle" : "National"},
                     {"code": NIVEAU_HORS_REF, "libelle" : "Hors référentiel"}
                 ]
+
+
+TYPES_PUBLI= {
+        PUBLI_REVUE: "Articles revue",
+        PUBLI_CONF: "Conférence",
+        PUBLI_DIRECTION_OUVRAGE: "Direction d'ouvrage",
+        PUBLI_CHAPITRE: "Chapitre dans ouvrage",
+        PUBLI_OUVRAGE: "Livre",
+        PUBLI_POSTER: "Poster",
+        PUBLI_THESE: "Thèse",
+        PUBLI_HDR: "Habilitation",
+        PUBLI_REPORT: "Rapport de recherche",
+        PUBLI_BREVET: "Brevet",
+        PUBLI_AUTRE: "Autre",
+}
+
+# Le tableau suivant indique les types de publi que l'on ne souhaite par charger
+#  par défaut
+PUBLIS_HAL_EXCLUES = [PUBLI_THESE, PUBLI_HDR, PUBLI_UNDEFINED, 
+                      PUBLI_REPORT, PUBLI_AUTRE]
+
 
 class Command(BaseCommand):
     """Initialisation de la codification """
@@ -41,13 +62,29 @@ class Command(BaseCommand):
             conf_def.save()
 
         # Initialisation de l'échelle des classement
+        print ("Initialisation de l'échelle de classement des publications")
         for cl in CLASSEMENT_PUBLIS:
             try:
                 class_obj = ClassementPubli.objects.get(code=cl["code"])
-                print ("Le classement " + cl["libelle"] + " existe déjà")
+                print ("\tLe classement " + cl["libelle"] + " existe déjà")
             except ClassementPubli.DoesNotExist:
                 print ("Création du classement  ({0}, {1})".format (
                     cl["code"], cl["libelle"]))
                 class_obj = ClassementPubli(code=cl["code"],libelle=cl["libelle"])
                 class_obj.save()
-        print ("Classement des publis initialisé")
+
+        # Insertion des types de publication HAL
+        print ("Initialisation des types de publication HAL")
+        for code, libelle in TYPES_PUBLI.items():
+            try:
+                thal_obj = TypesHAL.objects.get(code=code)
+                print ("\tLe type " + code + " existe déjà")
+            except TypesHAL.DoesNotExist:
+                print ("Création du type de publi  ({0}, {1})".format (
+                    code, libelle))
+                thal_obj = TypesHAL(code=code,libelle=libelle)
+                thal_obj.save()
+                if not code in PUBLIS_HAL_EXCLUES:
+                    conf_def.types_publis.add(thal_obj)
+                    
+        print ("\nInitialisation terminée")
