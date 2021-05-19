@@ -1,4 +1,20 @@
-# 20 avril 2021 - "Participation des auteurs aux collections"
+# En cours - "Extension du paramétrage"
+
+### Nouvelles fonctionnalités
+  * Ajout des types de publications à importer depuis HAL
+
+### Corrections
+
+### Améliorations
+
+### Procédure de mise à jour
+
+Mise à jour de la base avec:
+
+ * python3 manage.py migrate
+ * python3 manage.py init_publis
+
+# V1.0.2 - 20 avril 2021 - "Participation des auteurs aux collections"
 
 Extraction des informations donnant la participation des auteurs aux collections
 
@@ -18,7 +34,7 @@ Mise à jour de la base avec:
 
  * python3 manage.py migrate
 
-# 16 avril 2021 - "Ajout des fonctionnalités d'export"
+# V1.0.1 - 16 avril 2021 - "Ajout des fonctionnalités d'export"
 
 Possibiité d'exporter images et graphiques
 
@@ -26,11 +42,8 @@ Possibiité d'exporter images et graphiques
 * Les images sont téléchargeables directement de l'interface
 * Images et bibtex d'une collection sont téléchargeables dsous forme de zip
 
-
 ### Corrections
 
-
 ### Améliorations
-
 
 ### Procédure de mise à jour
