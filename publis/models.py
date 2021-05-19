@@ -61,6 +61,13 @@ class Config(models.Model):
     def __init__(self, *args, **kwargs):
         super(Config, self).__init__(*args, **kwargs)
 
+    def types_publis_acceptes(self):
+        resultat = []
+        # Tableau de la liste des types de publis gérés dans HAL
+        for type_publi in self.types_publis.all():
+            resultat.append(type_publi.code)
+        return resultat
+
     @staticmethod
     def stats_collections(annee_min, annee_max, type_publi=PUBLI_REVUE):
         # La sortie: un dictionnaire sur le code de la collection, chaque entrée est le nombre de publis
@@ -156,11 +163,13 @@ class Collection(models.Model):
     def __init__(self, *args, **kwargs):
         super(Collection, self).__init__(*args, **kwargs)
 
+
     def synchro_hal(self):
         
         # Cherchons la configuration pour avoir des valeurs par défaut
         config = Config.objects.get(code=CODE_CONFIG_DEFAUT)
-
+        types_publis_acceptes = config.types_publis_acceptes()
+        
         # On crée l'URL d'interrogation de HAL
         #"Sammy the {pr} {1} a {0}.".format("shark", "made", pr = "pull request"))
         hal_query = QUERY_HAL_COLL.format(coll_id=self.id_hal,
@@ -178,7 +187,7 @@ class Collection(models.Model):
         r = requests.get(url=hal_query)
         docs = r.json()["response"]["docs"]
         for doc in docs: 
-            if doc["docType_s"] in config.types_publis.code:
+            if doc["docType_s"] in types_publis_acceptes:
                 # Si elle existe, on la garde avec son classement
                 try:
                     publi = Publication.objects.get(id_hal=doc["halId_s"])

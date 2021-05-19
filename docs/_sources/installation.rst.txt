@@ -237,6 +237,15 @@ de CristHAL et contient plusieurs paramètres:
 
   - L'adresse des services web HAL (ne pas modifier en principe)
   - La période (année min et max) de récolte des publications.
+  - les types de publication HAL qui doivent être importés dans le système ; par 
+    défaut des types comme 'AUTRE', 'POSTER' ou 'RAPPORT' ne sont pas importés.
+
+.. _form-config:
+.. figure:: ./figures/form-config.png       
+        :width: 90%
+        :align: center
+   
+        Le formulaire de configuration
 
 Au-delà de la configuration, tout le paramétrage de CristHAL se fait via cette interface
 d'administration.
