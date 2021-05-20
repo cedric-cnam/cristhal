@@ -35,6 +35,7 @@ TYPES_PUBLI= {
         PUBLI_REPORT: "Rapport de recherche",
         PUBLI_BREVET: "Brevet",
         PUBLI_AUTRE: "Autre",
+        PUBLI_LOGICIEL: "Logiciel"
 }
 
 # Le tableau suivant indique les types de publi que l'on ne souhaite par charger
