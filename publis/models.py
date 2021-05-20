@@ -444,14 +444,14 @@ class Publication(models.Model):
         # La sortie: un dictionnaire sur le type, chaque entree est un tableau avec le compte par année
         sortie = OrderedDict()
         for type_publi in TypesHAL.objects.all():
-            sortie[type_publi["libelle"]] = list()
+            sortie[type_publi.libelle] = list()
             for annee in range (annee_min, annee_max+1):
                 nb_par_annee = 0
                 # On trouve dans le résultat de la requete les publis pour cette annee et ce type                
                 for publi in publis:
-                    if publi.type == type_publi["code"] and publi.annee==annee:
+                    if publi.type == type_publi.code and publi.annee==annee:
                         nb_par_annee += 1
-                sortie[type_publi["libelle"]].append(nb_par_annee)
+                sortie[type_publi.libelle].append(nb_par_annee)
         return sortie
 
     @staticmethod
