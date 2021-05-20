@@ -89,7 +89,7 @@ class Config(models.Model):
         sortie = []
         for gr in group_type:
             type_publi = TypesHAL.objects.get(code=gr["type"])
-            sortie.append ({"name": type_publi["libelle"], "y": gr["id_hal__count"]})
+            sortie.append ({"name": type_publi.libelle, "y": gr["id_hal__count"]})
         return sortie
 
 #################
