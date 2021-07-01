@@ -1,0 +1,21 @@
+ID;Acronyme;Titre;Classement;Type;Justification
+vertigo1;BDA;Conférence sur la Gestion de Données Principes, Technologies et Applications - Bases de données avancées;National;COMM;
+vertigo2;ISMIR;International Symposium on Music Information Retrieval;Q2;COMM;
+vertigo3;GRETSI;Groupe de Recherche en Traitement du Signal et des Images;National;COMM;
+vertigo4;AISR;Atelier interdisciplinaire sur les Systèmes de Recommandations;National;COMM;
+vertigo5;JIM;Journée d'Informatique musicale;National;COMM;
+vertigo6;RNTI;Revue des Nouvelles Technologies de l'Information;National;ART;
+vertigo7;NeurIPS;Neural Information Processing Systems;Q1;COMM;
+vertigo8;;Lingua Aegyptia - Journal of Egyptian Language Studies;Q2;ART;
+vertigo9;MCM;Mathematics and Computation in Music;Q3;COMM;
+vertigo10;SMC;Sound and Music Computing Conference;Q2;COMM;
+vertigo11;DLfM;International Conference on Digital Libraries for Musicology;Q3;COMM;
+vertigo12;ISPRS Congress;International Archives of the Photogrammetry, Remote Sensing and Spatial Information Sciences;Q3;COMM;
+vertigo13;TENOR;International Conference on Technologies for Music Notation and Representation;Q3;COMM;
+vertigo14;CVIU;Computer Vision and Image Understanding;Q1;ART;
+vertigo15;ISPRS;ISPRS Journal of Photogrammetry and Remote Sensing (P&RS);Q1;ART;
+vertigo16;OmniCV @CVPR;Workshop Omnidirectional Computer Vision;Q2;COMM;
+vertigo17;TaskCV @ECCV;Workshop Transferring and Adapting Source Knowledge in Computer Vision and VisDA Challenge;Q2;COMM;
+vertigo18;LEG @ ECML-PKDD;workshop Advances in managing and mining large evolving graphs (LEG);Q2;COMM;
+vertigo19;IOTSTREAMING @ ECML-PKDD;Workshop Large-scale Learning from Data Streams in Evolving Environments;Q2;COMM;
+vertigo20;DLMIA @MICCAI;Workshop Deep Learning in Medical Image Analysis (DLMIA);Q2;COMM;

@@ -71,6 +71,15 @@ Il peut également servir à corriger les classements de référence. Enfin, il 
 servir à attribuer un classement Cédric (Q1, Q2, Q3 ou Q4) dans le cas où des revues ou conférences
 nationale à comités de lecture ont en fait une portée internationale qui le justifie. 
 
+Le fichier CSV doit contenir au moins les champs ID, Titre, Classement et Type (dont l'emplacement
+est défini par la première ligne d'entête. Voici un exemple du format attendu:
+
+..  code-block:: text
+
+    ID;Acronyme;Titre;Classement;Type
+    vertigo1;BDA;Conférence sur la Gestion de Données Principes, Technologies et Applications - Bases de données avancées;National;COMM
+    vertigo2;ISMIR;International Symposium on Music Information Retrieval;Q2;COMM
+
 Pour produire un fichier source CSV importable dans CristHAL, le plus simple est d'utiliser un tableur.
 Dans ``cristhaldir/install``, vous trouverez le fichier que nous utilisons au laboratoire Cédric
 (en le partageant dans un environnement collaboratif). Il contient la codification utilisée
