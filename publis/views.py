@@ -255,11 +255,11 @@ def classement(request, code_collection):
                         collections__code=code_collection).filter(type=PUBLI_CONF
                         ) |  Publication.objects.filter(
                         annee__gte=config.annee_min_publis).filter(
-                        collections__code=code_collection).filter(type=PUBLI_REVUE)
-                        |  Publication.objects.filter(
+                        collections__code=code_collection).filter(type=PUBLI_REVUE
+                        ) | Publication.objects.filter(
                         annee__gte=config.annee_min_publis).filter(
-                        collections__code=code_collection).filter(type=PUBLI_BREVET)
-                        |  Publication.objects.filter(
+                        collections__code=code_collection).filter(type=PUBLI_BREVET
+                        ) | Publication.objects.filter(
                         annee__gte=config.annee_min_publis).filter(
                         collections__code=code_collection).filter(type=PUBLI_LOGICIEL)
 
