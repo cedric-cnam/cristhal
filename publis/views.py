@@ -256,14 +256,8 @@ def classement(request, code_collection):
                         ) |  Publication.objects.filter(
                         annee__gte=config.annee_min_publis).filter(
                         collections__code=code_collection).filter(type=PUBLI_REVUE)
-                        |  Publication.objects.filter(
-                        annee__gte=config.annee_min_publis).filter(
-                        collections__code=code_collection).filter(type=PUBLI_BREVET)    
-                        |  Publication.objects.filter(
-                        annee__gte=config.annee_min_publis).filter(
-                        collections__code=code_collection).filter(type=PUBLI_LOGICIEL)        
-                        
     context["classement_formset"] = PublisFormset (queryset=publis)
+
     context["matches"] = []
     context["bestrefs"] = []
     context["publis"] = publis
