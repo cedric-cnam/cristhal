@@ -230,6 +230,7 @@ class Collection(models.Model):
                             aretes[id_arete] = {"auteur1" : a1,
                                                 "auteur2": a2,
                                                 "nb_collab": 1}
+                
         # Pour finir on construit les arêtes du graphe au format Highgraph
         graphe =[]
         for arete in aretes.values():
@@ -240,7 +241,23 @@ class Collection(models.Model):
                         "to": arete["auteur2"].nom_complet,
                         "width": arete["nb_collab"] / 2,
                         "color": "orange"})
-        return graphe
+                        
+        # Nouvelle boucle pour trouver les auteurs solitaires
+        noeuds = []
+        for auteur in self.auteurs.all():
+            auteur_isole = True
+            for arete in graphe:
+                if arete["from"] == auteur.nom_complet:
+                    auteur_isole = False
+                    break
+                if arete["to"] == auteur.nom_complet:
+                    auteur_isole = False
+                    break
+
+            if auteur_isole:
+                noeuds.append ({"id": auteur.nom_complet, "color": 'orange'})
+
+        return {"graphe": graphe, "noeuds": noeuds}
 
 #################
 class Source(models.Model):

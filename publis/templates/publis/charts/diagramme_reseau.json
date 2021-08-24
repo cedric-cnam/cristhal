@@ -15,15 +15,15 @@
         }
     },
     series: [
-    {
-    marker: {
-      radius: 25
-    },
-        dataLabels: {
+       {
+         marker: {
+           radius: 25
+         },
+         dataLabels: {
             enabled: true
-        },
-        data: {{chart_donnees}},
-        nodes: []
-    }]
-
+         },
+         data: {{chart_donnees}},
+         nodes: {{chart_noeuds}}
+       }
+    ]
 }
