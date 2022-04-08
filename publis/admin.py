@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Config, Collection, TypesHAL, ClassementPubli, Source, Publication
+from .models import Config, Collection, TypesHAL, ClassementPubli, Source, Publication, Referentiel
 
 class ReferentielAdmin(admin.ModelAdmin):
     search_fields = ["titre"]
@@ -19,5 +19,5 @@ admin.site.register(Collection)
 admin.site.register(Source)
 admin.site.register(TypesHAL)
 admin.site.register(Publication, PubliAdmin)
-#admin.site.register(Referentiel, ReferentielAdmin)
+admin.site.register(Referentiel, ReferentielAdmin)
 admin.site.register(ClassementPubli)

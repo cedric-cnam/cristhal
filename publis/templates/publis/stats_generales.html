@@ -57,6 +57,16 @@
  </script>
  </td>
 </tr>
+<tr>
+ <td colspan='3' width="100%"> 
+<div id="stats_annee_classement"></div>
+ <script>
+    Highcharts.chart('stats_annee_classement', 
+       {% include "publis/charts/diagramme_barres.json" with chart_annees=annees  chart_donnees=stats_annee_classement %}
+    );
+ </script>
+ </td>
+</tr>
 </table>
 
 </div>

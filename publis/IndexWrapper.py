@@ -20,6 +20,7 @@ class ReferentielIndex(Document):
     title = Text()
     type = Text()
     source = Text()
+    type_source = Text()
     description_source = Text()
     rank = Text()
     
@@ -73,7 +74,8 @@ class IndexWrapper:
                 title=ref.titre,
                 acronym=ref.acronyme,
                 ft_field=ref.champ_plein_texte,
-                source=ref.source.type_source,
+                type_source=ref.source.type_source,
+                source=ref.source.identifiant_source,
                 description_source=ref.source.description,
                 type=ref.type,
                 rank=ref.classement

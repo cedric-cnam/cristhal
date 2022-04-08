@@ -33,7 +33,8 @@
             {% if bestref.id_hal == form.id_hal.value %}
                 <ul>
               {% for ref in bestref.meilleures_ref %}
-                <li>{{ref.title}}</b>, avec classement {{ref.rank}} (source {{ref.source}})</li>
+                <li>{{ref.title}}</b>, avec classement {{ref.rank}} (source {{ref.source}}, {{ref.type_source}}</li>
+                <!--   score {{ref.meta.score}}) --> 
                 {% endfor %}
                 </ul>
             {% endif %}

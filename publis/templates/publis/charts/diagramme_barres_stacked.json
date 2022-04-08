@@ -8,6 +8,15 @@
         xAxis: {
             categories: {{chart_annees|safe}}
          },
+             plotOptions: {
+        column: {
+            stacking: 'normal',
+            dataLabels: {
+                enabled: true
+            }
+        }
+    },
+         
         series: [
         {% for key, value in chart_donnees.items %}
         {
