@@ -17,7 +17,7 @@ QUERY_PUBLIS=HAL_SEARCH_URL + "CEDRIC-CNAM?wt=json&fq=publicationDateY_i:[{ymin:
 # Recherche d'un auteur par son id HAL
 QUERY_AUTEUR="https://api.archives-ouvertes.fr/ref/author/?fq=idHal_s:{id_hal:s}&&fl=firstName_s&fl=lastName_s&fl=structure_fs"
 # Recherche d'un auteur par son identifiant interne
-QUERY_AUTEUR_ID="https://api.archives-ouvertes.fr/ref/author/?wt=json&q=docid:{id:d}"
+QUERY_AUTEUR_ID="https://api.archives-ouvertes.fr/ref/author/?wt=json&fq=idHal_i:{id_hal}&fl=firstName_s&fl=lastName_s&fl=idHal_s"
 # Recherche structure par id interne
 QUERY_STRUCTURE="https://api.archives-ouvertes.fr/ref/structure/?wt=json&q=docid:{id:d}"
 # Recherche des structures d'un auteur
@@ -27,12 +27,13 @@ QUERY_HAL_COLL = HAL_SEARCH_URL + "?wt=json&q=*:*&facet=true&fq=publicationDateY
 # Requête pour une publi
 QUERY_HAL_PUBLI = HAL_SEARCH_URL + "?wt=bibtex&fq=halId_s:{id_hal:s}"
 # Liste des champs à récupérer pour une publi
-CHAMPS = ["halId_s",  "journalTitle_s", "title_s", 
-        "docType_s", 
-        "authIdHalFullName_fs", "authIdFullName_fs",
-        "authIdHasStructure_fs",
-        "conferenceTitle_s", "bookTitle_s",
-         "publicationDateY_i", "publisher_s"]
+CHAMPS = ["halId_s",  "title_s", "label_bibtex,"
+        "docType_s", "authIdHasStructure_fs",
+        "conferenceTitle_s", 
+         "publicationDateY_i", "bookTitle_s", "publisher_s",  "number_s", "page_s", "volume_s",
+         "journalTitle_s","journalPublisher_s"]
+
+# "authIdHalFullName_fs", "authIdFullName_fs",
 
 # Quand on veut traiter toutes les collections
 TOUTES_COLLECTIONS='toutes'
@@ -42,17 +43,18 @@ PUBLI_CONF = "COMM"
 PUBLI_REVUE="ART"
 PUBLI_POSTER="POSTER"
 PUBLI_DIRECTION_OUVRAGE="DOUV"
+PUBLI_ACTES="PROCEEDINGS"
 PUBLI_CHAPITRE="COUV"
 PUBLI_OUVRAGE="OUV"
 PUBLI_THESE="THESE"
 PUBLI_HDR="HDR"
 PUBLI_REPORT="REPORT"
 PUBLI_UNDEFINED="UNDEFINED"
-PUBLI_OUVRAGE="OUV"
 PUBLI_BREVET="PATENT"
 PUBLI_LOGICIEL="SOFTWARE"
 PUBLI_AUTRE="OTHER"
 PUBLI_TOUS_TYPES="Tous"
+PUBLI_TOUS_CLASSEMENTS="Tous"
 
 #
 # Sources référentiel

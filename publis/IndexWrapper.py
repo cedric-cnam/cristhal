@@ -30,17 +30,20 @@ class ReferentielIndex(Document):
 class IndexWrapper:
     """A class to interact with ElasticSearch"""
 
-    def __init__(self, auth_login=None, auth_password=None) :
-        if auth_login is None:
-            self.elastic_search = Elasticsearch(host=settings.ELASTIC_SEARCH["host"], 
-                                            port=settings.ELASTIC_SEARCH["port"],
-                                            index=settings.ELASTIC_SEARCH["index"])
-        else:
+    # Run bin/elasticsearch-reset-password interactive -u elastic to reset the password
+    def __init__(self) :
+        if 'auth_login' in settings.ELASTIC_SEARCH:
+            auth_login = settings.ELASTIC_SEARCH["auth_login"]
+            auth_password = settings.ELASTIC_SEARCH["auth_password"]
             self.elastic_search = Elasticsearch(host=settings.ELASTIC_SEARCH["host"], 
                                             port=settings.ELASTIC_SEARCH["port"],
                                             index=settings.ELASTIC_SEARCH["index"],
                                             http_auth=(auth_login, auth_password))
-            
+        else:
+            self.elastic_search = Elasticsearch(host=settings.ELASTIC_SEARCH["host"], 
+                                            port=settings.ELASTIC_SEARCH["port"],
+                                            index=settings.ELASTIC_SEARCH["index"])
+
         # Open, and possibly create the index
         self.index = Index (settings.ES_INDEX_REF,using=self.elastic_search)
         
@@ -83,9 +86,9 @@ class IndexWrapper:
         
         ref_index.save(using=self.elastic_search,id=ref.ref_locale)
 
-    def delete_ref (self, ref):
+    def delete_ref (self, id):
         """ Receive a Referentiel Django model instance, remove from ElasticSearch"""
         search = self.index.search()
-        search=search.query("match", ref_locale=ref.ref_locale)
+        search=search.query("match", id=ref.ref_locale)
         search.delete()
     

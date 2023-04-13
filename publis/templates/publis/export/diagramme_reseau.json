@@ -1,0 +1,29 @@
+{
+ chart: {
+        type: 'networkgraph'
+    },
+     title: {
+            text: '{{chart_titre}}'
+        },
+    plotOptions: {
+        networkgraph: {
+            layoutAlgorithm: {
+                enableSimulation: true,
+                  linkLength: 80,
+                  integration: 'verlet',
+            }
+        }
+    },
+    series: [
+       {
+         marker: {
+           radius: 25
+         },
+         dataLabels: {
+            enabled: true
+         },
+         data: {{chart_donnees}},
+         nodes: {{chart_noeuds}}
+       }
+    ]
+}

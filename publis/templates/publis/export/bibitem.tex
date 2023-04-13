@@ -1,0 +1,19 @@
+
+\bibitem[\href{https://hal.science/{{publi.id_hal}} }{ {{publi.id_hal}} }]{ {{publi.id_hal}} }
+  {% if publi.type == constants.PUBLI_CONF %}  {{publi.auteurs_bibitem|safe}}. 
+      \emph{ {{publi.titre|safe}} }, \textit{in} {{publi.conf_titre|safe}}, {{publi.pages_bibitem|safe}} {{publi.annee}}.
+  {% elif publi.type == constants.PUBLI_REVUE %}  {{publi.auteurs_bibitem|safe}}. 
+     \emph{ {{publi.titre|safe}} }, {{publi.revue_titre|safe}}, {{publi.volnum_bibitem|safe}} {{publi.pages_bibitem|safe}} {{publi.annee}}. 
+  {% elif publi.type == constants.PUBLI_OUVRAGE %}  {{publi.auteurs_bibitem|safe}}.  
+      \emph{ {{publi.ouvrage_titre|safe}} }, {{publi.annee}}. 
+  {% elif publi.type == constants.PUBLI_DIRECTION_OUVRAGE %}  {{publi.auteurs_bibitem|safe}}. 
+      \emph{ {{publi.titre|safe}} }, {{publi.annee}}. 
+  {% elif publi.type == constants.PUBLI_CHAPITRE %}  {{publi.auteurs_bibitem|safe}}. 
+      \emph{ {{publi.titre|safe}} }, \textit{in} {{publi.ouvrage_titre|safe}}, {{publi.pages_bibitem|safe}} {{publi.annee}}. 
+  {% elif publi.type == constants.PUBLI_BREVET %}  {{publi.auteurs_bibitem|safe}}. 
+      \emph{ {{publi.titre|safe}} }, {{publi.annee}}. 
+  {% elif publi.type == constants.PUBLI_LOGICIEL %}  {{publi.auteurs_bibitem|safe}}. 
+      \emph{ {{publi.titre|safe}} }, {{publi.annee}}. 
+  {% else %}  {{publi.auteurs_bibitem|safe}}.  
+     \emph{ {{publi.titre|safe}} }, {{publi.annee}}. ({{publi.type}}, {{publi.classement}}) (Type inconnu) 
+  {% endif %}  

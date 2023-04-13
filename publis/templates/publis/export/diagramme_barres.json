@@ -5,13 +5,8 @@
         title: {
             text: ""
         },
-         plotOptions: {
-        column: {
-            dataLabels: {
-                enabled: true
-            }
-        }
-    },
+       colors: ['brown', 'GoldenRod', 'OrangeRed', 'DarkCyan',  'mediumPurple', 'chocolate', 'DodgerBlue', 'Indigo', 'LawnGreen', 'red', '#1aadce',
+     '#492970',  '#f28f43', '#77a1e5', '#c42525', '#a6c96a'],
         xAxis: {
             categories: {{chart_annees|safe}}
          },

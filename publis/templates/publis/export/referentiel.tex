@@ -1,0 +1,11 @@
+
+  {% for s in sources %}
+
+\section{ {{s.description|safe}} }
+
+\begin{itemize}
+  {% for r in s.referentiel_set.all %}
+   \item \textit{ {{r.titre|safe}}}, avec classement {{r.classement}} 
+     {% endfor %} 
+\end{itemize}
+{% endfor %}

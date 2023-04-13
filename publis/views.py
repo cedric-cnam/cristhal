@@ -18,12 +18,13 @@ from django.template.response import SimpleTemplateResponse
 from django.db import connection, connections
 
 from .constants import *
-from .models  import Collection, Referentiel, Publication, Source, Config
+from .models  import Collection, Referentiel, Publication, Source, Config, Auteur
 from .IndexWrapper import IndexWrapper
 
 from  .forms import ClassementPubliForm, PubliSearchForm
 from publis.constants import CHOIX_SOURCES
 from publis.models import ClassementPubli
+from _ast import alias
 
 
 # Un journaliseur 
@@ -69,8 +70,7 @@ def collections(request):
 				"collections": Collection.objects.all(),
 				 "titre": "Liste des collections",
 				 "sous_menu": "collections",
-				 "menu_local": menu_local("collections"),
-				"export_dir": settings.EXPORT_DIR
+				 "menu_local": menu_local("collections")
 			   }
 	config = Config.objects.get(code=CODE_CONFIG_DEFAUT)
 	#  Vérifications de la configuration
@@ -81,7 +81,7 @@ def collections(request):
 	elif not os.access(settings.MEDIA_ROOT, os.W_OK):
 			context["message"] = "Le répertoire {0} doit permettre l'écriture de fichiers ".format(
 			settings.MEDIA_ROOT)
-	elif not os.path.isdir(settings.EXPORT_DIR):
+	elif not os.path.isdir(config.repertoire_export):
 			# On essaie de le créer, normalement c'est dans MEDIA
 			os.mkdir (settings.EXPORT_DIR)
 
@@ -89,6 +89,38 @@ def collections(request):
 	if request.GET.get ("synchro", "0") == "1":
 		collection = Collection.objects.get (code=request.GET.get ("code"))
 		nb_publis = collection.synchro_hal()
+		
+		# Elimination des doublons dans les auteurs
+		connection = connections['default']
+		requete_sql ="""select id_hal, nom_complet, count(*) as nb_alias 
+		                 from Auteur where id_hal is not null group by id_hal having count(*) > 1
+		               """
+		with connection.cursor() as cursor:
+			cursor.execute(requete_sql)
+			for auteur in namedtuplefetchall(cursor):
+				# On a trouvé un auteur avec plusieurs alias
+				print ("On a trouve un doublon d'alias pour " + auteur.nom_complet)
+				i_alias = 0
+				for alias in Auteur.objects.filter(id_hal=auteur[0]):
+					#print ("On a trouve l'alias " + str(alias.id_hal))
+					if i_alias == 0:
+						# C'est celui là qu'on garde
+						le_bon = alias
+					else:
+						#print ("Recherche des publis pour l'alias " + str(alias.id))
+						for publi in Publication.objects.filter(auteurs__id=alias.id):							
+							#print (f"Remplacement de {alias.id} par {le_bon.id} dans {publi.id_hal}")
+							with connection.cursor() as replace:
+								replace.execute(f"delete from  publis_auteurpos " +
+											    f" where auteur_id={le_bon.id} and publication_id='{publi.id_hal}'")
+								replace.execute(f"update publis_auteurpos set auteur_id={le_bon.id} " +
+											    f" where auteur_id={alias.id} and publication_id='{publi.id_hal}'")
+						with connection.cursor() as replace2:
+							replace2.execute(f"delete from Participation where auteur_id={alias.id}")
+						alias.delete()
+						
+					i_alias+=1
+
 		context["message"] = '''{0}  publications ont été synchronisées 
 						depuis HAL dans la collection {1} 
 						pour la période {2}-{3}.'''.format(
@@ -253,18 +285,14 @@ def classement(request, code_collection):
 	wrapper = IndexWrapper()
 	
 	# Creation du jeu de données et du formulaire pour le classement
+	# On ne classe que les revues et conf puisqu'il n'y a pas de référentiel pour les autres
 	publis = Publication.objects.filter(
 						annee__gte=config.annee_min_publis).filter(
 						collections__code=code_collection).filter(type=PUBLI_CONF
 						) |  Publication.objects.filter(
 						annee__gte=config.annee_min_publis).filter(
 						collections__code=code_collection).filter(type=PUBLI_REVUE
-						) | Publication.objects.filter(
-						annee__gte=config.annee_min_publis).filter(
-						collections__code=code_collection).filter(type=PUBLI_BREVET
-						) | Publication.objects.filter(
-						annee__gte=config.annee_min_publis).filter(
-						collections__code=code_collection).filter(type=PUBLI_LOGICIEL)
+						)
 
 	context["classement_formset"] = PublisFormset (queryset=publis)
 
@@ -358,10 +386,10 @@ def publications(request):
 			if not (form.cleaned_data["collection"] == 'toutes'):
 				context["resultat"] = context["resultat"].filter(
 							collections__code=form.cleaned_data["collection"])
-			if not (form.cleaned_data["auteur"] ==''):
+			if not (form.cleaned_data["auteur"] =='') :
 				res = []
 				for pub in context["resultat"]:
-					if form.cleaned_data["auteur"].upper() in pub.chaine_auteurs.upper():
+					if pub.chaine_auteurs is not None and form.cleaned_data["auteur"].upper() in pub.chaine_auteurs.upper():
 						res.append(pub)
 				context["resultat"] = res
 		# Le formulaire est réinitialisé avec les données soumises
@@ -410,53 +438,10 @@ def export(coll, context):
 
 	# Cherchons la configuration pour avoir des valeurs par défaut
 	config = Config.objects.get(code=CODE_CONFIG_DEFAUT)
-	periode = range (config.annee_min_publis, config.annee_max_publis+1)
 	
-	# Lecture des modèles de graphiques 
-	diag_barres = SimpleTemplateResponse ('publis/charts/diagramme_barres.json', {})
-	diag_camembert = SimpleTemplateResponse ('publis/charts/diagramme_camembert.json', {})
  
-	# On  crée le répertoire pour la collection s'il n'existe pas
-	coll_dir = os.path.join(settings.EXPORT_DIR, coll.code)
-	if not os.path.isdir(coll_dir):
-		os.mkdir (coll_dir)
-	prefixe_fichier = "graphiques_" + coll.code
-	
-	# Export des graphiques
-	diag_barres.context_data["chart_annees"] = list(periode)
-	diag_barres.context_data["chart_donnees"] = Publication.stats_par_annee_type(
-		coll.code, config.annee_min_publis, config.annee_max_publis)
-	with open(os.path.join(coll_dir, 
-							prefixe_fichier + "_par_annee_type.json"),
-							   mode='w',  encoding="utf-8") as filehandle:
-		filehandle.write(str(diag_barres.rendered_content))
-	diag_barres.context_data["chart_donnees"] = Publication.stats_par_annee_classement(
-			coll.code, config.annee_min_publis, config.annee_max_publis)
-	with open(os.path.join(coll_dir, 
-							prefixe_fichier + "_par_annee_classement.json"),
-							mode='w',  encoding="utf-8") as filehandle:
-		filehandle.write(str(diag_barres.rendered_content))
-
-	diag_camembert.context_data["chart_annees"] = periode
-	diag_camembert.context_data["chart_donnees"] =  Publication.stats_par_classement(
-			coll.code, config.annee_min_publis, config.annee_max_publis)
-	with open(os.path.join(coll_dir, 
-							prefixe_fichier +"_par_classement.json"), 
-							   mode='w',  encoding="utf-8") as filehandle:
-		filehandle.write(str(diag_camembert.rendered_content))
-	
-	# Export des publis en Bibtex
-	prefixe_fichier = "publis_" + coll.code
-	for classement in ClassementPubli.objects.all():
-		with open(os.path.join(coll_dir, 
-					prefixe_fichier +"_{0}.bib".format(classement.code)),
-					mode='w',  encoding="utf-8") as filehandle:
-			for publi in Publication.objects.filter(
-							annee__gte=config.annee_min_publis).filter(
-							annee__lte=config.annee_max_publis).filter(
-							classement=classement).filter(
-							collections=coll):
-				filehandle.writelines([publi.bibtex_hal(), "\n"])
+	# TODO: mieux vaut effacer le répertoire
+	coll.export(config.repertoire_export, config.annee_min_publis, config.annee_max_publis)
 
 	# Pour finir on met tout ça dans un zip et on envoie
 	contenu_zip = BytesIO()
@@ -473,6 +458,7 @@ def export(coll, context):
 #
 def alerte (message):
 	return "<font color='red'>{0}</font>".format(message)
+
 
 # Pour obtenir des nuplets nommés
 #

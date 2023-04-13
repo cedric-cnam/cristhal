@@ -1,0 +1,20 @@
+
+
+\begin{tabular}{p{2.5cm}|r|r|r|r|r|r|r} 
+     & \multicolumn{4}{c|}{Publications classées} &   &   \\ \hline
+     & Q1 & Q2 & Q3 & Q4  & National & Diffusion & Valorisation\\
+    \hline
+    Revues int. & {{nb_N1_ART}}  & {{nb_N2_ART}}  & {{nb_N3_ART}}  & {{nb_N4_ART}}  & & & \\
+   Conf. int. & {{nb_N1_COMM}} & {{nb_N2_COMM}} & {{nb_N3_COMM}} & {{nb_N4_COMM}} & & &\\ \hline
+    \hline
+    Revues nat. &  &  &  &  & {{nb_N_ART}} & & \\
+   Conf. nat. &  &  &  &  & {{nb_N_COMM}} & &\\ \hline
+    \hline
+     {% if nb_COUV > 0 %}  Chapitre &  &  &  &  &  & {{nb_COUV}} &\\ {% endif %}
+      {% if nb_OUV > 0 %}   Ouvrages &  &  &  &  &  & {{nb_OUV}}  &\\ {% endif %}
+     {% if nb_DOUV > 0 %}   Dir. ouvrages &  &  &  &  &  &  {{nb_DOUV}} &\\    {% endif %}
+    {% if nb_PATENT > 0 %}   Brevets  &  &  &  &  &  &  & {{nb_PATENT}} \\ {% endif %}
+   {% if nb_SOFTWARE > 0 %}   Logiciel  &  &  &  &  &  &  & {{nb_SOFTWARE}} \\  {% endif %}
+    \hline
+\end{tabular}
+
