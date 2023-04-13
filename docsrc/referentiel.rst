@@ -114,8 +114,22 @@ Les données à saisir:
   - le délimiteur des champs dans le fichier CSV (en général, le point-virgule, les fichiers CORE étant une exception)
   - le type de la source
 
-Pour l'identifant des sources, utiliser une courte chaîne de caractères, par exemple `core_revue``,
+Pour l'identifant des sources, utiliser une courte chaîne de caractères, 
+par exemple ``core_revue``,
 ``interne_optim``, ....
+
+La figure ci-dessous montre la saisie de la source contenant les
+revues de mathématiques de SCIMAGO. Le fichier est ``SCIMAGO-MATHS.csv``
+dans ``cristhal/install``.
+
+.. _saisie-source:
+.. figure:: ./figures/saisie-source.png       
+        :width: 90%
+        :align: center
+   
+        Exemple de saisie d'une source SCIMAGO Maths dans le référentiel
+
+
 
 Il reste à charger ou recharger une source pour l'indexer.  Dans le menu ``Référentiel``, la liste
 des sources apparaît, avec une option ``charger`` ou ``recharger``.  

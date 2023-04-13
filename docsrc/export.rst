@@ -6,20 +6,14 @@ Export des données
 
 CristHAL fournit des fonctions d'export pour intégrer les données, graphiques
 et statistiques à des rapports de recherches ou présentations. Ces exports se
-font dans des fichiers placés dans le répertoire ``EXPORT_DIR`` 
-qui est, dans la configuration par défaut, un sous-répertoire de ``media``
-nommé ``export``.
-
-.. code-block:: python
-
-    EXPORT_DIR = os.path.join(MEDIA_ROOT, 'export')
-
+font dans des fichiers placés dans le répertoire indiqué dans
+la configuration, dont la valeur par défaut est ``/tmp``.
 Vous pouvez changer ce paramétrage en vous assurant des droits d'accès.
-CristHAL tente de créer le répertoire ``export`` s'il n'existe pas. Dans tous
+Dans tous
 les cas, le compte utilisateur qui exécute CritHAL doit avoir
 des droits d'écriture.
 
-Dans ce qui suit, ce répartoire est désigné par ``exportdir``.
+Dans ce qui suit, ce répertoire est désigné par ``exportdir``.
 
 *********************
 Export des graphiques
@@ -39,9 +33,14 @@ Les exports se font par collection, à l'aide du choix ``export``  dans le
 tableau de la page d'accueil. 
 
   - Les graphiques sont exportés sous forme de 
-    documents JSON dans le répertoire ``exportdir/<codeCol>/<nomGraphique>``
+    documents JSON dans le répertoire ``exportdir/<codeCol>/stats_publis/``
     (``<codeCol>`` est le code de la collection défini à la création).
-  - Ce répertoire est ensuite zippé et le fichier Zip est téléchargé.
+  - Les fichiers Latex sont exportés dans ``exportdir/<codeCol>/docs_publis/``
+  - Le répertoire ``exportdir/<codeCol>`` est ensuite zippé et le fichier Zip est téléchargé.
+
+Avec la configuration par défaut et la collection  ``vertigo`` par 
+exemple, l'export se fait dans ``/tmp/vertigo`` et le fichier retourné
+par la fonction s'appelle ``vertigo.zip``. 
 
 À partir des exports en JSON, on peut produire les formats graphiques
 avec les outils Highcharts (https://www.highcharts.com/docs/export-module).
@@ -50,32 +49,49 @@ un utilitaire Javascript, selon les instructions qui se trouvent
 sur la page 
 Github https://github.com/highcharts/node-export-server/blob/master/README.md.
 
-Un fichier ``Makefile`` est fourni à titre d'exemple pour dans
-le répertoire ``cristhaldir/install``. En plaçant ce fichier dans
-le répertoire d'export et en entrant la commande (sous un système de type Unix):
+Un fichier ``Makefile`` est copié dans ``exportdir/<codeCol>``. 
+Si vous avez installé les outils précédents, 
+la commande (sous un système de type Unix), exécutée dans le 
+répertoire ``exportdir/<codeCol>``:
 
 .. code-block:: bash
 
     make
 
-les PDF sont produits à partir des JSON. Il est très facile de produire d'autres 
+produit les PDF  à partir des JSON. Il est très facile de produire d'autres 
 formats.
 
+*************************
+Export des fichiers Latex
+*************************
 
-*****************
-Export des bibtex
-*****************
+CristHAL exporte  dans ``exportdir/<codeCol>/docs_publis/`` 
+des fichiers Latex. Le contenu de ces fichiers s'appuie sur le classement
+et sur le type de publication. Actuellement nous avons
 
-CristHAL exporte des fichiers ``.bib`` contenant les entrées Bibtex des
-publications de la collection exportée. Ces entrées sont celles produites
-par HAL.
+  - un tableau ``synthese_publis.tex`` donnant le nombre  de publications
+    par type et par classement (figure :numref:`synthese-publis`)
+  - des fichiers contenant des entrées ``bibitem`` 
 
 
-.. note:: À l'avenir il est possible que d'autres modèles Bbtex soient proposés.
+.. _synthese-publis:
+.. figure:: ./figures/synthese_publis.png       
+        :width: 90%
+        :align: center
+   
+        Tableau (après compilation Latex) de synthèse des publications
 
-Il y a autant de fichiers ``.bib`` que de catégories dans le classement 
-des publications. Chaque fichier est suffixé par le code du classement:
-on peut ainsi choisir, dans un document Latex, quels niveaux de classement
+Il y a autant de fichiers Bibitem  que de type de publication et 
+de classements (pour les types de publications sujettes à classement:
+revues et conférences). Par exemple:
+
+  - ``biblio_N1_ART.tex`` contient les bibitems des articles de revue 
+    classés au niveau ``N1``.
+  - ``biblio_N1_COMM.tex`` contient les bibitems des articles de conférence 
+    classés au niveau ``N1``.
+  - etc.
+  
+On peut ainsi choisir, dans un document Latex, quels niveaux de classement
 on choisit de référencer.
 
 

@@ -1,180 +1,51 @@
 
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="fr" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="fr" > <!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>Gestion du référentiel &mdash; Documentation CristHAL 1.0</title>
-  
 
-  
-  
-    <link rel="shortcut icon" href="_static/favicon.png"/>
-  
-  
-  
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
 
-  
-
-  
-  
-    
-
-  
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/audeering.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <title>Gestion du référentiel &#8212; Documentation CristHAL 2.0</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/agogo.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/translations.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Recherche" href="search.html" />
     <link rel="next" title="Classement des publications" href="classement.html" />
-    <link rel="prev" title="Gestion des collections" href="collections.html" />
-    
-  
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
-</head>
-
-<body class="wy-body-for-nav">
-
-   
-  <div class="wy-grid-for-nav">
-
-    
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
-          
-
-          <a href="index.html">
-          
-            
-            <img src="_static/logoCnam.png" class="logo" alt="Logo"/>
-          
-          
-            <span> CristHAL</span>
-          
-          </a>
-
-          
-            
-            
-              <div class="version">
-                1.0
-              </div>
-            
-          
-
-          
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
-</div>
-
-          
+    <link rel="prev" title="Gestion des collections" href="collections.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+          <p class="logo"><a href="index.html">
+            <img class="logo" src="_static/logoCnam.png" alt="Logo"/>
+          </a></p>
+        <div class="headertitle"><a
+          href="index.html">Documentation CristHAL 2.0</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="collections.html" title="Gestion des collections"
+             accesskey="P">précédent</a> |
+          <a href="classement.html" title="Classement des publications"
+             accesskey="N">suivant</a> |
+          <a href="genindex.html" title="Index général"
+             accesskey="I">index</a>
         </div>
+       </div>
+    </div>
 
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
             
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
             
-              
-            
-            
-              <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="collections.html">Gestion des collections</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Gestion du référentiel</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#definition-d-une-source">Définition d’une source</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#scimago">Scimago</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#core">CORE</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#classements-internes">Classements internes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#autres-classements">Autres classements</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#creation-d-une-source">Création d’une source</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#interrogation-du-referentiel">Interrogation du référentiel</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="classement.html">Classement des publications</a></li>
-<li class="toctree-l1"><a class="reference internal" href="export.html">Export des données</a></li>
-<li class="toctree-l1"><a class="reference internal" href="statistiques.html">Les statistiques</a></li>
-</ul>
-
-            
-          
-        </div>
-      </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">CristHAL</a>
-        
-      </nav>
-
-
-      <div class="wy-nav-content">
-        
-        <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
-  <ul class="wy-breadcrumbs">
-    
-      <li><a href="index.html">Docs</a> &raquo;</li>
-        
-      <li>Gestion du référentiel</li>
-    
-    
-      <li class="wy-breadcrumbs-aside">
-        
-            
-            <a href="_sources/referentiel.rst.txt" rel="nofollow"> View page source</a>
-          
-        
-      </li>
-    
-  </ul>
-
-  
-  <hr/>
-</div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
-            
-  <div class="section" id="gestion-du-referentiel">
+  <section id="gestion-du-referentiel">
 <span id="chap-referentiel"></span><h1>Gestion du référentiel<a class="headerlink" href="#gestion-du-referentiel" title="Lien permanent vers ce titre">¶</a></h1>
 <p>Le référentiel est un ensemble de revues  ou de conférences scientifiques, chacune associée à un
 ou plusieurs classement fournis par des <em>sources</em>. Le principe de CristHAL est de permettre d’adosser
@@ -183,7 +54,7 @@ il est également possible de fournir un classement <em>ad-hoc</em>, à partir d
 dite « interne ».</p>
 <p>La gestion du référentiel consiste à ajouter des sources, à les charger, et à chercher ensuite, pour chaque
 publication, la référence la plus proche.</p>
-<div class="section" id="definition-d-une-source">
+<section id="definition-d-une-source">
 <h2>Définition d’une source<a class="headerlink" href="#definition-d-une-source" title="Lien permanent vers ce titre">¶</a></h2>
 <p>Les sources sont fournies sous la forme de fichiers CSV. Selon la source, le format peut varier, et CristHAL
 propose donc un ensemble de fonctions d’import adaptée à chaque type de source.</p>
@@ -197,15 +68,15 @@ ces champs, il faut au moins:</p>
 </ul>
 </div></blockquote>
 <p>Voici les formats que quelques sources.</p>
-<div class="section" id="scimago">
+<section id="scimago">
 <h3>Scimago<a class="headerlink" href="#scimago" title="Lien permanent vers ce titre">¶</a></h3>
 <p>Le site <a class="reference external" href="https://www.scimagojr.com/journalrank.php">https://www.scimagojr.com/journalrank.php</a> propose une classification de revues scientifiques
 dans de très nombreux domaines et sous-domaines. Pour chacun il est possible d’exporter
 en CSV la liste des références. Ce fichier contient une ligne d’entête et peut
 directement être importé dans CristHAL.</p>
 <p>Dans le répertoire <code class="docutils literal notranslate"><span class="pre">cristhaldir/install</span></code>, vous trouverez quelques exemples d’exports CSV Scimago.</p>
-</div>
-<div class="section" id="core">
+</section>
+<section id="core">
 <h3>CORE<a class="headerlink" href="#core" title="Lien permanent vers ce titre">¶</a></h3>
 <p>Une association scientifique australienne (<a class="reference external" href="http://portal.core.edu.au/">http://portal.core.edu.au/</a>) propose une classification des revues
 et des conférences dans le domaine de la science informatique. Les fichiers CSV ne contiennent pas de première
@@ -218,8 +89,8 @@ ligne descriptive qui doit donc être ajoutée. Pour les conférences, cette lig
 </pre></div>
 </div>
 <p>Dans le répertoire <code class="docutils literal notranslate"><span class="pre">cristhaldir/install</span></code>, vous trouverez les fichiers CORE 2020.</p>
-</div>
-<div class="section" id="classements-internes">
+</section>
+<section id="classements-internes">
 <h3>Classements internes<a class="headerlink" href="#classements-internes" title="Lien permanent vers ce titre">¶</a></h3>
 <p>Une source dite <em>interne</em>  permet à une institution de définir son propre classement.
 Il peut être destiné à compléter les référentiels internationaux, par exemple pour
@@ -240,20 +111,22 @@ Dans <code class="docutils literal notranslate"><span class="pre">cristhaldir/in
 (en le partageant dans un environnement collaboratif). Il contient la codification utilisée
 au Cédric, et un onglet par équipe. Chaque onglet peut être exporté en CSV avec Excel, OpenOffice
 ou Numbers.</p>
-</div>
-<div class="section" id="autres-classements">
+</section>
+<section id="autres-classements">
 <h3>Autres classements<a class="headerlink" href="#autres-classements" title="Lien permanent vers ce titre">¶</a></h3>
 <p>Il est facile d’ajouter d’autres types de sources. Soit en changeant la première ligne pour indiquer
 les positions des champs importants, soit en demandant une extension de CristHAL.</p>
-</div>
-</div>
-<div class="section" id="creation-d-une-source">
+</section>
+</section>
+<section id="creation-d-une-source">
 <h2>Création d’une source<a class="headerlink" href="#creation-d-une-source" title="Lien permanent vers ce titre">¶</a></h2>
 <p>Dans le menu d’administration, accéder au choix “Sources” et au formulaire de création (<a class="reference internal" href="#form-source"><span class="std std-numref">Fig. 13</span></a>).</p>
-<div class="figure align-center" id="id1">
+<figure class="align-center" id="id1">
 <span id="form-source"></span><a class="reference internal image-reference" href="_images/form-source.png"><img alt="_images/form-source.png" src="_images/form-source.png" style="width: 90%;" /></a>
-<p class="caption"><span class="caption-number">Fig. 13 </span><span class="caption-text">Formulaire de saisie / mise à jour des sources</span><a class="headerlink" href="#id1" title="Lien permanent vers cette image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 13 </span><span class="caption-text">Formulaire de saisie / mise à jour des sources</span><a class="headerlink" href="#id1" title="Lien permanent vers cette image">¶</a></p>
+</figcaption>
+</figure>
 <p>Les données à saisir:</p>
 <blockquote>
 <div><ul class="simple">
@@ -265,26 +138,40 @@ chaque référence de la source, on obtient l’identifiant unique d’une réf�
 <li><p>le type de la source</p></li>
 </ul>
 </div></blockquote>
-<p>Pour l’identifant des sources, utiliser une courte chaîne de caractères, par exemple <cite>core_revue`</cite>,
+<p>Pour l’identifant des sources, utiliser une courte chaîne de caractères,
+par exemple <code class="docutils literal notranslate"><span class="pre">core_revue</span></code>,
 <code class="docutils literal notranslate"><span class="pre">interne_optim</span></code>, ….</p>
+<p>La figure ci-dessous montre la saisie de la source contenant les
+revues de mathématiques de SCIMAGO. Le fichier est <code class="docutils literal notranslate"><span class="pre">SCIMAGO-MATHS.csv</span></code>
+dans <code class="docutils literal notranslate"><span class="pre">cristhal/install</span></code>.</p>
+<figure class="align-center" id="id2">
+<span id="saisie-source"></span><a class="reference internal image-reference" href="_images/saisie-source.png"><img alt="_images/saisie-source.png" src="_images/saisie-source.png" style="width: 90%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 14 </span><span class="caption-text">Exemple de saisie d’une source SCIMAGO Maths dans le référentiel</span><a class="headerlink" href="#id2" title="Lien permanent vers cette image">¶</a></p>
+</figcaption>
+</figure>
 <p>Il reste à charger ou recharger une source pour l’indexer.  Dans le menu <code class="docutils literal notranslate"><span class="pre">Référentiel</span></code>, la liste
 des sources apparaît, avec une option <code class="docutils literal notranslate"><span class="pre">charger</span></code> ou <code class="docutils literal notranslate"><span class="pre">recharger</span></code>.</p>
-<div class="figure align-center" id="id2">
+<figure class="align-center" id="id3">
 <span id="page-referentiel"></span><a class="reference internal image-reference" href="_images/page-referentiel.png"><img alt="_images/page-referentiel.png" src="_images/page-referentiel.png" style="width: 90%;" /></a>
-<p class="caption"><span class="caption-number">Fig. 14 </span><span class="caption-text">La page du référentiel</span><a class="headerlink" href="#id2" title="Lien permanent vers cette image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 15 </span><span class="caption-text">La page du référentiel</span><a class="headerlink" href="#id3" title="Lien permanent vers cette image">¶</a></p>
+</figcaption>
+</figure>
 <p>Le nombre de références d’une source est donné entre parenthèses après chargement
-(<a class="reference internal" href="#page-referentiel"><span class="std std-numref">Fig. 14</span></a>, après chargement d’un fichier CORE).</p>
-</div>
-<div class="section" id="interrogation-du-referentiel">
+(<a class="reference internal" href="#page-referentiel"><span class="std std-numref">Fig. 15</span></a>, après chargement d’un fichier CORE).</p>
+</section>
+<section id="interrogation-du-referentiel">
 <h2>Interrogation du référentiel<a class="headerlink" href="#interrogation-du-referentiel" title="Lien permanent vers ce titre">¶</a></h2>
 <p>La fonction « Recherche dans le référentiel » permet d’effectuer directement une recherche par mots-clés
 et d’obtenir une liste classée par pertinence descendante des 10 premières références correspondant
-aux mots-clés (<a class="reference internal" href="#recherche-ref"><span class="std std-numref">Fig. 15</span></a>).</p>
-<div class="figure align-center" id="id3">
+aux mots-clés (<a class="reference internal" href="#recherche-ref"><span class="std std-numref">Fig. 16</span></a>).</p>
+<figure class="align-center" id="id4">
 <span id="recherche-ref"></span><a class="reference internal image-reference" href="_images/recherche_ref.png"><img alt="_images/recherche_ref.png" src="_images/recherche_ref.png" style="width: 90%;" /></a>
-<p class="caption"><span class="caption-number">Fig. 15 </span><span class="caption-text">Formulaire de recherche dans le référentiel</span><a class="headerlink" href="#id3" title="Lien permanent vers cette image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 16 </span><span class="caption-text">Formulaire de recherche dans le référentiel</span><a class="headerlink" href="#id4" title="Lien permanent vers cette image">¶</a></p>
+</figcaption>
+</figure>
 <p>C’est la même fonction qui sera appelée au moment du classement avec, en lieu
 et place des mots-clés, le titre de la revue ou le nom de la conférence. La
 procédure de classement proposera alors, pour
@@ -308,79 +195,74 @@ de l’ajouter, ou considérer que la publication est « Hors référentiel »
 </ul>
 </div></blockquote>
 <p>Hors ces deux causes, le moteur de recherche devrait toujours être en mesure de trouver la meilleure solution.</p>
-</div>
-</div>
+</section>
+</section>
 
 
-           </div>
-           
+            <div class="clearer"></div>
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="classement.html" class="btn btn-neutral float-right" title="Classement des publications" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="collections.html" class="btn btn-neutral float-left" title="Gestion des collections" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
-  
-
-  <hr/>
-
-  <div>
-    <p>
-        
-        
-        
-          Built with <a href="https://www.sphinx-doc.org/en/master/">Sphinx</a> on 2021/07/01 using the <a href="https://github.com/audeering/sphinx-audeering-theme/">audEERING theme</a>
-        
-    </p>
-  </div>
-
-  <div role="contentinfo">
-    <p>
-        
-      &copy; 2021, Philippe Rigaux
-    </p>
-  </div> 
-
-</footer>
         </div>
       </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table des matières</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="collections.html">Gestion des collections</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Gestion du référentiel</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#definition-d-une-source">Définition d’une source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creation-d-une-source">Création d’une source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#interrogation-du-referentiel">Interrogation du référentiel</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="classement.html">Classement des publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="export.html">Export des données</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statistiques.html">Les statistiques</a></li>
+</ul>
 
-    </section>
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Recherche</h3>
+            <form class="search" action="search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="Go" />
+            </form>
+          </div>
 
-  </div>
-  
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
 
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="collections.html" title="Gestion des collections"
+              >précédent</a> |
+            <a href="classement.html" title="Classement des publications"
+              >suivant</a> |
+            <a href="genindex.html" title="Index général"
+              >index</a>
+          </div>
+          <div role="note" aria-label="source link">
+              <br/>
+              <a href="_sources/referentiel.rst.txt"
+                rel="nofollow">Montrer le code source</a>
+          </div>
+        </div>
 
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021-2023, Philippe Rigaux.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.1.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
 
-  
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/translations.js"></script>
-    
-
-  
-
-  <script type="text/javascript" src="_static/js/theme.js"></script>
-
-  <script type="text/javascript">
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
-
-</body>
+  </body>
 </html>

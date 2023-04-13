@@ -86,8 +86,8 @@ Donc :
     Q1 est celui qui a été choisi en conformité avec les propositions issues des sources.
   - La correspondance entre la publication et la référence doit être claire. Si ce n'est pas le cas
     (exemple de la seconde publication),
-    c'est soit que la publication est mal référencée dans HAL (et doit donc être corrigée car nous
-    souhaitons  en principe que les publications Hal  soient référencées avec précision), soit que
+    c'est soit que la publication est mal référencée dans HAL (et doit donc être corrigée car on
+    souhaite  en principe que les publications Hal  soient référencées avec précision), soit que
     le référentiel est incomplet, soit enfin qu'elle
     doit être classée en hors référentiel.
   - Il se peut que le système ne propose que l'une des sources, si aucun appariement crédible

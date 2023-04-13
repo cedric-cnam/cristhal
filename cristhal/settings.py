@@ -192,6 +192,9 @@ EXPORT_DIR = os.path.join(MEDIA_ROOT, 'export')
 # Nom de l'index pour le référentiel des publis
 ES_INDEX_REF = "cristhal"
 
+
+# Nouveau Django 3.2: type des clés primaires
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 # 
 # Paramétrage ElasticSearch
 #

@@ -1,7 +1,6 @@
 from django.shortcuts import render
 import logging
 
-
 @login_required
 def index(request):
     context = {"titre": "Accueil", 

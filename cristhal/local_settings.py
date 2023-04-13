@@ -33,9 +33,9 @@ ALLOWED_HOSTS = []
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'nom_bd_locale',
-        'USER': 'admin_bd_locale',
-        'PASSWORD': 'mdp_bd_locale',
+        'NAME': 'cristhal',
+        'USER': 'cristhalAdmin',
+        'PASSWORD': 'mdpCristhal',
         'HOST': '127.0.0.1',
         'PORT': '3306',
         'OPTIONS': {
@@ -55,15 +55,17 @@ DATABASES = {
     }
 }
 
-# Pour les fichiers d'export. Le serveur doit pouvoir y écrire
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-# Exemple: pour écrire dans un répertoire logs frère du répertoire courant
-#MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media')
 
 #
 # Messages
 #
 EMAIL_BACKEND='philippe.rigaux@cnam.fr'
+
+
+# Pour les fichiers d'export. Le serveur doit pouvoir y écrire
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# Exemple: pour écrire dans un répertoire logs frère du répertoire courant
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media')
 
 #
 # Fichiers de log. P
@@ -71,7 +73,7 @@ EMAIL_BACKEND='philippe.rigaux@cnam.fr'
 LOG_DIR = '/var/log'
 #
 # Exemple: pour écrire dans un répertoire logs frère du répertoire courant
-#LOG_DIR = os.path.join(os.path.dirname(BASE_DIR), 'logs')
+LOG_DIR = os.path.join(os.path.dirname(BASE_DIR), 'logs')
 
 # Ne pas toucher cette ligne
 LOGGING["handlers"]["file"]["filename"] = os.path.join(LOG_DIR, 'cristhal.log')
@@ -80,9 +82,11 @@ LOGGING["handlers"]["file"]["filename"] = os.path.join(LOG_DIR, 'cristhal.log')
 # Configuration ElasticSearch
 #
 ES_INDEX_REF = "cristhal"
+
+ES_INDEX_REF = "cristhal"
 ELASTIC_SEARCH = {"host": "localhost", "port": 9200, 
                   "index": ES_INDEX_REF,
                   "auth_login": "elastic",
-                   "auth_password": "changeme"
+                   "auth_password": "2C6gjm7sTtD5J0hOyOdn"
                   }
 

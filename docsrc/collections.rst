@@ -12,13 +12,22 @@ donne par exemple la liste des structures (équipes en l'occurrence) du laborato
 Cédric.
 
 
+
+
 .. note:: Reportez-vous à la documentation https://doc.archives-ouvertes.fr/gerer-un-portail/referentiels/structures-de-recherche/ 
           pour des informations sur la notion de structure de recherche dans HAL.
 
-Pour demander l'analyse des publications d'une structure dans CristHAL, vous devez
+Quand une publication est déposée dans HAL, chaque auteur indique la
+structure a laquelle il est affilié. Cette  publication 
+sera importée dans la collection
+associée à la structure dans CristHal.
+Pour demander l'importation des publications d'une structure dans CristHAL, vous devez
 d'avord la définir, puis la synchroniser avec HAL.
 
-.. important:: L'ensemble des publications d'une structure est une *collection* dans CristHAL.
+.. note:: L'ensemble des publications d'une structure est une *collection* dans CristHAL. 
+   Dans ce qui suit, nous illustrons les saisies avec la structure CEDRIC-VERTIGO,
+   dont l'identifiant est 553459, et contient les publications 
+   de l'équipe Vertigo du laboratoire Cédric.
 
 ***************************
 Définition d'une collection
@@ -39,11 +48,11 @@ Les données sont les suivantes
   - Code : un code (unique) CristHAL pour faire référence à la collection 
     (par exemple l'acronyme de l'équipe). Ce code n'est pas utilisé pour
     accéder à HAL mais sert par exemple à nommer un répertoire d'export.
-    Recommandation: choisir une chaîne de caractère courte, informative, sans espace, 
-    en minuscules et sans caractères spéciaux.
-  - Sigle HAL : le sigle de la structure dans HAL (unique)
+    *Recommandation*: choisir une chaîne de caractère courte, informative, sans espace, 
+    en minuscules et sans caractères spéciaux. Par exemple: ``vertigo``.
+  - Sigle HAL : le sigle de la structure dans HAL (unique). Par exemple: ``CEDRIC-VERTIGO``.
   - Id HAL: identifiant de la structure dans HAL (unique). C'est cet identifiant
-    qui sert à charger les publications de la structure.
+    qui sert à charger les publications de la structure. Par exemple 553459. 
   - Nom : un texte bref utilisé pour les affichages (par exemple le nom de l'équipe)
   - Description : texte libre
   - Email contact: adresse de la personne-contact pour la collection
@@ -74,14 +83,22 @@ La synchronisation permet de récupérer les publications de la structure HAL et
 insérer dans la collection (ou de les mettre à jour si elles existent déjà). Cette opération
 doit être effectuée régulièrement pour maintenir la collection en phase avec HAL. 
 
-.. note:: Seules les publications de la période configurée sont chargées. De même, ChristHAL
-   charge un sous-ensemble des types de publication HAL (les REPORT, AUTRE et UNDEFINED sont ignorées).
+Seules les publications de la période configurée sont chargées. De même, 
+ChristHAL
+charge le sous-ensemble des types de publication HAL défini dans la configuration
+(par défaut les REPORT, AUTRE et UNDEFINED sont ignorées).
+
+.. important:: Le chargement récupère aussi les données sur les auteurs, ce qui
+   entraine beaucoup de requêtes HAL et peut entrainer un dépassement 
+   (*timeout*) du temps d'exécution serveur. Ne pas hésiter à relancer
+   la synchronisation dans ce cas: les auteurs déjà chargés constitueront
+   autant de requêtes en moins.
 
 ****************
 Les publications 
 ****************
 
-Les publications peuvent être recherchées et classées grâce à des formulaires
+Les publications (menu *Publications*) peuvent être recherchées et classées grâce à des formulaires
 ou à l'interrogation directe par SQL (pour les experts), puis exportées en différents formats.
 
 Recherche par formulaire
@@ -121,9 +138,9 @@ Voici le schéma de la base. Les **clés primaires** sont en gras, les *clés é
   - Source (**id**, fichier, description, identifiant_source, delimiteur, type_source)
   - Referentiel (**id**, ref_locale,  type, acronyme, titre, champ_plein_texte, classement, *source_id*)
   - Collection (**id**, code, sigle_hal, id_hal, nom, description, email_contact)
-  - Auteur (**id**, nom_complet, id_hal)
-  - ClassementPubli (**code**, libelle)
+  - Auteur (**id**, prenom, nom, nom_complet, id_hal)
+  - ClassementPubli (**code**, libelle). Grille de classement des publications.
   - Publi (**id_hal**, titre, annee, type, chaine_auteurs, revue_titre, conf_titre, 
     ouvrage_titre, classement_valide, *classement_id*)
-  - Publi_auteurs (**id**, *publication_id*, *auteur_id*)
-  - Publi_collections (**id**, *publication_id*, *collection_id*)
+  - publis_auteurpos (**id**, *publication_id*, *auteur_id*, position). Liste ordonnée des auteurs d'une publication.
+  - Publi_collections (**id**, *publication_id*, *collection_id*). Appartenance d'une publication aux collections.

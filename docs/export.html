@@ -1,97 +1,149 @@
 
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="fr" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="fr" > <!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>Export des données &mdash; Documentation CristHAL 1.0</title>
-  
 
-  
-  
-    <link rel="shortcut icon" href="_static/favicon.png"/>
-  
-  
-  
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
 
-  
-
-  
-  
-    
-
-  
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/audeering.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <title>Export des données &#8212; Documentation CristHAL 2.0</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/agogo.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/translations.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Recherche" href="search.html" />
     <link rel="next" title="Les statistiques" href="statistiques.html" />
-    <link rel="prev" title="Classement des publications" href="classement.html" />
-    
-  
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
-</head>
-
-<body class="wy-body-for-nav">
-
-   
-  <div class="wy-grid-for-nav">
-
-    
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
-          
-
-          <a href="index.html">
-          
-            
-            <img src="_static/logoCnam.png" class="logo" alt="Logo"/>
-          
-          
-            <span> CristHAL</span>
-          
-          </a>
-
-          
-            
-            
-              <div class="version">
-                1.0
-              </div>
-            
-          
-
-          
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
-</div>
-
-          
+    <link rel="prev" title="Classement des publications" href="classement.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+          <p class="logo"><a href="index.html">
+            <img class="logo" src="_static/logoCnam.png" alt="Logo"/>
+          </a></p>
+        <div class="headertitle"><a
+          href="index.html">Documentation CristHAL 2.0</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="classement.html" title="Classement des publications"
+             accesskey="P">précédent</a> |
+          <a href="statistiques.html" title="Les statistiques"
+             accesskey="N">suivant</a> |
+          <a href="genindex.html" title="Index général"
+             accesskey="I">index</a>
         </div>
+       </div>
+    </div>
 
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="export-des-donnees">
+<span id="chap-export"></span><h1>Export des données<a class="headerlink" href="#export-des-donnees" title="Lien permanent vers ce titre">¶</a></h1>
+<p>CristHAL fournit des fonctions d’export pour intégrer les données, graphiques
+et statistiques à des rapports de recherches ou présentations. Ces exports se
+font dans des fichiers placés dans le répertoire indiqué dans
+la configuration, dont la valeur par défaut est <code class="docutils literal notranslate"><span class="pre">/tmp</span></code>.
+Vous pouvez changer ce paramétrage en vous assurant des droits d’accès.
+Dans tous
+les cas, le compte utilisateur qui exécute CritHAL doit avoir
+des droits d’écriture.</p>
+<p>Dans ce qui suit, ce répertoire est désigné par <code class="docutils literal notranslate"><span class="pre">exportdir</span></code>.</p>
+<section id="export-des-graphiques">
+<h2>Export des graphiques<a class="headerlink" href="#export-des-graphiques" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Si vous souhaitez exporter un seul graphique, utilisez
+le menu local en haut à droite, comme illustré sur la <a class="reference internal" href="#menu-local-export"><span class="std std-numref">Fig. 19</span></a></p>
+</div>
+<figure class="align-center" id="id1">
+<span id="menu-local-export"></span><a class="reference internal image-reference" href="_images/menu_local_export.png"><img alt="_images/menu_local_export.png" src="_images/menu_local_export.png" style="width: 90%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 19 </span><span class="caption-text">Menu local d’export des images</span><a class="headerlink" href="#id1" title="Lien permanent vers cette image">¶</a></p>
+</figcaption>
+</figure>
+<p>Les exports se font par collection, à l’aide du choix <code class="docutils literal notranslate"><span class="pre">export</span></code>  dans le
+tableau de la page d’accueil.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Les graphiques sont exportés sous forme de
+documents JSON dans le répertoire <code class="docutils literal notranslate"><span class="pre">exportdir/&lt;codeCol&gt;/stats_publis/</span></code>
+(<code class="docutils literal notranslate"><span class="pre">&lt;codeCol&gt;</span></code> est le code de la collection défini à la création).</p></li>
+<li><p>Les fichiers Latex sont exportés dans <code class="docutils literal notranslate"><span class="pre">exportdir/&lt;codeCol&gt;/docs_publis/</span></code></p></li>
+<li><p>Le répertoire <code class="docutils literal notranslate"><span class="pre">exportdir/&lt;codeCol&gt;</span></code> est ensuite zippé et le fichier Zip est téléchargé.</p></li>
+</ul>
+</div></blockquote>
+<p>Avec la configuration par défaut et la collection  <code class="docutils literal notranslate"><span class="pre">vertigo</span></code> par
+exemple, l’export se fait dans <code class="docutils literal notranslate"><span class="pre">/tmp/vertigo</span></code> et le fichier retourné
+par la fonction s’appelle <code class="docutils literal notranslate"><span class="pre">vertigo.zip</span></code>.</p>
+<p>À partir des exports en JSON, on peut produire les formats graphiques
+avec les outils Highcharts (<a class="reference external" href="https://www.highcharts.com/docs/export-module">https://www.highcharts.com/docs/export-module</a>).
+Il faut essentiellement installer le <em>Highcharts export server</em>, en fait
+un utilitaire Javascript, selon les instructions qui se trouvent
+sur la page
+Github <a class="reference external" href="https://github.com/highcharts/node-export-server/blob/master/README.md">https://github.com/highcharts/node-export-server/blob/master/README.md</a>.</p>
+<p>Un fichier <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> est copié dans <code class="docutils literal notranslate"><span class="pre">exportdir/&lt;codeCol&gt;</span></code>.
+Si vous avez installé les outils précédents,
+la commande (sous un système de type Unix), exécutée dans le
+répertoire <code class="docutils literal notranslate"><span class="pre">exportdir/&lt;codeCol&gt;</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make
+</pre></div>
+</div>
+<p>produit les PDF  à partir des JSON. Il est très facile de produire d’autres
+formats.</p>
+</section>
+<section id="export-des-fichiers-latex">
+<h2>Export des fichiers Latex<a class="headerlink" href="#export-des-fichiers-latex" title="Lien permanent vers ce titre">¶</a></h2>
+<p>CristHAL exporte  dans <code class="docutils literal notranslate"><span class="pre">exportdir/&lt;codeCol&gt;/docs_publis/</span></code>
+des fichiers Latex. Le contenu de ces fichiers s’appuie sur le classement
+et sur le type de publication. Actuellement nous avons</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>un tableau <code class="docutils literal notranslate"><span class="pre">synthese_publis.tex</span></code> donnant le nombre  de publications
+par type et par classement (figure <a class="reference internal" href="#synthese-publis"><span class="std std-numref">Fig. 20</span></a>)</p></li>
+<li><p>des fichiers contenant des entrées <code class="docutils literal notranslate"><span class="pre">bibitem</span></code></p></li>
+</ul>
+</div></blockquote>
+<figure class="align-center" id="id2">
+<span id="synthese-publis"></span><a class="reference internal image-reference" href="_images/synthese_publis.png"><img alt="_images/synthese_publis.png" src="_images/synthese_publis.png" style="width: 90%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 20 </span><span class="caption-text">Tableau (après compilation Latex) de synthèse des publications</span><a class="headerlink" href="#id2" title="Lien permanent vers cette image">¶</a></p>
+</figcaption>
+</figure>
+<p>Il y a autant de fichiers Bibitem  que de type de publication et
+de classements (pour les types de publications sujettes à classement:
+revues et conférences). Par exemple:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">biblio_N1_ART.tex</span></code> contient les bibitems des articles de revue
+classés au niveau <code class="docutils literal notranslate"><span class="pre">N1</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">biblio_N1_COMM.tex</span></code> contient les bibitems des articles de conférence
+classés au niveau <code class="docutils literal notranslate"><span class="pre">N1</span></code>.</p></li>
+<li><p>etc.</p></li>
+</ul>
+</div></blockquote>
+<p>On peut ainsi choisir, dans un document Latex, quels niveaux de classement
+on choisit de référencer.</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
           
-            
-            
-              
-            
-            
-              <ul class="current">
+          <h3>Table des matières</h3>
+          <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="collections.html">Gestion des collections</a></li>
@@ -99,211 +151,53 @@
 <li class="toctree-l1"><a class="reference internal" href="classement.html">Classement des publications</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Export des données</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#export-des-graphiques">Export des graphiques</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#export-des-bibtex">Export des bibtex</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#export-des-fichiers-latex">Export des fichiers Latex</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="statistiques.html">Les statistiques</a></li>
 </ul>
 
-            
-          
-        </div>
-      </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">CristHAL</a>
-        
-      </nav>
-
-
-      <div class="wy-nav-content">
-        
-        <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
-  <ul class="wy-breadcrumbs">
-    
-      <li><a href="index.html">Docs</a> &raquo;</li>
-        
-      <li>Export des données</li>
-    
-    
-      <li class="wy-breadcrumbs-aside">
-        
-            
-            <a href="_sources/export.rst.txt" rel="nofollow"> View page source</a>
-          
-        
-      </li>
-    
-  </ul>
-
-  
-  <hr/>
-</div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
-            
-  <div class="section" id="export-des-donnees">
-<span id="chap-export"></span><h1>Export des données<a class="headerlink" href="#export-des-donnees" title="Lien permanent vers ce titre">¶</a></h1>
-<p>CristHAL fournit des fonctions d’export pour intégrer les données, graphiques
-et statistiques à des rapports de recherches ou présentations. Ces exports se
-font dans des fichiers placés dans le répertoire <code class="docutils literal notranslate"><span class="pre">EXPORT_DIR</span></code>
-qui est, dans la configuration par défaut, un sous-répertoire de <code class="docutils literal notranslate"><span class="pre">media</span></code>
-nommé <code class="docutils literal notranslate"><span class="pre">export</span></code>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">EXPORT_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">MEDIA_ROOT</span><span class="p">,</span> <span class="s1">&#39;export&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>Vous pouvez changer ce paramétrage en vous assurant des droits d’accès.
-CristHAL tente de créer le répertoire <code class="docutils literal notranslate"><span class="pre">export</span></code> s’il n’existe pas. Dans tous
-les cas, le compte utilisateur qui exécute CritHAL doit avoir
-des droits d’écriture.</p>
-<p>Dans ce qui suit, ce répartoire est désigné par <code class="docutils literal notranslate"><span class="pre">exportdir</span></code>.</p>
-<div class="section" id="export-des-graphiques">
-<h2>Export des graphiques<a class="headerlink" href="#export-des-graphiques" title="Lien permanent vers ce titre">¶</a></h2>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>Si vous souhaitez exporter un seul graphique, utilisez
-le menu local en haut à droite, comme illustré sur la <a class="reference internal" href="#menu-local-export"><span class="std std-numref">Fig. 18</span></a></p>
-</div>
-<div class="figure align-center" id="id1">
-<span id="menu-local-export"></span><a class="reference internal image-reference" href="_images/menu_local_export.png"><img alt="_images/menu_local_export.png" src="_images/menu_local_export.png" style="width: 90%;" /></a>
-<p class="caption"><span class="caption-number">Fig. 18 </span><span class="caption-text">Menu local d’export des images</span><a class="headerlink" href="#id1" title="Lien permanent vers cette image">¶</a></p>
-</div>
-<p>Les exports se font par collection, à l’aide du choix <code class="docutils literal notranslate"><span class="pre">export</span></code>  dans le
-tableau de la page d’accueil.</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>Les graphiques sont exportés sous forme de
-documents JSON dans le répertoire <code class="docutils literal notranslate"><span class="pre">exportdir/&lt;codeCol&gt;/&lt;nomGraphique&gt;</span></code>
-(<code class="docutils literal notranslate"><span class="pre">&lt;codeCol&gt;</span></code> est le code de la collection défini à la création).</p></li>
-<li><p>Ce répertoire est ensuite zippé et le fichier Zip est téléchargé.</p></li>
-</ul>
-</div></blockquote>
-<p>À partir des exports en JSON, on peut produire les formats graphiques
-avec les outils Highcharts (<a class="reference external" href="https://www.highcharts.com/docs/export-module">https://www.highcharts.com/docs/export-module</a>).
-Il faut essentiellement installer le <em>Highcharts export server</em>, en fait
-un utilitaire Javascript, selon les instructions qui se trouvent
-sur la page
-Github <a class="reference external" href="https://github.com/highcharts/node-export-server/blob/master/README.md">https://github.com/highcharts/node-export-server/blob/master/README.md</a>.</p>
-<p>Un fichier <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> est fourni à titre d’exemple pour dans
-le répertoire <code class="docutils literal notranslate"><span class="pre">cristhaldir/install</span></code>. En plaçant ce fichier dans
-le répertoire d’export et en entrant la commande (sous un système de type Unix):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make
-</pre></div>
-</div>
-<p>les PDF sont produits à partir des JSON. Il est très facile de produire d’autres
-formats.</p>
-</div>
-<div class="section" id="export-des-bibtex">
-<h2>Export des bibtex<a class="headerlink" href="#export-des-bibtex" title="Lien permanent vers ce titre">¶</a></h2>
-<p>CristHAL exporte des fichiers <code class="docutils literal notranslate"><span class="pre">.bib</span></code> contenant les entrées Bibtex des
-publications de la collection exportée. Ces entrées sont celles produites
-par HAL.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>À l’avenir il est possible que d’autres modèles Bbtex soient proposés.</p>
-</div>
-<p>Il y a autant de fichiers <code class="docutils literal notranslate"><span class="pre">.bib</span></code> que de catégories dans le classement
-des publications. Chaque fichier est suffixé par le code du classement:
-on peut ainsi choisir, dans un document Latex, quels niveaux de classement
-on choisit de référencer.</p>
-</div>
-</div>
-
-
-           </div>
-           
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Recherche</h3>
+            <form class="search" action="search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="Go" />
+            </form>
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="statistiques.html" class="btn btn-neutral float-right" title="Les statistiques" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="classement.html" class="btn btn-neutral float-left" title="Classement des publications" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
-  
 
-  <hr/>
-
-  <div>
-    <p>
-        
-        
-        
-          Built with <a href="https://www.sphinx-doc.org/en/master/">Sphinx</a> on 2021/05/19 using the <a href="https://github.com/audeering/sphinx-audeering-theme/">audEERING theme</a>
-        
-    </p>
-  </div>
-
-  <div role="contentinfo">
-    <p>
-        
-      &copy; 2021, Philippe Rigaux
-    </p>
-  </div> 
-
-</footer>
         </div>
+        <div class="clearer"></div>
       </div>
+    </div>
 
-    </section>
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="classement.html" title="Classement des publications"
+              >précédent</a> |
+            <a href="statistiques.html" title="Les statistiques"
+              >suivant</a> |
+            <a href="genindex.html" title="Index général"
+              >index</a>
+          </div>
+          <div role="note" aria-label="source link">
+              <br/>
+              <a href="_sources/export.rst.txt"
+                rel="nofollow">Montrer le code source</a>
+          </div>
+        </div>
 
-  </div>
-  
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021-2023, Philippe Rigaux.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.1.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
 
-
-
-  
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/translations.js"></script>
-    
-
-  
-
-  <script type="text/javascript" src="_static/js/theme.js"></script>
-
-  <script type="text/javascript">
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
-
-</body>
+  </body>
 </html>

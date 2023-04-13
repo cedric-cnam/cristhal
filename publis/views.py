@@ -438,8 +438,8 @@ def export(coll, context):
 
 	# Cherchons la configuration pour avoir des valeurs par défaut
 	config = Config.objects.get(code=CODE_CONFIG_DEFAUT)
-	
- 
+	coll_dir = os.path.join(config.repertoire_export, coll.code)
+
 	# TODO: mieux vaut effacer le répertoire
 	coll.export(config.repertoire_export, config.annee_min_publis, config.annee_max_publis)
 
@@ -448,7 +448,7 @@ def export(coll, context):
 	zf = zipfile.ZipFile(contenu_zip, "w")
 	for file in os.listdir(coll_dir):   
 		if file.endswith(".json") or file.endswith(".bib") or file.endswith(".tex"):
-			 zf.write(os.path.join(coll_dir,file), file)		 
+			zf.write(os.path.join(coll_dir,file), file)		 
 	zf.close()
 
 	return contenu_zip

@@ -49,7 +49,7 @@ class Config(models.Model):
 	
 	# Période par défaut
 	ANNEE_MIN_PUBLI=2017
-	ANNEE_MAX_PUBLI=2021
+	ANNEE_MAX_PUBLI=2022
 	
 	code = models.CharField(max_length=20, default="défaut", primary_key=True)
 	
@@ -757,7 +757,7 @@ def export_collection(code_collection, export_dir, annee_min, annee_max):
 		# On  crée le répertoire pour la collection s'il n'existe pas
 		coll_dir = os.path.join(export_dir, code_collection)
 		if not os.path.isdir(coll_dir):
-			os.mkdir (coll_dir)
+			os.mkdir (coll_dir, 0o777)
 
 		# Nettoyage 
 		# Copie du fichier makefile
@@ -778,11 +778,14 @@ def export_collection(code_collection, export_dir, annee_min, annee_max):
    			
 		### Export des graphiques et docs. On commence par nettoyer les dossiers
 		doc_publis_dir = os.path.join(coll_dir, "docs_publis")
-		shutil.rmtree(doc_publis_dir)
-		os.mkdir (doc_publis_dir)
+		print (f"Création {doc_publis_dir}")
+		if not os.path.isdir(doc_publis_dir):
+			#shutil.rmtree(doc_publis_dir)
+			os.mkdir (doc_publis_dir, 0o777)
 		stats_publis_dir = os.path.join(coll_dir, "stats_publis")
-		shutil.rmtree(stats_publis_dir)
-		os.mkdir (stats_publis_dir)
+		if not os.path.isdir(stats_publis_dir):
+			#shutil.rmtree(stats_publis_dir)
+			os.mkdir (stats_publis_dir, 0o777)
 
 		export_fichiers = UtilExport("publis/export", doc_publis_dir)
 		export_graphiques = UtilExport("publis/export", stats_publis_dir)

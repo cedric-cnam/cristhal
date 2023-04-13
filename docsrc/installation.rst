@@ -38,7 +38,12 @@ Mise en route
 *************
 
 On suppose donc que vous disposez d'une machine équipée de Python (version au moins 3.6), et d'un accès 
-à un serveur MySQL et à un serveur ElasticSearch. Pour MySQL il est nécessaire de créer 
+à un serveur MySQL et à un serveur ElasticSearch.
+
+MySQL
+=====
+
+Pour MySQL il est nécessaire de créer 
 une base et deux  comptes
 
  - un compte administrateur disposant de tous les droits sur la base
@@ -64,7 +69,24 @@ Voici des exemples de commandes (elles se trouvent dans
 
 .. important:: Ne les copiez pas telles quelles ! *Changez au moins le mot de passe*
 
-Pas besoin de créer l'index pour ElasticSearch, CristHAL s'en charge à la première connexion.
+ElasticSearch
+=============
+
+Par défaut le compte d'accès à ElasticSearch est ``elastic``/``changeme``. 
+Il vaut effectivement mieux le changer. L'utilitaire de changement
+du mot de passe est dans 
+le répertoire ``elasticsearch/bin``:
+
+.. code-block:: bash
+
+     elasticsearch-setup-passwords interactive
+     
+  
+Pas besoin de créer l'index pour ElasticSearch, 
+CristHAL s'en charge à la première connexion.
+
+CristHAL
+========
 
 Le code de CristHAL peut être récupéré sur
 https://github.com/cedric-cnam/cristhal. Installez-le dans un répertoire que nous appelerons ``cristhaldir``.
@@ -127,13 +149,18 @@ vos paramètres de site.
 
 La configuration d'accès au serveur ElasticSearch est indiquée dans les variables suivantes.
 Vous pouvez conserver la valeur de  ``ES_INDEX_REF`` si vous le souhaitez.  Indiquez 
-les autres paramètres dans ``ELASTIC_SEARCH``.
+les autres paramètres dans le dictionnaire ``ELASTIC_SEARCH``.
 
 .. code-block:: python
 
       ES_INDEX_REF = "cristhal"
       ELASTIC_SEARCH = {"host": "localhost", "port": 9200, 
-                  "index": ES_INDEX_REF}
+                  "index": ES_INDEX_REF,
+                  "auth_login": "elastic",
+                   "auth_password": "changeme"
+                  }
+
+Reportez bien sûr le login et  mot de passe d'accès au serveur ElasticSearch.
 
 Certains fichiers (les CSV des sources du référentiel notamment) sont 
 stockés dans un répertoire local spécifié par le paramètre ``MEDIA_ROOT``.
@@ -235,10 +262,13 @@ accéder à l'interface de définition des configurations.
 Il doit exister au moins une configuration, nommée ``défaut``. Elle est créée à l'initialisation
 de CristHAL et contient plusieurs paramètres:
 
-  - L'adresse des services web HAL (ne pas modifier en principe)
-  - La période (année min et max) de récolte des publications.
+  - l'adresse des services web HAL (ne pas modifier en principe);
+  - La période (année min et max) de récolte des publications;
   - les types de publication HAL qui doivent être importés dans le système ; par 
-    défaut des types comme 'AUTRE', 'POSTER' ou 'RAPPORT' ne sont pas importés.
+    défaut des types comme 'AUTRE', 'POSTER' ou 'RAPPORT' ne sont pas importés;
+  - le répertoire d'export ; il doit s'agit d'un répertoire existant sur 
+    la machine du serveur web, dans lequel ce même serveur a le droit d'écrire 
+    (par défaut: ``/tmp``)
 
 .. _form-config:
 .. figure:: ./figures/form-config.png       
@@ -247,7 +277,8 @@ de CristHAL et contient plusieurs paramètres:
    
         Le formulaire de configuration
 
-Au-delà de la configuration, tout le paramétrage de CristHAL se fait via cette interface
+Au-delà de la configuration initiale qui implique quelques éditions de fichier, 
+tout le paramétrage de CristHAL se fait via cette interface
 d'administration.
 
 .. important:: Pour revenir au site principal à partir de l'interface d'administration, il faut
@@ -270,14 +301,14 @@ un fichier ``wsgi.py`` qui sert à créer une passerelle WSGI avec un serveur
 comme Apache, Nginx ou Gunicorn.
 
 La documentation  explique en détail la procédure pour ces différents serveurs:
-https://docs.djangoproject.com/fr/3.1/howto/deployment/wsgi/.
+https://docs.djangoproject.com/fr/3.2/howto/deployment/wsgi/.
 
 Configuration en production
 ===========================
 
 Il faut évidemment adapter la configuration pour s'assurer de la protection de l'application
 si elle est exposée sur le Web. Là encore, la documentation
-https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/ nous dit l'essentiel,
+https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/ nous dit l'essentiel,
 et on trouve de très nombreux tutoriels qui détaillent les précautions à prendre.
 
 La configuration de CristHAL peut se placer dans le fichier ``local_settings.py`` (vous pouvez
