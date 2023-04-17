@@ -56,6 +56,34 @@ PUBLI_AUTRE="OTHER"
 PUBLI_TOUS_TYPES="Tous"
 PUBLI_TOUS_CLASSEMENTS="Tous"
 
+# Un dictionnairee avec les types de publi
+TYPES_PUBLI= {
+        PUBLI_REVUE: "Articles revue",
+        PUBLI_CONF: "Conférence",
+        PUBLI_DIRECTION_OUVRAGE: "Direction d'ouvrage",
+        PUBLI_CHAPITRE: "Chapitre dans ouvrage",
+        PUBLI_OUVRAGE: "Livre",
+        PUBLI_POSTER: "Poster",
+        PUBLI_THESE: "Thèse",
+        PUBLI_HDR: "Habilitation",
+        PUBLI_REPORT: "Rapport de recherche",
+        PUBLI_BREVET: "Brevet",
+        PUBLI_AUTRE: "Autre",
+        PUBLI_LOGICIEL: "Logiciel"
+}
+
+# Les types suivants sont classés en Communication
+TYPES_PUBLI_COMMUNICATION = [PUBLI_POSTER, PUBLI_DIRECTION_OUVRAGE, PUBLI_ACTES,
+					PUBLI_CHAPITRE, PUBLI_OUVRAGE, PUBLI_REPORT]
+
+# Les types suivants sont classés en Valorisation
+TYPES_PUBLI_VALORISATION = [PUBLI_BREVET, PUBLI_LOGICIEL]
+
+# Les types de publi que l'on ne souhaite par charger
+#  par défaut
+PUBLIS_HAL_EXCLUES = [PUBLI_THESE, PUBLI_HDR, PUBLI_UNDEFINED, 
+                      PUBLI_REPORT, PUBLI_AUTRE]
+
 #
 # Sources référentiel
 #
@@ -70,3 +98,24 @@ CHOIX_SOURCES = (
     (SOURCE_SCIMAGO, "Sources SCIMAGO"),
     (SOURCE_INTERNE, "Sources interne"),
 )
+
+
+# Les valeurs du classement par défaut
+
+NIVEAU_1 = "N1"
+NIVEAU_2 = "N2"
+NIVEAU_3 = "N3"
+NIVEAU_4 = "N4"
+NIVEAU_COMM = "C"
+NIVEAU_NAT = "N"
+NIVEAU_VALO = "V"
+NIVEAU_HORS_REF = "I"
+CLASSEMENT_PUBLIS = [{"code": NIVEAU_1, "libelle" : "Q1"},
+                     {"code": NIVEAU_2, "libelle" : "Q2"},
+                     {"code": NIVEAU_3, "libelle" : "Q3"},
+                     {"code": NIVEAU_4, "libelle" : "Q4"},
+                   {"code": NIVEAU_COMM, "libelle" : "Communications"},
+				   {"code": NIVEAU_VALO, "libelle" : "Valorisation"},
+                    {"code": NIVEAU_NAT, "libelle" : "National"},
+                    {"code": NIVEAU_HORS_REF, "libelle" : "Hors référentiel"}
+                ]

@@ -21,11 +21,12 @@ L'échelle de classement proposée par défaut est celle définie au laboratoire
 Cédric. Elle comprend  7 catégories :
   
   - le classement "Communication" correspond aux exposés sans comité de lecture (séminaires,
-    conférences invitées, etc.)
-  - le classement "National" correspond aux publications ayant une portée nationale,
+    conférences invitées, etc.);
+  - le classement "Valorisation" correspond aux logiciels et  brevets ;
+  - le classement "National" correspond aux publications ayant une portée nationale;
   - seules les revues ou conférences internationales avec actes reçoivent un classement avec 
     quatre niveaux ; par analogie avec celui utilisé dans Scimago, ces quatre niveaux 
-    sont dénommés Q1, Q2, Q3 et Q4.
+    sont dénommés Q1, Q2, Q3 et Q4;
   - enfin il existe un niveau "Hors référentiel", indiqué par le code "I", qui
     setrt de classement par défaut.
     

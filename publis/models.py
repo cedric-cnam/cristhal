@@ -226,7 +226,7 @@ class Collection(models.Model):
 		
 		# On récupère toutes les publis de Hal pour synchroniser la base
 		logger.info("Requête HAL : " + hal_query)
-		print("Requête HAL : " + hal_query)
+		# print("Requête HAL : " + hal_query)
 		i_doc = 0
 		r = requests.get(url=hal_query)
 		docs = r.json()["response"]["docs"]
@@ -242,6 +242,13 @@ class Collection(models.Model):
 				# On modifie d'après le JSON
 				publi.fromJson(doc)
 				
+				# Par défaut, les ouvrages, direction et chapitre sont classés en 'C' (communication)
+				classement_comm = ClassementPubli.objects.get(code=NIVEAU_COMM)
+				classement_valo = ClassementPubli.objects.get(code=NIVEAU_VALO)
+				if publi.type in TYPES_PUBLI_COMMUNICATION:
+					publi.classement = classement_comm
+				if publi.type in TYPES_PUBLI_VALORISATION:
+					publi.classement = classement_valo
 				
 				publi.save()
 				# On ajoute la collection

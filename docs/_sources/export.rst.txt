@@ -73,6 +73,11 @@ et sur le type de publication. Actuellement nous avons
     par type et par classement (figure :numref:`synthese-publis`)
   - des fichiers contenant des entrées ``bibitem`` 
 
+Enfin,  dans ``exportdir/<codeCol>``, un fichier ``biblio_<codeCol>.tex``
+est créé (par exemple ``biblio_vertigo.tex``). Il montre comment include les fichiers précédents dans un
+rapport Latex contenant toute la bibliographie. On peut
+le compiler directement avec ``pdflatex``.
+
 
 .. _synthese-publis:
 .. figure:: ./figures/synthese_publis.png       
